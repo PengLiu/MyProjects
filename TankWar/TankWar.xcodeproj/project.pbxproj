@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C0C843D133AF8E900DE7408 /* EnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8434133AF8E800DE7408 /* EnemyManager.m */; };
-		2C0C843E133AF8E900DE7408 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8436133AF8E800DE7408 /* GameScene.m */; };
+		2C0C843E133AF8E900DE7408 /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8436133AF8E800DE7408 /* GameScene.mm */; };
 		2C0C843F133AF8E900DE7408 /* HandDrawScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8438133AF8E800DE7408 /* HandDrawScene.m */; };
 		2C0C8440133AF8E900DE7408 /* JoyStickLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843A133AF8E800DE7408 /* JoyStickLayer.m */; };
 		2C0C8441133AF8E900DE7408 /* PlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* PlayerHelper.m */; };
@@ -190,13 +190,14 @@
 		2C8DABA8133AF7920040C305 /* CCJoyStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA3133AF7920040C305 /* CCJoyStick.m */; };
 		2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA5133AF7920040C305 /* CCLayout.m */; };
 		2C8DABAA133AF7920040C305 /* PadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA7133AF7920040C305 /* PadButton.m */; };
+		2CC850E0133B10950016998C /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC850DF133B10950016998C /* MainMenuScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C0C8433133AF8E800DE7408 /* EnemyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyManager.h; sourceTree = "<group>"; };
 		2C0C8434133AF8E800DE7408 /* EnemyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyManager.m; sourceTree = "<group>"; };
 		2C0C8435133AF8E800DE7408 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		2C0C8436133AF8E800DE7408 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		2C0C8436133AF8E800DE7408 /* GameScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameScene.mm; sourceTree = "<group>"; };
 		2C0C8437133AF8E800DE7408 /* HandDrawScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandDrawScene.h; sourceTree = "<group>"; };
 		2C0C8438133AF8E800DE7408 /* HandDrawScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandDrawScene.m; sourceTree = "<group>"; };
 		2C0C8439133AF8E800DE7408 /* JoyStickLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoyStickLayer.h; sourceTree = "<group>"; };
@@ -539,6 +540,9 @@
 		2C8DABA5133AF7920040C305 /* CCLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayout.m; sourceTree = "<group>"; };
 		2C8DABA6133AF7920040C305 /* PadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PadButton.h; sourceTree = "<group>"; };
 		2C8DABA7133AF7920040C305 /* PadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PadButton.m; sourceTree = "<group>"; };
+		2CC850DD133B10950016998C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2CC850DE133B10950016998C /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
+		2CC850DF133B10950016998C /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -595,10 +599,13 @@
 		2C8DA9AB133AF4AC0040C305 /* TankWar */ = {
 			isa = PBXGroup;
 			children = (
+				2CC850DD133B10950016998C /* Constants.h */,
+				2CC850DE133B10950016998C /* MainMenuScene.h */,
+				2CC850DF133B10950016998C /* MainMenuScene.m */,
 				2C0C8433133AF8E800DE7408 /* EnemyManager.h */,
 				2C0C8434133AF8E800DE7408 /* EnemyManager.m */,
 				2C0C8435133AF8E800DE7408 /* GameScene.h */,
-				2C0C8436133AF8E800DE7408 /* GameScene.m */,
+				2C0C8436133AF8E800DE7408 /* GameScene.mm */,
 				2C0C8437133AF8E800DE7408 /* HandDrawScene.h */,
 				2C0C8438133AF8E800DE7408 /* HandDrawScene.m */,
 				2C0C8439133AF8E800DE7408 /* JoyStickLayer.h */,
@@ -1236,10 +1243,11 @@
 				2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */,
 				2C8DABAA133AF7920040C305 /* PadButton.m in Sources */,
 				2C0C843D133AF8E900DE7408 /* EnemyManager.m in Sources */,
-				2C0C843E133AF8E900DE7408 /* GameScene.m in Sources */,
+				2C0C843E133AF8E900DE7408 /* GameScene.mm in Sources */,
 				2C0C843F133AF8E900DE7408 /* HandDrawScene.m in Sources */,
 				2C0C8440133AF8E900DE7408 /* JoyStickLayer.m in Sources */,
 				2C0C8441133AF8E900DE7408 /* PlayerHelper.m in Sources */,
+				2CC850E0133B10950016998C /* MainMenuScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

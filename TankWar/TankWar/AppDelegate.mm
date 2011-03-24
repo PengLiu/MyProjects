@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "HelloWorldLayer.h"
 #import "RootViewController.h"
+#import "MainMenuScene.h"
 
 @implementation AppDelegate
 
@@ -66,7 +67,8 @@
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
 								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
 						];
-	
+	[glView setMultipleTouchEnabled:YES];
+    
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
@@ -110,10 +112,21 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
+    //Load Player Sprite Image
+	[[CCTextureCache sharedTextureCache] addImageAsync:@"player01.png" 
+												target:self selector:@selector(playerLoaded:)];
+    [[CCTextureCache sharedTextureCache] addImageAsync:@"enemy.png" 
+												target:self selector:@selector(playerLoaded:)];
+	[[CCTextureCache sharedTextureCache] addImageAsync:@"tank.png" 
+												target:self selector:@selector(playerLoaded:)];
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [MainMenuSence scene]];
+
 }
 
+-(void)playerLoaded:(CCTexture2D *)texture{
+	CCLOG(@"Player loaded");
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] pause];
