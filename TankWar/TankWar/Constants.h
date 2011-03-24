@@ -8,8 +8,11 @@
 
 #define PTM_RATIO 32
 
+//Damping for tank body
+#define BETTER_LINE_DAMPING 10
+#define  BETTER_ANGULAR_DAMPING 10
+
 
 #define PLAYER_BATCH_NODE 1
 #define ENEMY_BATCH_NODE 2
 
-#define TURRET_NODE 3

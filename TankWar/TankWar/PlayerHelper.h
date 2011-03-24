@@ -14,21 +14,17 @@
 
 @interface PlayerHelper : CCNode {
 
+    
+    GameScene *world;
+    
 	CCSpriteBatchNode *playerSheet;
-	
-	NSMutableArray *actionArray;
-	
+        
     
-    b2Body *tankBody;
-    
-	CCSprite *player;
+    CCSprite *player;
     CCSprite *turret;
-	
-	GameScene *world;
-	
-	NSInteger currentActionIndex;
     
-    NSMutableArray *collisionObjs;
+    //Box2d tank body
+    b2Body *tankBody;
     
     float angle;
 }
@@ -38,7 +34,6 @@
 @property (nonatomic, retain) CCSprite *player;
 @property (nonatomic, retain) CCSprite *turret;
 @property (nonatomic, retain) GameScene *world;
-@property (nonatomic, retain) NSMutableArray *collisionObjs;
 
 @property (nonatomic) float angle;
 @property (nonatomic) NSInteger currentActionIndex;
@@ -52,7 +47,9 @@
 -(CGPoint) getCurrentPosition;
 
 
--(void) moveWithAngle:(float)angle Direction:(CGPoint)direction Power:(float)power;
--(void) fire;
+-(void) moveToDirection:(CGPoint)direction WithPower:(float)power;
+
+-(void) startFire;
+-(void) stopFire;
 
 @end

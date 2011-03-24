@@ -6,6 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+
+
 #import "PlayerHelper.h"
 #import "GameScene.h"
 #import "Constants.h"
@@ -15,8 +17,6 @@
 -(void) changeAction:(NSInteger) targetActionIndex;
 
 -(CGRect) positionRect:(CGPoint)point withSprite:(CCSprite*)sprite;
-
--(BOOL) collisionCheck:(CGRect) targetRect;
 
 -(void) addNewSprite:(CCSprite *)sprite;
 
@@ -30,7 +30,7 @@
 @synthesize turret;
 @synthesize player;
 @synthesize world;
-@synthesize collisionObjs;
+
 
 @synthesize angle;
 @synthesize currentActionIndex;
@@ -41,6 +41,8 @@
 	
 	if ((self = [super init])) {
 		
+        [aWorld addChild:self];
+        
 		self.currentActionIndex = -1;
 		
 		self.world = aWorld;
@@ -85,14 +87,14 @@
             self.turret = [CCSprite spriteWithSpriteFrameName:@"turret1.png"];
             [turret setAnchorPoint:ccp(0.5,0.5)];
             [turret setPosition:ccp(200,200)];
-            [playerSheet addChild:turret z:1 tag:TURRET_NODE];
+            [playerSheet addChild:turret z:1];
         
 	}
 	return self;
 }
 
 
--(void) moveWithAngle:(float)an Direction:(CGPoint)direction Power:(float)power{
+-(void) moveToDirection:(CGPoint)direction WithPower:(float)power{
     
     
     float nextx = player.position.x;
@@ -108,24 +110,13 @@
     float bodyAngle = -tankBody ->GetAngle();
     
     tankBody->SetTransform(tankBody->GetPosition(),-tmpAngle);    
-    tankBody->ApplyForce( b2Vec2(sin(bodyAngle) * 4, cos(bodyAngle) * 4), tankBody->GetPosition());
+    tankBody->ApplyForce( b2Vec2(sin(bodyAngle) * 50, cos(bodyAngle) * 50), tankBody->GetPosition());
     
     //TODO: make turret as a part of tank body
 //    [turret setPosition:player.position];
     
 }
 
--(BOOL) collisionCheck:(CGRect) targetRect{
-    
-    for (NSValue *value in self.collisionObjs) {
-        CGRect rect = [value CGRectValue];
-        if (!CGRectIsNull(CGRectIntersection(rect, targetRect))) {
-            CCLOG(@"Collision");
-            return YES;
-        }
-    }
-    return NO;
-}
 
 -(CGRect) positionRect:(CGPoint)point withSprite:(CCSprite*)sprite{
     
@@ -185,8 +176,8 @@
     //Set up a 1m squared box in the physics world
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-    bodyDef.linearDamping = 1;
-    bodyDef.angularDamping = 1;
+    bodyDef.linearDamping = BETTER_LINE_DAMPING;
+    bodyDef.angularDamping = BETTER_ANGULAR_DAMPING;
     
     bodyDef.position.Set(sprite.position.x/PTM_RATIO, sprite.position.y/PTM_RATIO);
     bodyDef.userData = self;
@@ -194,7 +185,6 @@
     
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
-
     
     dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
 	
@@ -206,9 +196,16 @@
     tankBody->CreateFixture(&fixtureDef);
 }
 
+-(void) stopFire{
+    [self unschedule:@selector(fire:)];
+}
 
--(void) fire{
-    
+-(void) startFire{
+    [self schedule: @selector(fire:) interval:0.3];
+}
+
+-(void) fire:(ccTime) dt{
+
     CCSprite *bullet=[CCSprite spriteWithFile:@"bullet.png"];
 	
     bullet.position = turret.position;
@@ -224,15 +221,15 @@
 	float vy = sin(ran) * 400;
 	
 	id moveact=[CCEaseIn actionWithAction:[CCMoveTo actionWithDuration:.8 
-                position:ccp(bullet.position.x+vx,bullet.position.y+vy)] rate:1];
+                                                              position:ccp(bullet.position.x+vx,bullet.position.y+vy)] rate:1];
     
 	id movedone=[CCCallFuncND actionWithTarget:self selector:@selector(onBulletMoveDone:data:) data:bullet];
     
 	[bullet runAction:[CCSequence actions:moveact,movedone,nil]];
 	
     [world addChild:bullet z:1];
-    
 }
+
 
 -(void)onBulletMoveDone:(id)sender data:(CCSprite*)bullet
 {

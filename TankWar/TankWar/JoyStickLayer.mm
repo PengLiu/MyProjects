@@ -116,33 +116,11 @@
     
 	if (sender == leftJoystick) {
         gameScene.playerHelper.player.rotation = -angle + 90;
-        [gameScene.playerHelper moveWithAngle:-angle Direction:direction Power:power];
+        [gameScene.playerHelper moveToDirection:direction WithPower:power];
         
-		//CCLOG(@"angle:%f power:%f direction:%f,%f",angle,power,direction.x,direction.y);
-        //CCLOG(@"Player position:x%f,y%f",gameScene.playerHelper.player.position.x,gameScene.playerHelper.player.position.y);
-
-//		
-//		// With power
-//		//nextx += direction.x * (power*8);
-//		//nexty += direction.y * (power*8);
-//		
-//		nextx += direction.x * 3;
-//		nexty += direction.y * 3;
-//        
-//		float mapWidth = gameScene.worldMap.mapSize.width;
-//		float mapHeight = gameScene.worldMap.tileSize.height;
-//		float mapTileWidth = gameScene.worldMap.tileSize.width;
-//		float mapTileHeith = gameScene.worldMap.tileSize.height;
-//        
-//		if (nextx <= (mapWidth * mapTileWidth ) && nexty <= (mapHeight * mapTileHeith)
-//			&&nextx >= 0 && nexty >= 0) {
-//			[gameScene.playerHelper moveToPosition:ccp(nextx, nexty)];
-//        }
 	}else if (sender == rightJoystick) {
-        
         gameScene.playerHelper.turret.rotation = -angle +90 ;
         gameScene.playerHelper.angle = -angle;
-        [gameScene.playerHelper fire];
 	}
 }
 
@@ -155,6 +133,8 @@
 	}else if (sender == rightJoystick) {
 		[rightJoystick setBallTexture:@"Ball_hl.png"];
 		[rightJoystick setDockTexture:@"Dock_hl.png"];
+        //Tank fire
+        [gameScene.playerHelper startFire];
 	}
 }
 - (void) onCCJoyStickDeactivated:(CCNode*)sender
@@ -168,6 +148,8 @@
 	}else if (sender == rightJoystick) {
 		[rightJoystick setBallTexture:@"Ball.png"];
 		[rightJoystick setDockTexture:@"Dock.png"];
+        //Tank stop fire
+        [gameScene.playerHelper stopFire];
 	}
 	
 }

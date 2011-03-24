@@ -13,6 +13,7 @@
 #import "PlayerHelper.h"
 #import "JoyStickLayer.h"
 #import "EnemyManager.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameScene(PrivateMethod)
 
@@ -21,6 +22,10 @@
 -(void) initWorld;
 
 -(void) initEnemy;
+
+-(void) playBGM;
+
+-(void) initStaticBodyFromSvg;
 
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
 
@@ -64,8 +69,13 @@
         
         worldMapName = wm;
         
+        //Play background music
+        [self playBGM];
+        
         //Init world map
         [self initWorld];
+        
+        [self initStaticBodyFromSvg];
         
         //Init player
         [self initPlayer];
@@ -76,6 +86,12 @@
     }
     
     return self;
+}
+
+-(void) playBGM{
+    
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamewaiting.mp3"];
+    
 }
 
 - (CGPoint)tileCoordForPosition:(CGPoint)position {
@@ -119,10 +135,31 @@
     //[self.playerHelper moveToPosition:ccp(300, 50)];
 }
 
+-(void) initStaticBodyFromSvg{
+    
+    //The svg file should has the same prefix file name as worldMapName but end with .svg
+    
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
+    bodyDef.position.Set(300/PTM_RATIO, 300/PTM_RATIO);
+    b2Body *body = phyWorld ->CreateBody(&bodyDef);
+    
+    // Define another box shape for our dynamic body.
+    b2PolygonShape staticBox;
+    staticBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
+	
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &staticBox;	
+    fixtureDef.density = 1.0f;
+    fixtureDef.friction = 0.3f;
+    body->CreateFixture(&fixtureDef);
+}
+
 -(void) initWorld{
     
     //Load world map
-    self.worldMap = [CCTMXTiledMap tiledMapWithTMXFile:worldMapName];
+    self.worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
     [self addChild:worldMap z:-1];
     
     

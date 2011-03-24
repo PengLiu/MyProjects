@@ -12,6 +12,7 @@
 		2C0C843F133AF8E900DE7408 /* HandDrawScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8438133AF8E800DE7408 /* HandDrawScene.mm */; };
 		2C0C8440133AF8E900DE7408 /* JoyStickLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */; };
 		2C0C8441133AF8E900DE7408 /* PlayerHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* PlayerHelper.mm */; };
+		2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C511249133B8B0A008E3455 /* gamewaiting.mp3 */; };
 		2C8DA99C133AF4AC0040C305 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */; };
 		2C8DA99E133AF4AC0040C305 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */; };
 		2C8DA9A0133AF4AC0040C305 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99F133AF4AC0040C305 /* OpenAL.framework */; };
@@ -204,6 +205,7 @@
 		2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JoyStickLayer.mm; sourceTree = "<group>"; };
 		2C0C843B133AF8E800DE7408 /* PlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerHelper.h; sourceTree = "<group>"; };
 		2C0C843C133AF8E900DE7408 /* PlayerHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayerHelper.mm; sourceTree = "<group>"; };
+		2C511249133B8B0A008E3455 /* gamewaiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamewaiting.mp3; sourceTree = "<group>"; };
 		2C8DA997133AF4AC0040C305 /* TankWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -564,6 +566,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C511246133B8AC6008E3455 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				2C511249133B8B0A008E3455 /* gamewaiting.mp3 */,
+			);
+			name = audio;
+			sourceTree = "<group>";
+		};
 		2C8DA98C133AF4AC0040C305 = {
 			isa = PBXGroup;
 			children = (
@@ -637,6 +647,7 @@
 		2C8DA9AC133AF4AC0040C305 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C511246133B8AC6008E3455 /* audio */,
 				2C8DAB77133AF7330040C305 /* Ball_hl.png */,
 				2C8DAB78133AF7330040C305 /* Ball.png */,
 				2C8DAB79133AF7330040C305 /* bar.png */,
@@ -1093,6 +1104,7 @@
 				2C8DAB9E133AF7330040C305 /* Stick.jpg in Resources */,
 				2C8DAB9F133AF7330040C305 /* tank.plist in Resources */,
 				2C8DABA0133AF7330040C305 /* tank.png in Resources */,
+				2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1258,7 +1270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1269,7 +1281,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1278,13 +1290,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};
