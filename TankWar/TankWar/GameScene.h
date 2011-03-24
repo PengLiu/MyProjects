@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
+#import "Box2D.h"
+#import "GLES-Render.h"
 
 @class JoyStickLayer;
 @class PlayerHelper;
 @class EnemyManager;
 
 @interface GameScene : CCLayer {
+    
+    b2World* phyWorld;
+    GLESDebugDraw *m_debugDraw;
+    
     
     CCTMXTiledMap *worldMap;
     
@@ -23,14 +28,15 @@
     EnemyManager *enemyManager;
     
     NSString *worldMapName;
-    
-    NSMutableArray *collisionObjs;
+
 }
 
 @property (nonatomic, retain) PlayerHelper *playerHelper;
 @property (nonatomic, retain) EnemyManager *enemyManager;
-@property (nonatomic, retain) NSMutableArray *collisionObjs;
+
 @property (nonatomic, retain) CCTMXTiledMap *worldMap;
+
+@property (nonatomic) b2World *phyWorld;
 
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

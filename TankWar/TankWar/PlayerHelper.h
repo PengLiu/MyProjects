@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Box2D.h"
 
 @class GameScene;
 
@@ -17,6 +18,9 @@
 	
 	NSMutableArray *actionArray;
 	
+    
+    b2Body *tankBody;
+    
 	CCSprite *player;
     CCSprite *turret;
 	
@@ -39,13 +43,16 @@
 @property (nonatomic) float angle;
 @property (nonatomic) NSInteger currentActionIndex;
 
+@property (nonatomic)  b2Body *tankBody;
+
 -(id) initWithScene:(GameScene *)world;
 
 -(void) stopCurrentAction;
 
 -(CGPoint) getCurrentPosition;
 
--(void) moveToPosition:(CGPoint) position;
+
+-(void) moveWithAngle:(float)angle Direction:(CGPoint)direction Power:(float)power;
 -(void) fire;
 
 @end
