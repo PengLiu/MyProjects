@@ -161,6 +161,27 @@
 		2C8DAB6B133AF4AF0040C305 /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB6A133AF4AF0040C305 /* HelloWorldLayer.mm */; };
 		2C8DAB6E133AF4AF0040C305 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB6D133AF4AF0040C305 /* GLES-Render.mm */; };
 		2C8DAB71133AF4AF0040C305 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB70133AF4AF0040C305 /* blocks.png */; };
+		2C8DAB8C133AF7330040C305 /* Ball_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB77133AF7330040C305 /* Ball_hl.png */; };
+		2C8DAB8D133AF7330040C305 /* Ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB78133AF7330040C305 /* Ball.png */; };
+		2C8DAB8E133AF7330040C305 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB79133AF7330040C305 /* bar.png */; };
+		2C8DAB8F133AF7330040C305 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7A133AF7330040C305 /* bullet.png */; };
+		2C8DAB90133AF7330040C305 /* button_a1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7B133AF7330040C305 /* button_a1.png */; };
+		2C8DAB91133AF7330040C305 /* button_a2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7C133AF7330040C305 /* button_a2.png */; };
+		2C8DAB92133AF7330040C305 /* desert_world.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7D133AF7330040C305 /* desert_world.png */; };
+		2C8DAB93133AF7330040C305 /* desert_world.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7E133AF7330040C305 /* desert_world.tmx */; };
+		2C8DAB94133AF7330040C305 /* desert_world2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7F133AF7330040C305 /* desert_world2.png */; };
+		2C8DAB95133AF7330040C305 /* Dock_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB80133AF7330040C305 /* Dock_hl.png */; };
+		2C8DAB96133AF7330040C305 /* Dock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB81133AF7330040C305 /* Dock.png */; };
+		2C8DAB97133AF7330040C305 /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB82133AF7330040C305 /* enemy.png */; };
+		2C8DAB98133AF7330040C305 /* fire.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB83133AF7330040C305 /* fire.plist */; };
+		2C8DAB99133AF7330040C305 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB84133AF7330040C305 /* fire.png */; };
+		2C8DAB9A133AF7330040C305 /* mainmenu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB85133AF7330040C305 /* mainmenu.jpg */; };
+		2C8DAB9B133AF7330040C305 /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB86133AF7330040C305 /* meta_tiles.png */; };
+		2C8DAB9C133AF7330040C305 /* player01.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB87133AF7330040C305 /* player01.plist */; };
+		2C8DAB9D133AF7330040C305 /* player01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB88133AF7330040C305 /* player01.png */; };
+		2C8DAB9E133AF7330040C305 /* Stick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB89133AF7330040C305 /* Stick.jpg */; };
+		2C8DAB9F133AF7330040C305 /* tank.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB8A133AF7330040C305 /* tank.plist */; };
+		2C8DABA0133AF7330040C305 /* tank.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB8B133AF7330040C305 /* tank.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -473,6 +494,27 @@
 		2C8DAB6D133AF4AF0040C305 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		2C8DAB6F133AF4AF0040C305 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
 		2C8DAB70133AF4AF0040C305 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
+		2C8DAB77133AF7330040C305 /* Ball_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ball_hl.png; sourceTree = "<group>"; };
+		2C8DAB78133AF7330040C305 /* Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ball.png; sourceTree = "<group>"; };
+		2C8DAB79133AF7330040C305 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
+		2C8DAB7A133AF7330040C305 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
+		2C8DAB7B133AF7330040C305 /* button_a1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_a1.png; sourceTree = "<group>"; };
+		2C8DAB7C133AF7330040C305 /* button_a2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_a2.png; sourceTree = "<group>"; };
+		2C8DAB7D133AF7330040C305 /* desert_world.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desert_world.png; sourceTree = "<group>"; };
+		2C8DAB7E133AF7330040C305 /* desert_world.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = desert_world.tmx; sourceTree = "<group>"; };
+		2C8DAB7F133AF7330040C305 /* desert_world2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desert_world2.png; sourceTree = "<group>"; };
+		2C8DAB80133AF7330040C305 /* Dock_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dock_hl.png; sourceTree = "<group>"; };
+		2C8DAB81133AF7330040C305 /* Dock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dock.png; sourceTree = "<group>"; };
+		2C8DAB82133AF7330040C305 /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
+		2C8DAB83133AF7330040C305 /* fire.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fire.plist; sourceTree = "<group>"; };
+		2C8DAB84133AF7330040C305 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
+		2C8DAB85133AF7330040C305 /* mainmenu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mainmenu.jpg; sourceTree = "<group>"; };
+		2C8DAB86133AF7330040C305 /* meta_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meta_tiles.png; sourceTree = "<group>"; };
+		2C8DAB87133AF7330040C305 /* player01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player01.plist; sourceTree = "<group>"; };
+		2C8DAB88133AF7330040C305 /* player01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player01.png; sourceTree = "<group>"; };
+		2C8DAB89133AF7330040C305 /* Stick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stick.jpg; sourceTree = "<group>"; };
+		2C8DAB8A133AF7330040C305 /* tank.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tank.plist; sourceTree = "<group>"; };
+		2C8DAB8B133AF7330040C305 /* tank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -553,6 +595,27 @@
 		2C8DA9AC133AF4AC0040C305 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C8DAB77133AF7330040C305 /* Ball_hl.png */,
+				2C8DAB78133AF7330040C305 /* Ball.png */,
+				2C8DAB79133AF7330040C305 /* bar.png */,
+				2C8DAB7A133AF7330040C305 /* bullet.png */,
+				2C8DAB7B133AF7330040C305 /* button_a1.png */,
+				2C8DAB7C133AF7330040C305 /* button_a2.png */,
+				2C8DAB7D133AF7330040C305 /* desert_world.png */,
+				2C8DAB7E133AF7330040C305 /* desert_world.tmx */,
+				2C8DAB7F133AF7330040C305 /* desert_world2.png */,
+				2C8DAB80133AF7330040C305 /* Dock_hl.png */,
+				2C8DAB81133AF7330040C305 /* Dock.png */,
+				2C8DAB82133AF7330040C305 /* enemy.png */,
+				2C8DAB83133AF7330040C305 /* fire.plist */,
+				2C8DAB84133AF7330040C305 /* fire.png */,
+				2C8DAB85133AF7330040C305 /* mainmenu.jpg */,
+				2C8DAB86133AF7330040C305 /* meta_tiles.png */,
+				2C8DAB87133AF7330040C305 /* player01.plist */,
+				2C8DAB88133AF7330040C305 /* player01.png */,
+				2C8DAB89133AF7330040C305 /* Stick.jpg */,
+				2C8DAB8A133AF7330040C305 /* tank.plist */,
+				2C8DAB8B133AF7330040C305 /* tank.png */,
 				2C8DA9AD133AF4AC0040C305 /* Default.png */,
 				2C8DA9AF133AF4AC0040C305 /* fps_images.png */,
 				2C8DA9B1133AF4AC0040C305 /* Icon-72.png */,
@@ -954,6 +1017,27 @@
 				2C8DA9BC133AF4AC0040C305 /* Icon@2x.png in Resources */,
 				2C8DA9BF133AF4AC0040C305 /* iTunesArtwork in Resources */,
 				2C8DAB71133AF4AF0040C305 /* blocks.png in Resources */,
+				2C8DAB8C133AF7330040C305 /* Ball_hl.png in Resources */,
+				2C8DAB8D133AF7330040C305 /* Ball.png in Resources */,
+				2C8DAB8E133AF7330040C305 /* bar.png in Resources */,
+				2C8DAB8F133AF7330040C305 /* bullet.png in Resources */,
+				2C8DAB90133AF7330040C305 /* button_a1.png in Resources */,
+				2C8DAB91133AF7330040C305 /* button_a2.png in Resources */,
+				2C8DAB92133AF7330040C305 /* desert_world.png in Resources */,
+				2C8DAB93133AF7330040C305 /* desert_world.tmx in Resources */,
+				2C8DAB94133AF7330040C305 /* desert_world2.png in Resources */,
+				2C8DAB95133AF7330040C305 /* Dock_hl.png in Resources */,
+				2C8DAB96133AF7330040C305 /* Dock.png in Resources */,
+				2C8DAB97133AF7330040C305 /* enemy.png in Resources */,
+				2C8DAB98133AF7330040C305 /* fire.plist in Resources */,
+				2C8DAB99133AF7330040C305 /* fire.png in Resources */,
+				2C8DAB9A133AF7330040C305 /* mainmenu.jpg in Resources */,
+				2C8DAB9B133AF7330040C305 /* meta_tiles.png in Resources */,
+				2C8DAB9C133AF7330040C305 /* player01.plist in Resources */,
+				2C8DAB9D133AF7330040C305 /* player01.png in Resources */,
+				2C8DAB9E133AF7330040C305 /* Stick.jpg in Resources */,
+				2C8DAB9F133AF7330040C305 /* tank.plist in Resources */,
+				2C8DABA0133AF7330040C305 /* tank.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
