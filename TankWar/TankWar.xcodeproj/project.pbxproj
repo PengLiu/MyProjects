@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0C843D133AF8E900DE7408 /* EnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8434133AF8E800DE7408 /* EnemyManager.m */; };
+		2C0C843E133AF8E900DE7408 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8436133AF8E800DE7408 /* GameScene.m */; };
+		2C0C843F133AF8E900DE7408 /* HandDrawScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8438133AF8E800DE7408 /* HandDrawScene.m */; };
+		2C0C8440133AF8E900DE7408 /* JoyStickLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843A133AF8E800DE7408 /* JoyStickLayer.m */; };
+		2C0C8441133AF8E900DE7408 /* PlayerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* PlayerHelper.m */; };
 		2C8DA99C133AF4AC0040C305 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */; };
 		2C8DA99E133AF4AC0040C305 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */; };
 		2C8DA9A0133AF4AC0040C305 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99F133AF4AC0040C305 /* OpenAL.framework */; };
@@ -182,9 +187,22 @@
 		2C8DAB9E133AF7330040C305 /* Stick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB89133AF7330040C305 /* Stick.jpg */; };
 		2C8DAB9F133AF7330040C305 /* tank.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB8A133AF7330040C305 /* tank.plist */; };
 		2C8DABA0133AF7330040C305 /* tank.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB8B133AF7330040C305 /* tank.png */; };
+		2C8DABA8133AF7920040C305 /* CCJoyStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA3133AF7920040C305 /* CCJoyStick.m */; };
+		2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA5133AF7920040C305 /* CCLayout.m */; };
+		2C8DABAA133AF7920040C305 /* PadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA7133AF7920040C305 /* PadButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C0C8433133AF8E800DE7408 /* EnemyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyManager.h; sourceTree = "<group>"; };
+		2C0C8434133AF8E800DE7408 /* EnemyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyManager.m; sourceTree = "<group>"; };
+		2C0C8435133AF8E800DE7408 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		2C0C8436133AF8E800DE7408 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		2C0C8437133AF8E800DE7408 /* HandDrawScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandDrawScene.h; sourceTree = "<group>"; };
+		2C0C8438133AF8E800DE7408 /* HandDrawScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandDrawScene.m; sourceTree = "<group>"; };
+		2C0C8439133AF8E800DE7408 /* JoyStickLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoyStickLayer.h; sourceTree = "<group>"; };
+		2C0C843A133AF8E800DE7408 /* JoyStickLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoyStickLayer.m; sourceTree = "<group>"; };
+		2C0C843B133AF8E800DE7408 /* PlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerHelper.h; sourceTree = "<group>"; };
+		2C0C843C133AF8E900DE7408 /* PlayerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerHelper.m; sourceTree = "<group>"; };
 		2C8DA997133AF4AC0040C305 /* TankWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -515,6 +533,12 @@
 		2C8DAB89133AF7330040C305 /* Stick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stick.jpg; sourceTree = "<group>"; };
 		2C8DAB8A133AF7330040C305 /* tank.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tank.plist; sourceTree = "<group>"; };
 		2C8DAB8B133AF7330040C305 /* tank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank.png; sourceTree = "<group>"; };
+		2C8DABA2133AF7920040C305 /* CCJoyStick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCJoyStick.h; sourceTree = "<group>"; };
+		2C8DABA3133AF7920040C305 /* CCJoyStick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCJoyStick.m; sourceTree = "<group>"; };
+		2C8DABA4133AF7920040C305 /* CCLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLayout.h; sourceTree = "<group>"; };
+		2C8DABA5133AF7920040C305 /* CCLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayout.m; sourceTree = "<group>"; };
+		2C8DABA6133AF7920040C305 /* PadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PadButton.h; sourceTree = "<group>"; };
+		2C8DABA7133AF7920040C305 /* PadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PadButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,6 +595,16 @@
 		2C8DA9AB133AF4AC0040C305 /* TankWar */ = {
 			isa = PBXGroup;
 			children = (
+				2C0C8433133AF8E800DE7408 /* EnemyManager.h */,
+				2C0C8434133AF8E800DE7408 /* EnemyManager.m */,
+				2C0C8435133AF8E800DE7408 /* GameScene.h */,
+				2C0C8436133AF8E800DE7408 /* GameScene.m */,
+				2C0C8437133AF8E800DE7408 /* HandDrawScene.h */,
+				2C0C8438133AF8E800DE7408 /* HandDrawScene.m */,
+				2C0C8439133AF8E800DE7408 /* JoyStickLayer.h */,
+				2C0C843A133AF8E800DE7408 /* JoyStickLayer.m */,
+				2C0C843B133AF8E800DE7408 /* PlayerHelper.h */,
+				2C0C843C133AF8E900DE7408 /* PlayerHelper.m */,
 				2C8DAB63133AF4AF0040C305 /* AppDelegate.h */,
 				2C8DAB64133AF4AF0040C305 /* AppDelegate.mm */,
 				2C8DAB66133AF4AF0040C305 /* RootViewController.h */,
@@ -580,6 +614,7 @@
 				2C8DAB6C133AF4AF0040C305 /* GLES-Render.h */,
 				2C8DAB6D133AF4AF0040C305 /* GLES-Render.mm */,
 				2C8DAB6F133AF4AF0040C305 /* GameConfig.h */,
+				2C8DABA1133AF76A0040C305 /* GameJoyStick */,
 				2C8DA9AC133AF4AC0040C305 /* Resources */,
 				2C8DA9C0133AF4AC0040C305 /* cocos2d */,
 				2C8DAAB1133AF4AE0040C305 /* CocosDenshion */,
@@ -960,6 +995,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2C8DABA1133AF76A0040C305 /* GameJoyStick */ = {
+			isa = PBXGroup;
+			children = (
+				2C8DABA2133AF7920040C305 /* CCJoyStick.h */,
+				2C8DABA3133AF7920040C305 /* CCJoyStick.m */,
+				2C8DABA4133AF7920040C305 /* CCLayout.h */,
+				2C8DABA5133AF7920040C305 /* CCLayout.m */,
+				2C8DABA6133AF7920040C305 /* PadButton.h */,
+				2C8DABA7133AF7920040C305 /* PadButton.m */,
+			);
+			name = GameJoyStick;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1184,6 +1232,14 @@
 				2C8DAB68133AF4AF0040C305 /* RootViewController.m in Sources */,
 				2C8DAB6B133AF4AF0040C305 /* HelloWorldLayer.mm in Sources */,
 				2C8DAB6E133AF4AF0040C305 /* GLES-Render.mm in Sources */,
+				2C8DABA8133AF7920040C305 /* CCJoyStick.m in Sources */,
+				2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */,
+				2C8DABAA133AF7920040C305 /* PadButton.m in Sources */,
+				2C0C843D133AF8E900DE7408 /* EnemyManager.m in Sources */,
+				2C0C843E133AF8E900DE7408 /* GameScene.m in Sources */,
+				2C0C843F133AF8E900DE7408 /* HandDrawScene.m in Sources */,
+				2C0C8440133AF8E900DE7408 /* JoyStickLayer.m in Sources */,
+				2C0C8441133AF8E900DE7408 /* PlayerHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1279,6 +1335,7 @@
 				2C8DAB76133AF4AF0040C305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
