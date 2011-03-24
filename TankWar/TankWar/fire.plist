@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>fire1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {104, 111}}</string>
+			<key>offset</key>
+			<string>{0.5, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{1, 0}, {104, 111}}</string>
+			<key>sourceSize</key>
+			<string>{105, 111}</string>
+		</dict>
+		<key>fire2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{106, 1}, {120, 116}}</string>
+			<key>offset</key>
+			<string>{-1.5, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {120, 116}}</string>
+			<key>sourceSize</key>
+			<string>{123, 116}</string>
+		</dict>
+		<key>fire3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 118}, {140, 132}}</string>
+			<key>offset</key>
+			<string>{0.5, -1}</string>
+			<key>sourceColorRect</key>
+			<string>{{1, 2}, {140, 132}}</string>
+			<key>sourceSize</key>
+			<string>{141, 134}</string>
+		</dict>
+		<key>fire4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 251}, {155, 149}}</string>
+			<key>offset</key>
+			<string>{2, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{4, 0}, {155, 149}}</string>
+			<key>sourceSize</key>
+			<string>{159, 149}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>1</integer>
+		<key>size</key>
+		<string>{256, 512}</string>
+	</dict>
+</dict>
+</plist>

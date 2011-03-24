@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>bodyd1.PNG</key>
+		<dict>
+			<key>frame</key>
+			<string>{{38, 42}, {36, 38}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {36, 38}}</string>
+			<key>sourceSize</key>
+			<string>{36, 38}</string>
+		</dict>
+		<key>bodyd2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{43, 1}, {36, 38}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {36, 38}}</string>
+			<key>sourceSize</key>
+			<string>{36, 38}</string>
+		</dict>
+		<key>bodyl1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{79, 81}, {38, 36}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {38, 36}}</string>
+			<key>sourceSize</key>
+			<string>{38, 36}</string>
+		</dict>
+		<key>bodyl2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 81}, {38, 36}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {38, 36}}</string>
+			<key>sourceSize</key>
+			<string>{38, 36}</string>
+		</dict>
+		<key>bodyr1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{75, 42}, {38, 36}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {38, 36}}</string>
+			<key>sourceSize</key>
+			<string>{38, 36}</string>
+		</dict>
+		<key>bodyr2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{40, 81}, {38, 36}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {38, 36}}</string>
+			<key>sourceSize</key>
+			<string>{38, 36}</string>
+		</dict>
+		<key>bodyu1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{80, 1}, {36, 38}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {36, 38}}</string>
+			<key>sourceSize</key>
+			<string>{36, 38}</string>
+		</dict>
+		<key>bodyu2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 42}, {36, 38}}</string>
+			<key>offset</key>
+			<string>{0, -0}</string>
+			<key>sourceColorRect</key>
+			<string>{{0, 0}, {36, 38}}</string>
+			<key>sourceSize</key>
+			<string>{36, 38}</string>
+		</dict>
+		<key>turret1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{22, 1}, {20, 40}}</string>
+			<key>offset</key>
+			<string>{0, 7}</string>
+			<key>sourceColorRect</key>
+			<string>{{22, 5}, {20, 40}}</string>
+			<key>sourceSize</key>
+			<string>{64, 64}</string>
+		</dict>
+		<key>turret2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {20, 40}}</string>
+			<key>offset</key>
+			<string>{0, 7}</string>
+			<key>sourceColorRect</key>
+			<string>{{22, 5}, {20, 40}}</string>
+			<key>sourceSize</key>
+			<string>{64, 64}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>1</integer>
+		<key>size</key>
+		<string>{128, 128}</string>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="desert_world" tilewidth="32" tileheight="32">
+  <image source="desert_world.png" trans="ff00ff" width="256" height="608"/>
+ </tileset>
+ <tileset firstgid="153" name="meta_tiles" tilewidth="32" tileheight="32">
+  <image source="meta_tiles.png" trans="ff00ff" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="YES"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="BackGroundLayer" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3QuQ0AIAwAsSg8JfuPS5ZApHDh/nQZEQkAAA+NMssq+1PDafABurlHwDkJEA4AAA==
+  </data>
+ </layer>
+ <layer name="BuildingLayer" width="30" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3NIRZAUBRF0T8QUUFCQkL6zH8+zgBeEd5PZ691yi23FEmSpP8GGmlq/DvTQmviRxdsG+10JP72wXbSRXfib6TSQ2/jX0ltfT12POcQDgAA
+  </data>
+ </layer>
+ <layer name="CollisionLayer" width="30" height="30" opacity="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3NMQEAAAwCIPs3WNu9dhAKkAAA0G7sBXY9LpicKRAOAAA=
+  </data>
+ </layer>
+ <objectgroup name="CollisionObjs" width="30" height="30">
+  <object x="609" y="569" width="93" height="111"/>
+  <object x="626" y="693" width="60" height="6"/>
+  <object x="635" y="546" width="49" height="9"/>
+ </objectgroup>
+</map>
