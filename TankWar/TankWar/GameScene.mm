@@ -25,9 +25,16 @@
 
 -(void) playBGM;
 
--(void) initStaticBodyFromSvg;
+-(void) initBodyTiles;
 
 - (CGPoint)tileCoordForPosition:(CGPoint)position;
+
+-(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)d rotation:(float)r 
+         friction:(float)f density:(float)d restitution:(float)re boxId:(float)id;
+
+-(b2Vec2) toMeters:(CGPoint)point;
+
+-(CGPoint) toPixels:(b2Vec2)vec;
 
 @end
 
@@ -69,19 +76,19 @@
         
         worldMapName = wm;
         
-        //Play background music
-        [self playBGM];
-        
         //Init world map
         [self initWorld];
         
-        [self initStaticBodyFromSvg];
+        [self initBodyTiles];
         
         //Init player
         [self initPlayer];
         
         //Init Enemy
         [self initEnemy];
+        
+        //Play background music
+        [self playBGM];
         
     }
     
@@ -135,31 +142,67 @@
     //[self.playerHelper moveToPosition:ccp(300, 50)];
 }
 
--(void) initStaticBodyFromSvg{
+-(void) initBodyTiles{
     
-    //The svg file should has the same prefix file name as worldMapName but end with .svg
+    //searching for object layer called "CollisionObjs"
+    CCTMXObjectGroup *objects = [worldMap objectGroupNamed:@"CollisionObjs"];
+    NSMutableDictionary * objPoint;
+    int x ;
+    int y ;
+    int w ;
+    int h ;
+    
+    for (objPoint in [objects objects]) {
+        x = [[objPoint valueForKey:@"x"] intValue];
+        y = [[objPoint valueForKey:@"y"] intValue];
+        w = [[objPoint valueForKey:@"width"] intValue];
+        h = [[objPoint valueForKey:@"height"] intValue];
+        CGPoint point=ccp(x+w/2,y+h/2);
+        CGPoint size=ccp(w,h);
+        //this method builds a box2D rectangle and adds it to the box2D world
+        [self addRectAt:point withSize:size dynamic:false rotation:0 friction:.3 density:0 restitution:0 boxId:-1];
+        
+    }
+    
+    
+}
+         
+-(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)dy rotation:(float)r 
+               friction:(float)f density:(float)d restitution:(float)re boxId:(float)id{
+    
     
     b2BodyDef bodyDef;
-    bodyDef.type = b2_staticBody;
-    bodyDef.position.Set(300/PTM_RATIO, 300/PTM_RATIO);
+    
+    if(!dy){
+        bodyDef.type = b2_staticBody;
+    }
+    
+    bodyDef.position = [self toMeters:point];
+
     b2Body *body = phyWorld ->CreateBody(&bodyDef);
     
     // Define another box shape for our dynamic body.
     b2PolygonShape staticBox;
-    staticBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
+    staticBox.SetAsBox(size.x/BODY_PTM_RATIO, size.y/BODY_PTM_RATIO);//These are mid points for our 1m box
 	
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &staticBox;	
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.3f;
+    fixtureDef.density = d;
+    fixtureDef.friction = r;
+    fixtureDef.restitution = re;
+    //fixtureDef.rotation = r;
     body->CreateFixture(&fixtureDef);
+    
 }
+
+
 
 -(void) initWorld{
     
     //Load world map
     self.worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
+    [worldMap setAnchorPoint:ccp(0,0)];
     [self addChild:worldMap z:-1];
     
     
@@ -218,7 +261,6 @@
     // right
     groundBox.SetAsEdge(b2Vec2(worldWidth/PTM_RATIO,worldHeight/PTM_RATIO), b2Vec2(worldWidth/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
-
     
     [self schedule: @selector(tick:)];
     
@@ -281,6 +323,13 @@
 	phyWorld->SetGravity( gravity );
 }
 
+-(b2Vec2) toMeters:(CGPoint)point {
+    return b2Vec2(point.x / PTM_RATIO, point.y / PTM_RATIO);
+}
+-(CGPoint) toPixels:(b2Vec2)vec {
+    return ccpMult(CGPointMake(vec.x, vec.y), PTM_RATIO);
+}
+
 -(void) draw
 {
 	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
@@ -298,6 +347,7 @@
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     
 }
+
 
 -(void) dealloc{
     

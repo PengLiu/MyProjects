@@ -79,15 +79,15 @@
 
 		self.player = [CCSprite spriteWithSpriteFrameName:@"bodyu1.png"];
 		[player setPosition:ccp(200,200)];
-            [player setAnchorPoint:ccp(0.5 ,0.5)];
+        [player setAnchorPoint:ccp(0.5 ,0.5)];
 		[playerSheet addChild:player z:1];
         
-            [self addNewSprite:player];
-        
-            self.turret = [CCSprite spriteWithSpriteFrameName:@"turret1.png"];
-            [turret setAnchorPoint:ccp(0.5,0.5)];
-            [turret setPosition:ccp(200,200)];
-            [playerSheet addChild:turret z:1];
+        [self addNewSprite:player];
+    
+        self.turret = [CCSprite spriteWithSpriteFrameName:@"turret1.png"];
+        [turret setAnchorPoint:ccp(0.5,0.5)];
+        [turret setPosition:ccp(200,200)];
+        [playerSheet addChild:turret z:1];
         
 	}
 	return self;
@@ -175,18 +175,24 @@
     // Define the dynamic body.
     //Set up a 1m squared box in the physics world
     b2BodyDef bodyDef;
+    
     bodyDef.type = b2_dynamicBody;
+    //bodyDef.allowSleep = true;
     bodyDef.linearDamping = BETTER_LINE_DAMPING;
     bodyDef.angularDamping = BETTER_ANGULAR_DAMPING;
-    
     bodyDef.position.Set(sprite.position.x/PTM_RATIO, sprite.position.y/PTM_RATIO);
     bodyDef.userData = self;
+    
     self.tankBody = world.phyWorld ->CreateBody(&bodyDef);
     
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
     
-    dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
+    // /2 because for body size .5f is 1m
+    float bodyWidth = [player boundingBox].size.width /BODY_PTM_RATIO;
+    float bodyHeight = [player boundingBox].size.height /BODY_PTM_RATIO;
+    
+    dynamicBox.SetAsBox(bodyWidth, bodyHeight);//These are mid points for our 1m box
 	
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
@@ -205,18 +211,16 @@
 }
 
 -(void) fire:(ccTime) dt{
-
+    
+    
     CCSprite *bullet=[CCSprite spriteWithFile:@"bullet.png"];
-	
     bullet.position = turret.position;
 	
     float ran= - angle * 3.14159/180;
-    
     float vx1 = cos(ran) * 40;
     float vy1 = sin(ran) * 40;
     
     bullet.position = ccp(turret.position.x + vx1, turret.position.y + vy1);
-    
 	float vx = cos(ran) * 400;
 	float vy = sin(ran) * 400;
 	
@@ -228,6 +232,36 @@
 	[bullet runAction:[CCSequence actions:moveact,movedone,nil]];
 	
     [world addChild:bullet z:1];
+
+    
+    
+//    // Define the dynamic body.
+//    //Set up a 1m squared box in the physics world
+//    b2BodyDef bodyDef;
+//    
+//    bodyDef.type = b2_dynamicBody;
+//    bodyDef.bullet = true;
+//    bodyDef.userData = bullet;
+//    
+//    bodyDef.position.Set(bullet.position.x/PTM_RATIO, bullet.position.y/PTM_RATIO);
+//
+//    b2Body *bulletBody = world.phyWorld ->CreateBody(&bodyDef);
+//    
+//    // Define another box shape for our dynamic body.
+//    b2PolygonShape dynamicBox;
+//    
+//    // /2 because for body size .5f is 1m
+//    float bodyWidth = [bullet boundingBox].size.width /BODY_PTM_RATIO;
+//    float bodyHeight = [bullet boundingBox].size.height /BODY_PTM_RATIO;
+//    dynamicBox.SetAsBox(bodyWidth, bodyHeight);//These are mid points for our 1m box
+//	
+//    // Define the dynamic body fixture.
+//    b2FixtureDef fixtureDef;
+//    fixtureDef.shape = &dynamicBox;	
+//    fixtureDef.density = 1.0f;
+//    fixtureDef.friction = 0.3f;
+//    bulletBody->CreateFixture(&fixtureDef);
+    
 }
 
 
