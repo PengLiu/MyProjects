@@ -6,6 +6,8 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
+#import "ContactListener.h"
+
 #import "Constants.h"
 #import "GameScene.h"
 #import "MainMenuScene.h"
@@ -27,10 +29,16 @@
 
 -(void) initBodyTiles;
 
-- (CGPoint)tileCoordForPosition:(CGPoint)position;
+-(void) destorySprite:(CCSprite *)sprite;
+
+-(CGPoint)calculateActualPositioin:(CGPoint)position;
+
+-(CGPoint)tileCoordForPosition:(CGPoint)position;
 
 -(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)d rotation:(float)r 
          friction:(float)f density:(float)d restitution:(float)re boxId:(float)id;
+
+-(BOOL) isPointInScreen:(CGPoint)point;
 
 -(b2Vec2) toMeters:(CGPoint)point;
 
@@ -46,6 +54,7 @@
 @synthesize enemyManager;
 
 @synthesize phyWorld;
+@synthesize contactListener;
 
 +(CCScene *) sceneWithMap:(NSString *)worldMapName{
 	
@@ -75,6 +84,7 @@
 	if( (self=[super init])) {
         
         worldMapName = wm;
+        contactListener = new ContactListener();
         
         //Init world map
         [self initWorld];
@@ -119,6 +129,16 @@
 -(void)setViewpointCenter:(CGPoint) position {
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGPoint actualPosition = [self calculateActualPositioin:position];
+    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
+    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    self.position = viewPoint;
+  
+}
+
+-(CGPoint)calculateActualPositioin:(CGPoint)position{
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     int x = MAX(position.x, winSize.width / 2);
     int y = MAX(position.y, winSize.height / 2);
@@ -127,13 +147,8 @@
             - winSize.width / 2);
     y = MIN(y, (self.worldMap.mapSize.height * self.worldMap.tileSize.height) 
             - winSize.height/2);
-    CGPoint actualPosition = ccp(x, y);
     
-    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
-    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
-    
-    self.position = viewPoint;
-  
+    return ccp(x,y);
 }
 
 -(void) initPlayer{
@@ -173,8 +188,8 @@
     
     b2BodyDef bodyDef;
     
-    if(!dy){
-        bodyDef.type = b2_staticBody;
+    if(dy){
+        bodyDef.type = b2_dynamicBody;
     }
     
     bodyDef.position = [self toMeters:point];
@@ -216,6 +231,11 @@
     
     // Construct a world object, which will hold and simulate the rigid bodies.
     phyWorld = new b2World(gravity, doSleep);
+    
+    contactListener = new ContactListener();
+    contactListener -> SetControllerID(self);
+    
+    phyWorld ->SetContactListener(contactListener);
     
     phyWorld->SetContinuousPhysics(true);
     
@@ -286,10 +306,26 @@
 	for (b2Body* b = phyWorld->GetBodyList(); b; b = b->GetNext())
 	{
 		if (b->GetUserData() != NULL) {
-			//Synchronize the AtlasSprites position and rotation with the corresponding body
-                PlayerHelper *ph = (PlayerHelper*)b->GetUserData();
-                CCSprite *tankBody = ph.player;
             
+            if(b->IsBullet()){
+                
+                CCSprite *bullet = (CCSprite*)b->GetUserData();
+                CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
+                
+                if ([self isPointInScreen:point]) {
+                    bullet.position = point;
+                }else{
+                    CCLOG(@"Out of screen , remove objes");
+                    //Clean sprite
+                    [self destorySprite:bullet];
+                    //Delete bullet body
+                    phyWorld ->DestroyBody(b);
+                }
+            }else{
+                //Synchronize the AtlasSprites position and rotation with the corresponding body
+                PlayerHelper *ph = (PlayerHelper*)b->GetUserData();
+                
+                CCSprite *tankBody = ph.player;
                 CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
                 float rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
                 tankBody.position = point;
@@ -299,6 +335,7 @@
                 turret.position = point;
                 tankBody.rotation = rotation;
                 [self setViewpointCenter:point];
+            }
 		}	
 	}
 }
@@ -322,6 +359,73 @@
 	
 	phyWorld->SetGravity( gravity );
 }
+
+-(BOOL) isPointInScreen:(CGPoint)point{
+        
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGPoint screenCenter = [self calculateActualPositioin:[playerHelper getCurrentPosition]];
+    
+    if (point.x > (screenCenter.x + winSize.width/2) || point.x < (screenCenter.x - winSize.width/2)) {
+        return NO;
+    }
+    
+    if (point.y > (screenCenter.y + winSize.height/2) || point.y < (screenCenter.y - winSize.height/2)) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(void) destorySprite:(CCSprite *)sprite{
+    CCLOG(@"destory sprite.");
+    [self removeChild:sprite cleanup:YES];
+}
+
+//Methods for ContactListener.
+
+void ContactListener::SetControllerID(id cid) {
+    controllerID = cid;
+}
+
+void ContactListener::BeginContact(b2Contact* contact){
+    
+    CCLOG(@"Contact....");
+
+    b2Fixture* fa = contact->GetFixtureA();
+    b2Fixture* fb = contact->GetFixtureB();
+    
+    b2Body *ba = fa ->GetBody();
+    b2Body *bb = fb -> GetBody();
+        
+    b2World *phyWorld = ba ->GetWorld();
+    if (ba->GetType() != b2_staticBody &&  ba->IsBullet()) {
+        //CCSprite *bullet = (CCSprite*)ba->GetUserData();
+       
+        
+//        destorySprite:ba->GetUserData();
+//        phyWorld ->DestroyBody(ba);
+    }
+    
+    //if (contact->IsSolid()) {
+    //    NSLog(@"Contact is solid");
+    //}
+  }
+
+void ContactListener::EndContact(b2Contact* contact){
+    NSLog(@"end contact");
+}
+
+void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold){
+    const b2Manifold* manifold = contact->GetManifold();
+}
+
+void ContactListener::PostSolve(b2Contact* contact){
+    const b2ContactImpulse* impulse;
+}
+
+
+
+//Util methods
 
 -(b2Vec2) toMeters:(CGPoint)point {
     return b2Vec2(point.x / PTM_RATIO, point.y / PTM_RATIO);
@@ -352,6 +456,8 @@
 -(void) dealloc{
     
     //Release box2d objs
+    delete contactListener;
+    
     delete phyWorld;
     phyWorld = NULL;
     delete m_debugDraw;
@@ -360,5 +466,9 @@
     [playerHelper release];
     [super dealloc];
 }
+
+
+
+
 
 @end

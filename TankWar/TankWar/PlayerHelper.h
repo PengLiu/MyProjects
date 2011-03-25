@@ -27,6 +27,7 @@
     b2Body *tankBody;
     
     float angle;
+    float firePower;
 }
 
 @property (nonatomic, retain) CCSpriteBatchNode *playerSheet;
@@ -35,6 +36,7 @@
 @property (nonatomic, retain) CCSprite *turret;
 @property (nonatomic, retain) GameScene *world;
 
+@property (nonatomic) float firePower;
 @property (nonatomic) float angle;
 @property (nonatomic) NSInteger currentActionIndex;
 

@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "Box2D.h"
 #import "GLES-Render.h"
+#import "ContactListener.h"
 
 @class JoyStickLayer;
 @class PlayerHelper;
@@ -28,7 +29,8 @@
     EnemyManager *enemyManager;
     
     NSString *worldMapName;
-
+    
+    ContactListener *contactListener;
 }
 
 @property (nonatomic, retain) PlayerHelper *playerHelper;
@@ -37,6 +39,7 @@
 @property (nonatomic, retain) CCTMXTiledMap *worldMap;
 
 @property (nonatomic) b2World *phyWorld;
+@property (nonatomic) ContactListener *contactListener;
 
 
 // returns a CCScene that contains the HelloWorldLayer as the only child

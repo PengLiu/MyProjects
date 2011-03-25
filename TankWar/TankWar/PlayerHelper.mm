@@ -20,6 +20,8 @@
 
 -(void) addNewSprite:(CCSprite *)sprite;
 
+-(void) initWeapon;
+
 @end
 
 
@@ -31,7 +33,7 @@
 @synthesize player;
 @synthesize world;
 
-
+@synthesize firePower;
 @synthesize angle;
 @synthesize currentActionIndex;
 
@@ -89,13 +91,17 @@
         [turret setPosition:ccp(200,200)];
         [playerSheet addChild:turret z:1];
         
+        [self initWeapon];
 	}
 	return self;
 }
 
+-(void) initWeapon{
+    //Load from tank properties
+    self.firePower = 10;
+}
 
 -(void) moveToDirection:(CGPoint)direction WithPower:(float)power{
-    
     
     float nextx = player.position.x;
     float nexty = player.position.y;
@@ -212,55 +218,50 @@
 
 -(void) fire:(ccTime) dt{
     
-    
-    CCSprite *bullet=[CCSprite spriteWithFile:@"bullet.png"];
-    bullet.position = turret.position;
-	
-    float ran= - angle * 3.14159/180;
-    float vx1 = cos(ran) * 40;
-    float vy1 = sin(ran) * 40;
-    
-    bullet.position = ccp(turret.position.x + vx1, turret.position.y + vy1);
-	float vx = cos(ran) * 400;
-	float vy = sin(ran) * 400;
-	
-	id moveact=[CCEaseIn actionWithAction:[CCMoveTo actionWithDuration:.8 
-                                                              position:ccp(bullet.position.x+vx,bullet.position.y+vy)] rate:1];
-    
-	id movedone=[CCCallFuncND actionWithTarget:self selector:@selector(onBulletMoveDone:data:) data:bullet];
-    
-	[bullet runAction:[CCSequence actions:moveact,movedone,nil]];
-	
+    CCSprite *bullet=[CCSprite spriteWithFile:@"bullet1.png"];
     [world addChild:bullet z:1];
+    
+    float ran= -angle * 3.14159/180;
+    float vx1 = cos(ran) * 35;
+    float vy1 = sin(ran) * 35;
+    
+    CGPoint pointOne = ccp(turret.position.x + vx1, turret.position.y + vy1);
+    bullet.position = pointOne;
+    
+	float vx = cos(ran) * 100;
+	float vy = sin(ran) * 100;
+    CGPoint pointTwo = ccp(turret.position.x + vx, turret.position.y + vy);
 
+    float fireAngle = atan2f(pointTwo.x - pointOne.x, pointTwo.y - pointOne.y);
     
+//	id moveact=[CCEaseIn actionWithAction:[CCMoveTo actionWithDuration:.8 
+//                                                              position:ccp(bullet.position.x+vx,bullet.position.y+vy)] rate:1];
+//	id movedone=[CCCallFuncND actionWithTarget:self selector:@selector(onBulletMoveDone:data:) data:bullet];
+//	[bullet runAction:[CCSequence actions:moveact,movedone,nil]];
     
-//    // Define the dynamic body.
-//    //Set up a 1m squared box in the physics world
-//    b2BodyDef bodyDef;
-//    
-//    bodyDef.type = b2_dynamicBody;
-//    bodyDef.bullet = true;
-//    bodyDef.userData = bullet;
-//    
-//    bodyDef.position.Set(bullet.position.x/PTM_RATIO, bullet.position.y/PTM_RATIO);
-//
-//    b2Body *bulletBody = world.phyWorld ->CreateBody(&bodyDef);
-//    
-//    // Define another box shape for our dynamic body.
-//    b2PolygonShape dynamicBox;
-//    
-//    // /2 because for body size .5f is 1m
-//    float bodyWidth = [bullet boundingBox].size.width /BODY_PTM_RATIO;
-//    float bodyHeight = [bullet boundingBox].size.height /BODY_PTM_RATIO;
-//    dynamicBox.SetAsBox(bodyWidth, bodyHeight);//These are mid points for our 1m box
-//	
-//    // Define the dynamic body fixture.
-//    b2FixtureDef fixtureDef;
-//    fixtureDef.shape = &dynamicBox;	
-//    fixtureDef.density = 1.0f;
-//    fixtureDef.friction = 0.3f;
-//    bulletBody->CreateFixture(&fixtureDef);
+    // Define the dynamic body.
+    //Set up a 1m squared box in the physics world
+    b2BodyDef bodyDef;
+    
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.userData = bullet;
+    bodyDef.position.Set(bullet.position.x/PTM_RATIO, bullet.position.y/PTM_RATIO);
+    
+    b2Body *bulletBody = world.phyWorld ->CreateBody(&bodyDef);
+    bulletBody->SetBullet(true);
+    
+    // Define another box shape for our dynamic body.
+    b2CircleShape bulletBox;
+    bulletBox.m_radius = [bullet boundingBox].size.width/2/BODY_PTM_RATIO;
+	
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &bulletBox;	
+    bulletBody->CreateFixture(&fixtureDef);
+
+    //Fire the bullet body
+    
+    bulletBody -> ApplyLinearImpulse(b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower), bulletBody->GetPosition());
     
 }
 
