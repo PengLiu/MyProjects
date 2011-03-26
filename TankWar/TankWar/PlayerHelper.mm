@@ -11,6 +11,7 @@
 #import "PlayerHelper.h"
 #import "GameScene.h"
 #import "Constants.h"
+#import "Bullet.h"
 
 @interface PlayerHelper(PrivateMethod)
 
@@ -57,27 +58,6 @@
 		
 		CCSpriteFrameCache* playerFrameCache = [CCSpriteFrameCache sharedSpriteFrameCache]; 
 		[playerFrameCache addSpriteFramesWithFile:@"tank.plist"];
-		
-		//Init walk action array
-//		self.actionArray = [NSMutableArray array];
-//		
-//		for (int j=1; j<=8; j++) {
-//			
-//			//Init Player frames
-//			NSMutableArray *walkAnimFrames = [NSMutableArray array];
-//			
-//			for(int i = 2; i <=5 ; ++i) {
-//				[walkAnimFrames addObject:
-//				 [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:
-//				  [NSString stringWithFormat:@"%d-%d.png", j, i]]];
-//			}
-//			
-//			//Init walk animation
-//			CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.15f];
-//			[self.actionArray addObject:
-//				[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:NO]]];
-//			
-//		}
 
 		self.player = [CCSprite spriteWithSpriteFrameName:@"bodyu1.png"];
 		[player setPosition:ccp(200,200)];
@@ -218,15 +198,13 @@
 
 -(void) fire:(ccTime) dt{
     
-    CCSprite *bullet=[CCSprite spriteWithFile:@"bullet1.png"];
-    [world addChild:bullet z:1];
     
-    float ran= -angle * 3.14159/180;
+    float ran= -angle * PI/180;
+    
     float vx1 = cos(ran) * 35;
     float vy1 = sin(ran) * 35;
     
     CGPoint pointOne = ccp(turret.position.x + vx1, turret.position.y + vy1);
-    bullet.position = pointOne;
     
 	float vx = cos(ran) * 100;
 	float vy = sin(ran) * 100;
@@ -234,37 +212,9 @@
 
     float fireAngle = atan2f(pointTwo.x - pointOne.x, pointTwo.y - pointOne.y);
     
-//	id moveact=[CCEaseIn actionWithAction:[CCMoveTo actionWithDuration:.8 
-//                                                              position:ccp(bullet.position.x+vx,bullet.position.y+vy)] rate:1];
-//	id movedone=[CCCallFuncND actionWithTarget:self selector:@selector(onBulletMoveDone:data:) data:bullet];
-//	[bullet runAction:[CCSequence actions:moveact,movedone,nil]];
-    
-    // Define the dynamic body.
-    //Set up a 1m squared box in the physics world
-    b2BodyDef bodyDef;
-    
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.userData = bullet;
-    bodyDef.position.Set(bullet.position.x/PTM_RATIO, bullet.position.y/PTM_RATIO);
-    
-    b2Body *bulletBody = world.phyWorld ->CreateBody(&bodyDef);
-    bulletBody->SetBullet(true);
-    
-    // Define another box shape for our dynamic body.
-    b2CircleShape bulletBox;
-    bulletBox.m_radius = [bullet boundingBox].size.width/2/BODY_PTM_RATIO;
-	
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &bulletBox;	
-    bulletBody->CreateFixture(&fixtureDef);
-
-    //Fire the bullet body
-    
-    bulletBody -> ApplyLinearImpulse(b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower), bulletBody->GetPosition());
-    
+    Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:pointOne];
+    [bullet fire:b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower)];
 }
-
 
 -(void)onBulletMoveDone:(id)sender data:(CCSprite*)bullet
 {

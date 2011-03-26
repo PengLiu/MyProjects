@@ -16,6 +16,7 @@
 #import "JoyStickLayer.h"
 #import "EnemyManager.h"
 #import "SimpleAudioEngine.h"
+#import "Bullet.h"
 
 @interface GameScene(PrivateMethod)
 
@@ -28,8 +29,6 @@
 -(void) playBGM;
 
 -(void) initBodyTiles;
-
--(void) destorySprite:(CCSprite *)sprite;
 
 -(CGPoint)calculateActualPositioin:(CGPoint)position;
 
@@ -233,7 +232,6 @@
     phyWorld = new b2World(gravity, doSleep);
     
     contactListener = new ContactListener();
-    contactListener -> SetControllerID(self);
     
     phyWorld ->SetContactListener(contactListener);
     
@@ -305,22 +303,30 @@
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = phyWorld->GetBodyList(); b; b = b->GetNext())
 	{
+        
 		if (b->GetUserData() != NULL) {
             
             if(b->IsBullet()){
                 
-                CCSprite *bullet = (CCSprite*)b->GetUserData();
-                CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
+                Bullet *bullet = (Bullet*)b->GetUserData();
                 
-                if ([self isPointInScreen:point]) {
-                    bullet.position = point;
+                if (bullet.needToBeDeleted) {
+                    [bullet destory];
+                    [bullet release];
                 }else{
-                    CCLOG(@"Out of screen , remove objes");
-                    //Clean sprite
-                    [self destorySprite:bullet];
-                    //Delete bullet body
-                    phyWorld ->DestroyBody(b);
+                    CCSprite *bulletSprite = bullet.bulletSprite;
+                    
+                    CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
+                    
+                    if ([self isPointInScreen:point]) {
+                        bulletSprite.position = point;
+                    }else{
+                        CCLOG(@"Out of screen , remove objes");
+                        //Clean sprite
+                        bullet.needToBeDeleted = YES;
+                    } 
                 }
+                
             }else{
                 //Synchronize the AtlasSprites position and rotation with the corresponding body
                 PlayerHelper *ph = (PlayerHelper*)b->GetUserData();
@@ -375,55 +381,6 @@
     
     return YES;
 }
-
--(void) destorySprite:(CCSprite *)sprite{
-    CCLOG(@"destory sprite.");
-    [self removeChild:sprite cleanup:YES];
-}
-
-//Methods for ContactListener.
-
-void ContactListener::SetControllerID(id cid) {
-    controllerID = cid;
-}
-
-void ContactListener::BeginContact(b2Contact* contact){
-    
-    CCLOG(@"Contact....");
-
-    b2Fixture* fa = contact->GetFixtureA();
-    b2Fixture* fb = contact->GetFixtureB();
-    
-    b2Body *ba = fa ->GetBody();
-    b2Body *bb = fb -> GetBody();
-        
-    b2World *phyWorld = ba ->GetWorld();
-    if (ba->GetType() != b2_staticBody &&  ba->IsBullet()) {
-        //CCSprite *bullet = (CCSprite*)ba->GetUserData();
-       
-        
-//        destorySprite:ba->GetUserData();
-//        phyWorld ->DestroyBody(ba);
-    }
-    
-    //if (contact->IsSolid()) {
-    //    NSLog(@"Contact is solid");
-    //}
-  }
-
-void ContactListener::EndContact(b2Contact* contact){
-    NSLog(@"end contact");
-}
-
-void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold){
-    const b2Manifold* manifold = contact->GetManifold();
-}
-
-void ContactListener::PostSolve(b2Contact* contact){
-    const b2ContactImpulse* impulse;
-}
-
-
 
 //Util methods
 

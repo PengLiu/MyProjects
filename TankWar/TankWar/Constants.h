@@ -6,6 +6,8 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
+#define PI 3.1415926
+
 #define PTM_RATIO 32
 //For box2d body size .5f is 1m, so we use pixle/PTM_RATIO/2 to transfer pixle to meter.
 #define BODY_PTM_RATIO 64

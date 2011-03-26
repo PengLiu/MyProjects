@@ -22,10 +22,7 @@ class ContactListener : public b2ContactListener {
 
     
 public:
-    
-    id controllerID;
-    
-    void SetControllerID(id cid);
+
     void BeginContact(b2Contact* contact);
     void EndContact(b2Contact* contact);
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
