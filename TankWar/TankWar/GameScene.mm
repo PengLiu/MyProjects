@@ -12,7 +12,7 @@
 #import "GameScene.h"
 #import "MainMenuScene.h"
 #import "CCJoyStick.h"
-#import "PlayerHelper.h"
+#import "Tank.h"
 #import "JoyStickLayer.h"
 #import "EnemyManager.h"
 #import "SimpleAudioEngine.h"
@@ -49,7 +49,7 @@
 @implementation GameScene
 
 @synthesize worldMap;
-@synthesize playerHelper;
+@synthesize tank;
 @synthesize enemyManager;
 
 @synthesize phyWorld;
@@ -152,7 +152,7 @@
 
 -(void) initPlayer{
     
-    self.playerHelper = [[PlayerHelper alloc] initWithScene:self];
+    self.tank = [[Tank alloc] initWithScene:self];
     //[self.playerHelper moveToPosition:ccp(300, 50)];
 }
 
@@ -329,15 +329,15 @@
                 
             }else{
                 //Synchronize the AtlasSprites position and rotation with the corresponding body
-                PlayerHelper *ph = (PlayerHelper*)b->GetUserData();
+                Tank *ph = (Tank*)b->GetUserData();
                 
-                CCSprite *tankBody = ph.player;
+                CCSprite *tankBody = ph.tankSprite;
                 CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
                 float rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
                 tankBody.position = point;
                 tankBody.rotation = rotation;
                 
-                CCSprite *turret = ph.turret;
+                CCSprite *turret = ph.turretSprite;
                 turret.position = point;
                 tankBody.rotation = rotation;
                 [self setViewpointCenter:point];
@@ -369,7 +369,7 @@
 -(BOOL) isPointInScreen:(CGPoint)point{
         
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CGPoint screenCenter = [self calculateActualPositioin:[playerHelper getCurrentPosition]];
+    CGPoint screenCenter = [self calculateActualPositioin:[tank getCurrentPosition]];
     
     if (point.x > (screenCenter.x + winSize.width/2) || point.x < (screenCenter.x - winSize.width/2)) {
         return NO;
@@ -420,7 +420,7 @@
     delete m_debugDraw;
     
     [enemyManager release];
-    [playerHelper release];
+    [tank release];
     [super dealloc];
 }
 

@@ -12,8 +12,9 @@
 #import "GLES-Render.h"
 #import "ContactListener.h"
 
+
 @class JoyStickLayer;
-@class PlayerHelper;
+@class Tank;
 @class EnemyManager;
 
 @interface GameScene : CCLayer {
@@ -24,7 +25,7 @@
     
     CCTMXTiledMap *worldMap;
     
-    PlayerHelper *playerHelper;
+    Tank *tank;
     
     EnemyManager *enemyManager;
     
@@ -33,7 +34,7 @@
     ContactListener *contactListener;
 }
 
-@property (nonatomic, retain) PlayerHelper *playerHelper;
+@property (nonatomic, retain) Tank *tank;
 @property (nonatomic, retain) EnemyManager *enemyManager;
 
 @property (nonatomic, retain) CCTMXTiledMap *worldMap;

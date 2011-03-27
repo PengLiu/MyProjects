@@ -7,7 +7,7 @@
 //
 
 #import "JoyStickLayer.h"
-#import "PlayerHelper.h"
+#import "Tank.h"
 #import "Constants.h"
 
 @interface JoyStickLayer(Private)
@@ -115,12 +115,12 @@
 {
     
 	if (sender == leftJoystick) {
-        gameScene.playerHelper.player.rotation = -angle + 90;
-        [gameScene.playerHelper moveToDirection:direction WithPower:power];
+        gameScene.tank.tankSprite.rotation = -angle + 90;
+        [gameScene.tank moveToDirection:direction WithPower:power];
         
 	}else if (sender == rightJoystick) {
-        gameScene.playerHelper.turret.rotation = -angle +90 ;
-        gameScene.playerHelper.angle = -angle;
+        gameScene.tank.turretSprite.rotation = -angle +90 ;
+        gameScene.tank.angle = -angle;
 	}
 }
 
@@ -134,7 +134,7 @@
 		[rightJoystick setBallTexture:@"Ball_hl.png"];
 		[rightJoystick setDockTexture:@"Dock_hl.png"];
         //Tank fire
-        [gameScene.playerHelper startFire];
+        [gameScene.tank startFire];
 	}
 }
 - (void) onCCJoyStickDeactivated:(CCNode*)sender
@@ -149,7 +149,7 @@
 		[rightJoystick setBallTexture:@"Ball.png"];
 		[rightJoystick setDockTexture:@"Dock.png"];
         //Tank stop fire
-        [gameScene.playerHelper stopFire];
+        [gameScene.tank stopFire];
 	}
 	
 }
