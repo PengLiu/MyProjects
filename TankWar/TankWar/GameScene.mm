@@ -56,59 +56,65 @@
 @synthesize phyWorld;
 @synthesize contactListener;
 
-+(CCScene *) sceneWithMap:(NSString *)worldMapName{
-	
-	// 'scene' is an autorelease object.
-	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
-	GameScene *layer = [[GameScene alloc] initInWorld:worldMapName];
-	// add layer as a child to scene
-	[scene addChild: layer];
-    [layer release];
++(CCScene *) scene{
+    
+    CCScene *scene = [CCScene node];
+    
+    GameScene *layer = [GameScene node];
+    [scene addChild: layer];
     
     JoyStickLayer *joyStickLayer = [JoyStickLayer node];
     [joyStickLayer setGameScene:layer]; 
-    
     [scene addChild:joyStickLayer]; 
-	
-	// return the scene
-	return scene;
-	
-	
-}
+    return scene;
 
--(id) initInWorld:(NSString *)wm{
-	
+}
+//+(CCScene *) sceneWithMap:(NSString *)worldMapName{
+//	
+//	// 'scene' is an autorelease object.
+//	CCScene *scene = [CCScene node];
+//	
+//	// 'layer' is an autorelease object.
+//	GameScene *layer = [[GameScene alloc] initInWorld:worldMapName];
+//	// add layer as a child to scene
+//	[scene addChild: layer];
+//    [layer release];
+//    
+//    JoyStickLayer *joyStickLayer = [JoyStickLayer node];
+//    [joyStickLayer setGameScene:layer]; 
+//    
+//    [scene addChild:joyStickLayer]; 
+//	
+//	// return the scene
+//	return scene;
+//	
+//	
+//}
+
+//-(id) initInWorld:(NSString *)wm{
+-(id) init{	
     
 	if( (self=[super init])) {
-        
-        worldMapName = wm;
+
+        worldMapName = @"desert_world";
         contactListener = new ContactListener();
-        
+
         //Init world map
         [self initWorld];
-        
         [self initBodyTiles];
-        
         //Init player
         [self initPlayer];
-        
         //Init Enemy
         [self initEnemy];
-        
         //Play background music
         [self playBGM];
-        
     }
     
     return self;
 }
 
 -(void) playBGM{
-    
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamewaiting.mp3"];
-    
 }
 
 - (CGPoint)tileCoordForPosition:(CGPoint)position {
@@ -217,7 +223,6 @@
     [worldMap setAnchorPoint:ccp(0,0)];
     [self addChild:worldMap z:-1];
     
-    
     //Init box2d world
     b2Vec2 gravity;
     gravity.Set(0.0f, 0.0f);
@@ -228,13 +233,13 @@
     
     // Construct a world object, which will hold and simulate the rigid bodies.
     phyWorld = new b2World(gravity, doSleep);
-    
+
     contactListener = new ContactListener();
     
     phyWorld ->SetContactListener(contactListener);
     
     phyWorld->SetContinuousPhysics(true);
-    
+
     // Debug Draw functions
     m_debugDraw = new GLESDebugDraw( PTM_RATIO );
     phyWorld->SetDebugDraw(m_debugDraw);
@@ -277,9 +282,7 @@
     // right
     groundBox.SetAsEdge(b2Vec2(worldWidth/PTM_RATIO,worldHeight/PTM_RATIO), b2Vec2(worldWidth/PTM_RATIO,0));
     groundBody->CreateFixture(&groundBox,0);
-    
     [self schedule: @selector(tick:)];
-    
 }
 
 
@@ -297,7 +300,6 @@
 	// generally best to keep the time step and iterations fixed.
 	phyWorld->Step(dt, velocityIterations, positionIterations);
     
-	
 	//Iterate over the bodies in the physics world
 	for (b2Body* b = phyWorld->GetBodyList(); b; b = b->GetNext())
 	{
@@ -333,6 +335,7 @@
                 if (ph.hp <= 0) {
                     [ph destory];
                     [ph release];
+                    CCLOG(@"tank retain:%d",[ph retainCount]);
                     if (ph.type == PlayerTank) {
                         [self destory];
                     }
@@ -418,6 +421,7 @@
 }
 
 -(void) destory{
+    [self removeAllChildrenWithCleanup:YES];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [[CCDirector sharedDirector]replaceScene:[GameOverScene node]];
 }

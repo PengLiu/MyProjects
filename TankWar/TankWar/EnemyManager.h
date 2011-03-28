@@ -12,12 +12,11 @@
 @class  GameScene;
 
 @interface EnemyManager : CCNode {
-    
+
     GameScene *world;
 }
 
-@property (nonatomic, retain) GameScene *world;
-
+@property (nonatomic, assign) GameScene *world;
 
 -(id) initWithScene:(GameScene *)world;
 

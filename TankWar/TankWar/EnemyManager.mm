@@ -27,18 +27,19 @@
 -(id) initWithScene:(GameScene *)w{
     
     if ((self = [super init])) {
-            
         self.world = w;
- 
     }
     return self;
 }
 
 -(void) spawnEnemy:(int)level{
-    [[Tank alloc] initWithScene:world atPosition:ccp(200,300) tankType:EnemyTank];
+    [[[Tank alloc] initWithScene:world atPosition:ccp(200,300) tankType:EnemyTank] autorelease];
 }
 
 //Private methods
 
+-(void) dealloc{
+    [super dealloc];
+}
 
 @end

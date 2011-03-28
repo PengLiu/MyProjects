@@ -55,7 +55,7 @@
 @property (nonatomic, retain) NSMutableArray *actionArray;
 @property (nonatomic, retain) CCSprite *tankSprite;
 @property (nonatomic, retain) CCSprite *turretSprite;
-@property (nonatomic, retain) GameScene *world;
+@property (nonatomic, assign) GameScene *world;
 
 @property (nonatomic, retain) CCAction *walkAnim;
 @property (nonatomic, retain) CCAction *fireAnim;

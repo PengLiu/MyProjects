@@ -31,7 +31,7 @@
 @property (nonatomic) BOOL needToBeDeleted;
 
 @property (nonatomic, retain) CCSprite *bulletSprite;
-@property (nonatomic, retain) GameScene *gameWorld;
+@property (nonatomic, assign) GameScene *gameWorld;
 
 @property (nonatomic) b2World *phyWorld;
 @property (nonatomic) b2Body *bulletBody;

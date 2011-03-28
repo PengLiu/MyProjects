@@ -57,13 +57,12 @@
 	
 	if ((self = [super init])) {
 		
-        world = aWorld;
+        self.world = aWorld;
         
         [world addChild:self];
         
 		self.currentActionIndex = -1;
         
-		self.world = aWorld;
         self.type = t;
        
         self.hp = 100;

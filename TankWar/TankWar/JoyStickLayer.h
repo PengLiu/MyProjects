@@ -28,7 +28,7 @@
 @property (nonatomic, retain) CCSprite *hp;
 @property (nonatomic, retain) CCSprite *mana;
 
-@property (nonatomic, retain) GameScene *gameScene;
+@property (nonatomic, assign) GameScene *gameScene;
 
 
 

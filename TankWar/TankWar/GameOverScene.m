@@ -7,6 +7,7 @@
 //
 
 #import "GameOverScene.h"
+#import "MainMenuScene.h"
 
 
 @implementation GameOverScene
@@ -43,29 +44,39 @@
 		[self addChild:menuBackground z:-1];
 		
 		//Display Game Name
-		CCLabelTTF *gameNameLabel = [CCLabelTTF labelWithString:@"Game Name" fontName:@"Verdana" fontSize:30];
+		CCLabelTTF *gameNameLabel = [CCLabelTTF labelWithString:@"Tank War" fontName:@"Verdana" fontSize:30];
 		[gameNameLabel setPosition:ccp( size.width /2 , size.height - 50 )];
 		[self addChild:gameNameLabel z:0];
 		
 		
 //		//Display menu lables
-//		CCLabelTTF *newGameLabel = [CCLabelTTF labelWithString:@"New Game" fontName:@"Verdana" fontSize:20];
+		CCLabelTTF *restartGameLabel = [CCLabelTTF labelWithString:@"Restart" fontName:@"Verdana" fontSize:30];
 //		CCLabelTTF *optionLabel = [CCLabelTTF labelWithString:@"Options" fontName:@"Verdana" fontSize:20];
 //		CCLabelTTF *aboutLabel = [CCLabelTTF labelWithString:@"About" fontName:@"Verdana" fontSize:20];
 //		
 //		
-//		CCMenuItemLabel * newgame = [CCMenuItemLabel itemWithLabel:newGameLabel target:self selector: @selector(newGame:)]; 
+		CCMenuItemLabel * restartGame = [CCMenuItemLabel itemWithLabel:restartGameLabel target:self selector: @selector(newGame:)]; 
 //		CCMenuItemLabel * options = [CCMenuItemLabel itemWithLabel:optionLabel target:self selector: @selector(options:)];
 //		CCMenuItemLabel * about = [CCMenuItemLabel itemWithLabel:aboutLabel target:self selector: @selector(about:)];
 //		
-//		CCMenu * menu = [CCMenu menuWithItems:newgame,options, about,nil]; 
-//		[menu alignItemsVerticallyWithPadding:5]; 
-//		[self addChild:menu];
-//		[menu setPosition:ccp( size.width /2 , 120)];
+		CCMenu * menu = [CCMenu menuWithItems:restartGame,nil]; 
+		[menu alignItemsVerticallyWithPadding:5]; 
+		[self addChild:menu];
+		[menu setPosition:ccp( size.width /2 , 120)];
 		
 	}
 	
 	return self;
 }
+
+-(void) newGame:(id)sender{
+    [[CCDirector sharedDirector]replaceScene:[MainMenuSence scene]];
+}
+
+-(void)dealloc{
+    CCLOG(@"GameOver Scene dealloc");
+    [super dealloc];
+}
+
 
 @end
