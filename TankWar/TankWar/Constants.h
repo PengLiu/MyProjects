@@ -6,6 +6,7 @@
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
+
 #define PI 3.1415926
 
 #define PTM_RATIO 32
@@ -17,6 +18,10 @@
 #define  BETTER_ANGULAR_DAMPING 10
 
 
-#define PLAYER_BATCH_NODE 1
-#define ENEMY_BATCH_NODE 2
+#define TANK_SPRITE_BATCH_NODE 1
 
+
+enum TankType {
+	EnemyTank = 1,
+    PlayerTank =2
+};

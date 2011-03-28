@@ -13,19 +13,15 @@
 
 @interface EnemyManager : CCNode {
     
-    NSMutableArray *enemyArray;
-    
-    CCSpriteBatchNode *enemySheet;
-    
-    GameScene *gameScene;
+    GameScene *world;
 }
 
-@property (nonatomic, retain) NSMutableArray *enemyArray;
-@property (nonatomic, retain) CCSpriteBatchNode *enemySheet;
-@property (nonatomic, retain) GameScene *gameScene;
+@property (nonatomic, retain) GameScene *world;
 
--(id) initWithInWorld:(GameScene *) gameScene;
-    
--(void) createEnemy;
+
+-(id) initWithScene:(GameScene *)world;
+
+-(void) spawnEnemy:(int)level;
+
 
 @end

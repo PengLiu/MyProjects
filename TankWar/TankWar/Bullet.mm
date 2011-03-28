@@ -30,6 +30,7 @@
 @synthesize phyWorld;
 @synthesize bulletBody;
 
+@synthesize attack;
 
 -(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p{
     
@@ -51,13 +52,10 @@
 }
 
 -(void) destory{
-    CCLOG(@"Bullet destory start...");
     //Remove Sprite
     [gameWorld removeChild:bulletSprite cleanup:YES];
     //Remove box2d body
     phyWorld ->DestroyBody(bulletBody);
-    
-        CCLOG(@"Bullet destory end...");
 }
 
 //Private Methods

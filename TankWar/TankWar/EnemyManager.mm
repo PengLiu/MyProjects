@@ -9,38 +9,36 @@
 #import "EnemyManager.h"
 #import "Constants.h"
 #import "GameScene.h"
+#import "Tank.h"
+
+
+
+@interface EnemyManager(PrivateMethods)
+    
+
+
+@end
+
 
 @implementation EnemyManager
     
-@synthesize enemyArray;
-@synthesize gameScene;
-@synthesize enemySheet;
+@synthesize world;
 
--(id) initWithInWorld:(GameScene *) world{
+-(id) initWithScene:(GameScene *)w{
     
     if ((self = [super init])) {
-        
-        self.enemyArray = [NSMutableArray arrayWithCapacity:20];
-        self.gameScene = world;
-        
-        CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"enemy.png"];
-		self.enemySheet = [CCSpriteBatchNode batchNodeWithTexture:playerTexture];
-		[self.gameScene addChild:enemySheet z:1 tag:ENEMY_BATCH_NODE];
+            
+        self.world = w;
+ 
     }
-    
     return self;
 }
- 
--(void) createEnemy{
-    
-    self.enemySheet = (CCSpriteBatchNode *)[self.gameScene getChildByTag:ENEMY_BATCH_NODE];
-    
-    CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"enemy.png"];
-    CCSprite *enemy = [CCSprite spriteWithTexture:playerTexture];
-    [enemy setPosition:ccp(100,400)];
-    
-    [enemySheet addChild:enemy z:1];
+
+-(void) spawnEnemy:(int)level{
+    [[Tank alloc] initWithScene:world atPosition:ccp(200,300) tankType:EnemyTank];
 }
+
+//Private methods
 
 
 @end

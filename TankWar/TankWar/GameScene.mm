@@ -120,9 +120,8 @@
 }
 
 -(void) initEnemy{
-    
-    self.enemyManager = [[EnemyManager alloc] initWithInWorld:self];
-    [self.enemyManager createEnemy];
+    self.enemyManager = [[EnemyManager alloc] initWithScene:self];
+    [enemyManager spawnEnemy:1];
 }
 
 -(void)setViewpointCenter:(CGPoint) position {
@@ -151,9 +150,7 @@
 }
 
 -(void) initPlayer{
-    
-    self.tank = [[Tank alloc] initWithScene:self];
-    //[self.playerHelper moveToPosition:ccp(300, 50)];
+    self.tank = [[Tank alloc] initWithScene:self atPosition:ccp(200,200) tankType:PlayerTank];
 }
 
 -(void) initBodyTiles{
@@ -321,7 +318,6 @@
                     if ([self isPointInScreen:point]) {
                         bulletSprite.position = point;
                     }else{
-                        CCLOG(@"Out of screen , remove objes");
                         //Clean sprite
                         bullet.needToBeDeleted = YES;
                     } 
@@ -331,16 +327,22 @@
                 //Synchronize the AtlasSprites position and rotation with the corresponding body
                 Tank *ph = (Tank*)b->GetUserData();
                 
-                CCSprite *tankBody = ph.tankSprite;
-                CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
-                float rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
-                tankBody.position = point;
-                tankBody.rotation = rotation;
+                if (ph.hp <= 0) {
+                    [ph destory];
+                    [ph release];
+                }else{
+            
+                    CCSprite *tankBody = ph.tankSprite;
+                    CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
+                    float rotation = -1 * CC_RADIANS_TO_DEGREES(b->GetAngle());
+                    tankBody.position = point;
+                    tankBody.rotation = rotation;
                 
-                CCSprite *turret = ph.turretSprite;
-                turret.position = point;
-                tankBody.rotation = rotation;
-                [self setViewpointCenter:point];
+                    CCSprite *turret = ph.turretSprite;
+                    turret.position = point;
+                    tankBody.rotation = rotation;
+                    [self setViewpointCenter:point];
+                }
             }
 		}	
 	}

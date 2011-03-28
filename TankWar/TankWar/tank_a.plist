@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>tank_a_1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{349, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_10.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{175, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_11.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_12.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{233, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_13.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{233, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_14.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{233, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_15.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{407, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_16.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{349, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 4}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 20}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_17.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{59, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 6}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 18}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_18.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{175, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 5}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 19}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_19.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{59, 74}, {57, 71}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2.5}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 71}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_2.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{291, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_20.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{291, 1}, {57, 71}}</string>
+			<key>offset</key>
+			<string>{-0.5, 1.5}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 23}, {57, 71}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_21.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{117, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_22.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{407, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_23.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{291, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_24.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_3.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{407, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_4.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{349, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_5.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{1, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_6.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{59, 1}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_7.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{175, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_8.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{117, 74}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+		<key>tank_a_9.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{117, 147}, {57, 72}}</string>
+			<key>offset</key>
+			<string>{-0.5, 2}</string>
+			<key>sourceColorRect</key>
+			<string>{{31, 22}, {57, 72}}</string>
+			<key>sourceSize</key>
+			<string>{120, 120}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>1</integer>
+		<key>size</key>
+		<string>{512, 256}</string>
+	</dict>
+</dict>
+</plist>

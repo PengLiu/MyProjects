@@ -21,6 +21,9 @@
     
     b2World *phyWorld;
     b2Body *bulletBody;
+    
+    //伤害
+    float attack;
 }
 
 @property (nonatomic) BOOL needToBeDeleted;
@@ -31,6 +34,7 @@
 @property (nonatomic) b2World *phyWorld;
 @property (nonatomic) b2Body *bulletBody;
 
+@property (nonatomic) float attack;
 
 -(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p;
 

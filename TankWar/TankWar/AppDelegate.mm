@@ -14,6 +14,14 @@
 #import "RootViewController.h"
 #import "MainMenuScene.h"
 
+@interface AppDelegate(PrivateMethods)
+
+-(void) loadGameResources;
+
+@end
+
+
+
 @implementation AppDelegate
 
 @synthesize window;
@@ -112,17 +120,27 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
-    //Load Player Sprite Image
-	[[CCTextureCache sharedTextureCache] addImageAsync:@"player01.png" 
-												target:self selector:@selector(playerLoaded:)];
-    [[CCTextureCache sharedTextureCache] addImageAsync:@"enemy.png" 
-												target:self selector:@selector(playerLoaded:)];
-	[[CCTextureCache sharedTextureCache] addImageAsync:@"tank.png" 
-												target:self selector:@selector(playerLoaded:)];
+   
+    
+    
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [MainMenuSence scene]];
 
 }
+
+-(void) loadGameResources{
+    
+    //Load game resource , display prograss bar
+    [[CCTextureCache sharedTextureCache] addImageAsync:@"enemy.png" 
+												target:self selector:@selector(playerLoaded:)];
+	[[CCTextureCache sharedTextureCache] addImageAsync:@"tank.png" 
+												target:self selector:@selector(playerLoaded:)];
+    
+    [[CCTextureCache sharedTextureCache] addImageAsync:@"tank_a.png" 
+												target:self selector:@selector(playerLoaded:)];
+}
+
+
 
 -(void)playerLoaded:(CCTexture2D *)texture{
 	CCLOG(@"Player loaded");

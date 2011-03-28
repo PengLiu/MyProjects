@@ -11,7 +11,9 @@
 		2C0C843E133AF8E900DE7408 /* GameScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8436133AF8E800DE7408 /* GameScene.mm */; };
 		2C0C843F133AF8E900DE7408 /* HandDrawScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8438133AF8E800DE7408 /* HandDrawScene.mm */; };
 		2C0C8440133AF8E900DE7408 /* JoyStickLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */; };
-		2C0C8441133AF8E900DE7408 /* PlayerHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* PlayerHelper.mm */; };
+		2C0C8441133AF8E900DE7408 /* Tank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* Tank.mm */; };
+		2C31B8881340326B00235FC6 /* tank_a.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C31B8861340326B00235FC6 /* tank_a.plist */; };
+		2C31B8891340326B00235FC6 /* tank_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C31B8871340326B00235FC6 /* tank_a.png */; };
 		2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DF166133CDB6D00924DF5 /* ContactListener.mm */; };
 		2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C511249133B8B0A008E3455 /* gamewaiting.mp3 */; };
 		2C8DA99C133AF4AC0040C305 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */; };
@@ -165,9 +167,7 @@
 		2C8DAB62133AF4AF0040C305 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB61133AF4AF0040C305 /* main.m */; };
 		2C8DAB65133AF4AF0040C305 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB64133AF4AF0040C305 /* AppDelegate.mm */; };
 		2C8DAB68133AF4AF0040C305 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB67133AF4AF0040C305 /* RootViewController.m */; };
-		2C8DAB6B133AF4AF0040C305 /* HelloWorldLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB6A133AF4AF0040C305 /* HelloWorldLayer.mm */; };
 		2C8DAB6E133AF4AF0040C305 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DAB6D133AF4AF0040C305 /* GLES-Render.mm */; };
-		2C8DAB71133AF4AF0040C305 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB70133AF4AF0040C305 /* blocks.png */; };
 		2C8DAB8C133AF7330040C305 /* Ball_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB77133AF7330040C305 /* Ball_hl.png */; };
 		2C8DAB8D133AF7330040C305 /* Ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB78133AF7330040C305 /* Ball.png */; };
 		2C8DAB8E133AF7330040C305 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB79133AF7330040C305 /* bar.png */; };
@@ -179,13 +179,8 @@
 		2C8DAB94133AF7330040C305 /* desert_world2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB7F133AF7330040C305 /* desert_world2.png */; };
 		2C8DAB95133AF7330040C305 /* Dock_hl.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB80133AF7330040C305 /* Dock_hl.png */; };
 		2C8DAB96133AF7330040C305 /* Dock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB81133AF7330040C305 /* Dock.png */; };
-		2C8DAB97133AF7330040C305 /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB82133AF7330040C305 /* enemy.png */; };
-		2C8DAB98133AF7330040C305 /* fire.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB83133AF7330040C305 /* fire.plist */; };
-		2C8DAB99133AF7330040C305 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB84133AF7330040C305 /* fire.png */; };
 		2C8DAB9A133AF7330040C305 /* mainmenu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB85133AF7330040C305 /* mainmenu.jpg */; };
 		2C8DAB9B133AF7330040C305 /* meta_tiles.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB86133AF7330040C305 /* meta_tiles.png */; };
-		2C8DAB9C133AF7330040C305 /* player01.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB87133AF7330040C305 /* player01.plist */; };
-		2C8DAB9D133AF7330040C305 /* player01.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB88133AF7330040C305 /* player01.png */; };
 		2C8DAB9E133AF7330040C305 /* Stick.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB89133AF7330040C305 /* Stick.jpg */; };
 		2C8DAB9F133AF7330040C305 /* tank.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB8A133AF7330040C305 /* tank.plist */; };
 		2C8DABA0133AF7330040C305 /* tank.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C8DAB8B133AF7330040C305 /* tank.png */; };
@@ -205,9 +200,11 @@
 		2C0C8438133AF8E800DE7408 /* HandDrawScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HandDrawScene.mm; sourceTree = "<group>"; };
 		2C0C8439133AF8E800DE7408 /* JoyStickLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoyStickLayer.h; sourceTree = "<group>"; };
 		2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JoyStickLayer.mm; sourceTree = "<group>"; };
-		2C0C843B133AF8E800DE7408 /* PlayerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerHelper.h; sourceTree = "<group>"; };
-		2C0C843C133AF8E900DE7408 /* PlayerHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayerHelper.mm; sourceTree = "<group>"; };
+		2C0C843B133AF8E800DE7408 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
+		2C0C843C133AF8E900DE7408 /* Tank.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tank.mm; sourceTree = "<group>"; };
 		2C1059FE133C8DE70083BB5B /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
+		2C31B8861340326B00235FC6 /* tank_a.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tank_a.plist; sourceTree = "<group>"; };
+		2C31B8871340326B00235FC6 /* tank_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank_a.png; sourceTree = "<group>"; };
 		2C3DF166133CDB6D00924DF5 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
 		2C511249133B8B0A008E3455 /* gamewaiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamewaiting.mp3; sourceTree = "<group>"; };
 		2C8DA997133AF4AC0040C305 /* TankWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,12 +510,9 @@
 		2C8DAB64133AF4AF0040C305 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		2C8DAB66133AF4AF0040C305 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2C8DAB67133AF4AF0040C305 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		2C8DAB69133AF4AF0040C305 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		2C8DAB6A133AF4AF0040C305 /* HelloWorldLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HelloWorldLayer.mm; sourceTree = "<group>"; };
 		2C8DAB6C133AF4AF0040C305 /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		2C8DAB6D133AF4AF0040C305 /* GLES-Render.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		2C8DAB6F133AF4AF0040C305 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
-		2C8DAB70133AF4AF0040C305 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		2C8DAB77133AF7330040C305 /* Ball_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ball_hl.png; sourceTree = "<group>"; };
 		2C8DAB78133AF7330040C305 /* Ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ball.png; sourceTree = "<group>"; };
 		2C8DAB79133AF7330040C305 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
@@ -530,13 +524,8 @@
 		2C8DAB7F133AF7330040C305 /* desert_world2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = desert_world2.png; sourceTree = "<group>"; };
 		2C8DAB80133AF7330040C305 /* Dock_hl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dock_hl.png; sourceTree = "<group>"; };
 		2C8DAB81133AF7330040C305 /* Dock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dock.png; sourceTree = "<group>"; };
-		2C8DAB82133AF7330040C305 /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
-		2C8DAB83133AF7330040C305 /* fire.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fire.plist; sourceTree = "<group>"; };
-		2C8DAB84133AF7330040C305 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		2C8DAB85133AF7330040C305 /* mainmenu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mainmenu.jpg; sourceTree = "<group>"; };
 		2C8DAB86133AF7330040C305 /* meta_tiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meta_tiles.png; sourceTree = "<group>"; };
-		2C8DAB87133AF7330040C305 /* player01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player01.plist; sourceTree = "<group>"; };
-		2C8DAB88133AF7330040C305 /* player01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player01.png; sourceTree = "<group>"; };
 		2C8DAB89133AF7330040C305 /* Stick.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stick.jpg; sourceTree = "<group>"; };
 		2C8DAB8A133AF7330040C305 /* tank.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tank.plist; sourceTree = "<group>"; };
 		2C8DAB8B133AF7330040C305 /* tank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank.png; sourceTree = "<group>"; };
@@ -572,12 +561,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C511246133B8AC6008E3455 /* audio */ = {
+		2C2F4C05133EDF120095A022 /* JoyStick */ = {
+			isa = PBXGroup;
+			children = (
+				2C8DAB77133AF7330040C305 /* Ball_hl.png */,
+				2C8DAB80133AF7330040C305 /* Dock_hl.png */,
+				2C8DAB81133AF7330040C305 /* Dock.png */,
+				2C8DAB78133AF7330040C305 /* Ball.png */,
+				2C8DAB7B133AF7330040C305 /* button_a1.png */,
+				2C8DAB89133AF7330040C305 /* Stick.jpg */,
+				2C8DAB7C133AF7330040C305 /* button_a2.png */,
+			);
+			name = JoyStick;
+			sourceTree = "<group>";
+		};
+		2C2F4C06133EDF860095A022 /* WorldMap */ = {
+			isa = PBXGroup;
+			children = (
+				2C8DAB7D133AF7330040C305 /* desert_world.png */,
+				2C8DAB7E133AF7330040C305 /* desert_world.tmx */,
+				2C8DAB7F133AF7330040C305 /* desert_world2.png */,
+				2C8DAB85133AF7330040C305 /* mainmenu.jpg */,
+				2C8DAB86133AF7330040C305 /* meta_tiles.png */,
+			);
+			name = WorldMap;
+			sourceTree = "<group>";
+		};
+		2C2F4C07133EDFEA0095A022 /* Tank */ = {
+			isa = PBXGroup;
+			children = (
+				2C31B8861340326B00235FC6 /* tank_a.plist */,
+				2C31B8871340326B00235FC6 /* tank_a.png */,
+				2C8DAB79133AF7330040C305 /* bar.png */,
+				2C8DAB7A133AF7330040C305 /* bullet1.png */,
+				2C8DAB8A133AF7330040C305 /* tank.plist */,
+				2C8DAB8B133AF7330040C305 /* tank.png */,
+			);
+			name = Tank;
+			sourceTree = "<group>";
+		};
+		2C511246133B8AC6008E3455 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
 				2C511249133B8B0A008E3455 /* gamewaiting.mp3 */,
 			);
-			name = audio;
+			name = Audio;
 			sourceTree = "<group>";
 		};
 		2C8DA98C133AF4AC0040C305 = {
@@ -628,16 +656,14 @@
 				2C0C8438133AF8E800DE7408 /* HandDrawScene.mm */,
 				2C0C8439133AF8E800DE7408 /* JoyStickLayer.h */,
 				2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */,
-				2C0C843B133AF8E800DE7408 /* PlayerHelper.h */,
-				2C0C843C133AF8E900DE7408 /* PlayerHelper.mm */,
+				2C0C843B133AF8E800DE7408 /* Tank.h */,
+				2C0C843C133AF8E900DE7408 /* Tank.mm */,
 				2CACD84A133E35AB00D7738B /* Bullet.h */,
 				2CACD84B133E35AB00D7738B /* Bullet.mm */,
 				2C8DAB63133AF4AF0040C305 /* AppDelegate.h */,
 				2C8DAB64133AF4AF0040C305 /* AppDelegate.mm */,
 				2C8DAB66133AF4AF0040C305 /* RootViewController.h */,
 				2C8DAB67133AF4AF0040C305 /* RootViewController.m */,
-				2C8DAB69133AF4AF0040C305 /* HelloWorldLayer.h */,
-				2C8DAB6A133AF4AF0040C305 /* HelloWorldLayer.mm */,
 				2C8DAB6C133AF4AF0040C305 /* GLES-Render.h */,
 				2C8DAB6D133AF4AF0040C305 /* GLES-Render.mm */,
 				2C8DAB6F133AF4AF0040C305 /* GameConfig.h */,
@@ -657,28 +683,10 @@
 		2C8DA9AC133AF4AC0040C305 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2C511246133B8AC6008E3455 /* audio */,
-				2C8DAB77133AF7330040C305 /* Ball_hl.png */,
-				2C8DAB78133AF7330040C305 /* Ball.png */,
-				2C8DAB79133AF7330040C305 /* bar.png */,
-				2C8DAB7A133AF7330040C305 /* bullet1.png */,
-				2C8DAB7B133AF7330040C305 /* button_a1.png */,
-				2C8DAB7C133AF7330040C305 /* button_a2.png */,
-				2C8DAB7D133AF7330040C305 /* desert_world.png */,
-				2C8DAB7E133AF7330040C305 /* desert_world.tmx */,
-				2C8DAB7F133AF7330040C305 /* desert_world2.png */,
-				2C8DAB80133AF7330040C305 /* Dock_hl.png */,
-				2C8DAB81133AF7330040C305 /* Dock.png */,
-				2C8DAB82133AF7330040C305 /* enemy.png */,
-				2C8DAB83133AF7330040C305 /* fire.plist */,
-				2C8DAB84133AF7330040C305 /* fire.png */,
-				2C8DAB85133AF7330040C305 /* mainmenu.jpg */,
-				2C8DAB86133AF7330040C305 /* meta_tiles.png */,
-				2C8DAB87133AF7330040C305 /* player01.plist */,
-				2C8DAB88133AF7330040C305 /* player01.png */,
-				2C8DAB89133AF7330040C305 /* Stick.jpg */,
-				2C8DAB8A133AF7330040C305 /* tank.plist */,
-				2C8DAB8B133AF7330040C305 /* tank.png */,
+				2C2F4C07133EDFEA0095A022 /* Tank */,
+				2C2F4C06133EDF860095A022 /* WorldMap */,
+				2C2F4C05133EDF120095A022 /* JoyStick */,
+				2C511246133B8AC6008E3455 /* Audio */,
 				2C8DA9AD133AF4AC0040C305 /* Default.png */,
 				2C8DA9AF133AF4AC0040C305 /* fps_images.png */,
 				2C8DA9B1133AF4AC0040C305 /* Icon-72.png */,
@@ -689,7 +697,6 @@
 				2C8DA9BB133AF4AC0040C305 /* Icon@2x.png */,
 				2C8DA9BD133AF4AC0040C305 /* Info.plist */,
 				2C8DA9BE133AF4AC0040C305 /* iTunesArtwork */,
-				2C8DAB70133AF4AF0040C305 /* blocks.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1092,7 +1099,6 @@
 				2C8DA9BA133AF4AC0040C305 /* Icon.png in Resources */,
 				2C8DA9BC133AF4AC0040C305 /* Icon@2x.png in Resources */,
 				2C8DA9BF133AF4AC0040C305 /* iTunesArtwork in Resources */,
-				2C8DAB71133AF4AF0040C305 /* blocks.png in Resources */,
 				2C8DAB8C133AF7330040C305 /* Ball_hl.png in Resources */,
 				2C8DAB8D133AF7330040C305 /* Ball.png in Resources */,
 				2C8DAB8E133AF7330040C305 /* bar.png in Resources */,
@@ -1104,17 +1110,14 @@
 				2C8DAB94133AF7330040C305 /* desert_world2.png in Resources */,
 				2C8DAB95133AF7330040C305 /* Dock_hl.png in Resources */,
 				2C8DAB96133AF7330040C305 /* Dock.png in Resources */,
-				2C8DAB97133AF7330040C305 /* enemy.png in Resources */,
-				2C8DAB98133AF7330040C305 /* fire.plist in Resources */,
-				2C8DAB99133AF7330040C305 /* fire.png in Resources */,
 				2C8DAB9A133AF7330040C305 /* mainmenu.jpg in Resources */,
 				2C8DAB9B133AF7330040C305 /* meta_tiles.png in Resources */,
-				2C8DAB9C133AF7330040C305 /* player01.plist in Resources */,
-				2C8DAB9D133AF7330040C305 /* player01.png in Resources */,
 				2C8DAB9E133AF7330040C305 /* Stick.jpg in Resources */,
 				2C8DAB9F133AF7330040C305 /* tank.plist in Resources */,
 				2C8DABA0133AF7330040C305 /* tank.png in Resources */,
 				2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */,
+				2C31B8881340326B00235FC6 /* tank_a.plist in Resources */,
+				2C31B8891340326B00235FC6 /* tank_a.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1259,7 +1262,6 @@
 				2C8DAB62133AF4AF0040C305 /* main.m in Sources */,
 				2C8DAB65133AF4AF0040C305 /* AppDelegate.mm in Sources */,
 				2C8DAB68133AF4AF0040C305 /* RootViewController.m in Sources */,
-				2C8DAB6B133AF4AF0040C305 /* HelloWorldLayer.mm in Sources */,
 				2C8DAB6E133AF4AF0040C305 /* GLES-Render.mm in Sources */,
 				2C8DABA8133AF7920040C305 /* CCJoyStick.m in Sources */,
 				2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */,
@@ -1268,7 +1270,7 @@
 				2C0C843E133AF8E900DE7408 /* GameScene.mm in Sources */,
 				2C0C843F133AF8E900DE7408 /* HandDrawScene.mm in Sources */,
 				2C0C8440133AF8E900DE7408 /* JoyStickLayer.mm in Sources */,
-				2C0C8441133AF8E900DE7408 /* PlayerHelper.mm in Sources */,
+				2C0C8441133AF8E900DE7408 /* Tank.mm in Sources */,
 				2CC850E0133B10950016998C /* MainMenuScene.mm in Sources */,
 				2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */,
 				2CACD84C133E35AB00D7738B /* Bullet.mm in Sources */,
