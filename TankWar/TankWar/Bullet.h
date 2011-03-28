@@ -14,6 +14,7 @@
 
 @interface Bullet : CCNode {
     
+    BOOL needToBeExploded;
     BOOL needToBeDeleted;
     
     CCSprite *bulletSprite;
@@ -26,6 +27,7 @@
     float attack;
 }
 
+@property (nonatomic) BOOL needToBeExploded;
 @property (nonatomic) BOOL needToBeDeleted;
 
 @property (nonatomic, retain) CCSprite *bulletSprite;
@@ -39,6 +41,8 @@
 -(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p;
 
 -(void) fire:(b2Vec2)force;
+
+-(void) explod;
 
 -(void) destory;
 

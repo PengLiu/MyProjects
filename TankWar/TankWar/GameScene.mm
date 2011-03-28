@@ -310,9 +310,11 @@
                 if (bullet.needToBeDeleted) {
                     [bullet destory];
                     [bullet release];
+                }else if(bullet.needToBeExploded){
+                    [bullet explod];
+                    [bullet release];
                 }else{
                     CCSprite *bulletSprite = bullet.bulletSprite;
-                    
                     CGPoint point = CGPointMake( b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO);
                     
                     if ([self isPointInScreen:point]) {

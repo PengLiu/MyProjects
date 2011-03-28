@@ -23,6 +23,7 @@
 
 @implementation Bullet
 
+@synthesize needToBeExploded;
 @synthesize needToBeDeleted;
 @synthesize bulletSprite;
 @synthesize gameWorld;
@@ -49,6 +50,19 @@
 
 -(void) fire:(b2Vec2)force{
      bulletBody -> ApplyLinearImpulse(force, bulletBody->GetPosition());
+}
+
+-(void) explod{
+    CCParticleSun* explosion = [CCParticleSun node];
+    explosion.positionType = kCCPositionTypeRelative;
+    explosion.autoRemoveOnFinish = YES;
+    explosion.startSize = 5;
+    explosion.endSize = 10;
+    explosion.duration = .8;
+    explosion.anchorPoint = ccp(.5,.5);
+    explosion.position = bulletSprite.position;
+    [gameWorld addChild: explosion];
+    [self destory];
 }
 
 -(void) destory{
@@ -86,7 +100,7 @@
 -(void) initBulletSprite:(NSInteger) bulletType atPosition:(CGPoint)p{
     self.bulletSprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bullet%d.png",bulletType]];
     bulletSprite.position = p;
-    [self.gameWorld addChild:self.bulletSprite z:1];
+    [gameWorld addChild:self.bulletSprite z:1];
 }
 
 -(void) dealloc{

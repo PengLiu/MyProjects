@@ -307,6 +307,7 @@
 -(void) destory{
     
     CCParticleSun* explosion = [CCParticleSun node];
+    explosion.positionType = kCCPositionTypeRelative;
     explosion.autoRemoveOnFinish = YES;
     explosion.startSize = 10;
     explosion.endSize = 50;

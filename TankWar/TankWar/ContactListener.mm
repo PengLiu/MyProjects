@@ -13,7 +13,7 @@ void ContactListener::BeginContact(b2Contact* contact){
     
     if (ba->GetType() != b2_staticBody &&  ba->IsBullet()) {
         Bullet *bullet = (Bullet *) ba->GetUserData();
-        bullet.needToBeDeleted = YES;
+        bullet.needToBeExploded = YES;
         
         if(bb->GetType() != b2_staticBody && !bb->IsBullet()){
             Tank *tank = (Tank *)bb->GetUserData();
@@ -24,7 +24,7 @@ void ContactListener::BeginContact(b2Contact* contact){
     
     if (bb->GetType() != b2_staticBody &&  bb->IsBullet()) {
         Bullet *bullet = (Bullet *) bb->GetUserData();
-        bullet.needToBeDeleted = YES;
+        bullet.needToBeExploded = YES;
         
         if(ba->GetType() != b2_staticBody && !ba->IsBullet()){
             Tank *tank = (Tank *)ba->GetUserData();
