@@ -11,6 +11,7 @@
 #import "Box2D.h"
 #import "Constants.h"
 
+@class Bullet;
 @class GameScene;
 
 @interface Tank : CCNode {
@@ -80,6 +81,7 @@
 
 -(CGPoint) getCurrentPosition;
 
+-(void) injuredWithBullet:(Bullet *)bullet;
 
 -(void) moveToDirection:(CGPoint)direction WithPower:(float)power;
 

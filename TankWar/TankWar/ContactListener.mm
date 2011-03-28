@@ -17,7 +17,7 @@ void ContactListener::BeginContact(b2Contact* contact){
         
         if(bb->GetType() != b2_staticBody && !bb->IsBullet()){
             Tank *tank = (Tank *)bb->GetUserData();
-            tank.hp -= bullet.attack;
+            [tank injuredWithBullet:bullet];
         }
         
     }
@@ -28,8 +28,7 @@ void ContactListener::BeginContact(b2Contact* contact){
         
         if(ba->GetType() != b2_staticBody && !ba->IsBullet()){
             Tank *tank = (Tank *)ba->GetUserData();
-            CCLOG(@"HP:%f",tank.hp);
-            tank.hp -= bullet.attack;
+            [tank injuredWithBullet:bullet];
         }
     }
     

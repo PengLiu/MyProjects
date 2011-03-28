@@ -24,6 +24,8 @@
 
 -(void) initTankAnimation;
 
+-(void) aiControlSwitch:(BOOL) start;
+
 @end
 
 
@@ -63,11 +65,21 @@
         
 		self.world = aWorld;
         self.type = t;
-        self.fireFrequency = 0.3;
+       
         self.hp = 100;
         self.ap = 100;
         self.attack = 20;
         self.defense = 2;
+        
+        if (t == PlayerTank) {
+            self.movement = 10;
+            self.fireFrequency = 0.3;
+            self.firePower = 10;
+        }else{
+            self.movement = 3;
+            self.fireFrequency = 0.6;
+            self.firePower = 5;
+        }
         
         //Load player png.
         CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"tank.png"];
@@ -115,7 +127,11 @@
 //        
 //        testSprite.flipY = YES;
         
-        [self initWeapon];
+        if (t == EnemyTank) {
+            [self aiControlSwitch:YES];
+        }
+        
+        
 	}
 	return self;
 }
@@ -155,15 +171,11 @@
     
 }
 
--(void) initWeapon{
-    //Load from tank properties
-    self.firePower = 10;
-}
-
 -(void) moveToDirection:(CGPoint)direction WithPower:(float)power{
     
     float nextx = tankSprite.position.x;
     float nexty = tankSprite.position.y;
+    
     nextx += -direction.x * power;
     nexty += -direction.y * power;
     
@@ -267,6 +279,10 @@
     tankBody->CreateFixture(&fixtureDef);
 }
 
+-(void) injuredWithBullet:(Bullet *)bullet{
+    self.hp -= bullet.attack;
+}
+
 -(void) stopFire{
     [self unschedule:@selector(fire:)];
 }
@@ -303,6 +319,34 @@
 -(CGPoint) getCurrentPosition{
 	return tankSprite.position;
 }
+
+-(void) aiControlSwitch:(BOOL) start{
+    if (start) {
+        [self schedule:@selector(go:) interval:0.08];
+        [self startFire];
+    }else{
+        [self unschedule:@selector(go:)];
+    }
+}
+
+-(void) go:(ccTime) dt{
+    
+    //Player tank position
+    CGPoint playerPosition = [world.tank getCurrentPosition];
+    CGPoint selfPosition = tankSprite.position;
+    
+    float moveAngle = atan2f(playerPosition.x - selfPosition.x, playerPosition.y - selfPosition.y);
+    tankBody->SetTransform(tankBody->GetPosition(),-moveAngle);   
+    
+    b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
+    tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
+    
+    float turrentRogation = moveAngle * 180 / PI;
+    
+    turretSprite.rotation = turrentRogation;
+    self.angle = turrentRogation - 90;
+}
+
 
 -(void) destory{
     
@@ -341,6 +385,11 @@
 -(void) dealloc{
     CCLOG(@"Tank dealloc");
     [super dealloc];
+}
+
+-(NSString*)description{
+    NSString* str = [NSString stringWithFormat:@"Tank position:x:%f,y%f",tankSprite.position.x,tankSprite.position.y];
+    return str;
 }
 
 @end

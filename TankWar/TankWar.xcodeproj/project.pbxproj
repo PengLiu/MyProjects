@@ -16,6 +16,8 @@
 		2C31B8891340326B00235FC6 /* tank_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C31B8871340326B00235FC6 /* tank_a.png */; };
 		2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DF166133CDB6D00924DF5 /* ContactListener.mm */; };
 		2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C511249133B8B0A008E3455 /* gamewaiting.mp3 */; };
+		2C6FD2141340BE8F0016AB34 /* gameover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FD2131340BE8F0016AB34 /* gameover.jpg */; };
+		2C6FD2181340BEB60016AB34 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FD2171340BEB60016AB34 /* GameOverScene.m */; };
 		2C8DA99C133AF4AC0040C305 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */; };
 		2C8DA99E133AF4AC0040C305 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */; };
 		2C8DA9A0133AF4AC0040C305 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99F133AF4AC0040C305 /* OpenAL.framework */; };
@@ -207,6 +209,9 @@
 		2C31B8871340326B00235FC6 /* tank_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank_a.png; sourceTree = "<group>"; };
 		2C3DF166133CDB6D00924DF5 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
 		2C511249133B8B0A008E3455 /* gamewaiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamewaiting.mp3; sourceTree = "<group>"; };
+		2C6FD2131340BE8F0016AB34 /* gameover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gameover.jpg; sourceTree = "<group>"; };
+		2C6FD2161340BEB60016AB34 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		2C6FD2171340BEB60016AB34 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		2C8DA997133AF4AC0040C305 /* TankWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -578,6 +583,7 @@
 		2C2F4C06133EDF860095A022 /* WorldMap */ = {
 			isa = PBXGroup;
 			children = (
+				2C6FD2131340BE8F0016AB34 /* gameover.jpg */,
 				2C8DAB7D133AF7330040C305 /* desert_world.png */,
 				2C8DAB7E133AF7330040C305 /* desert_world.tmx */,
 				2C8DAB7F133AF7330040C305 /* desert_world2.png */,
@@ -648,6 +654,8 @@
 				2C3DF166133CDB6D00924DF5 /* ContactListener.mm */,
 				2CC850DE133B10950016998C /* MainMenuScene.h */,
 				2CC850DF133B10950016998C /* MainMenuScene.mm */,
+				2C6FD2161340BEB60016AB34 /* GameOverScene.h */,
+				2C6FD2171340BEB60016AB34 /* GameOverScene.m */,
 				2C0C8433133AF8E800DE7408 /* EnemyManager.h */,
 				2C0C8434133AF8E800DE7408 /* EnemyManager.mm */,
 				2C0C8435133AF8E800DE7408 /* GameScene.h */,
@@ -1118,6 +1126,7 @@
 				2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */,
 				2C31B8881340326B00235FC6 /* tank_a.plist in Resources */,
 				2C31B8891340326B00235FC6 /* tank_a.png in Resources */,
+				2C6FD2141340BE8F0016AB34 /* gameover.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1274,6 +1283,7 @@
 				2CC850E0133B10950016998C /* MainMenuScene.mm in Sources */,
 				2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */,
 				2CACD84C133E35AB00D7738B /* Bullet.mm in Sources */,
+				2C6FD2181340BEB60016AB34 /* GameOverScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

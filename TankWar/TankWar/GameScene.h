@@ -50,4 +50,6 @@
 
 -(void)setViewpointCenter:(CGPoint) position;
 
+-(void) destory;
+
 @end

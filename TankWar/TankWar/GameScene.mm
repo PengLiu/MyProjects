@@ -17,6 +17,7 @@
 #import "EnemyManager.h"
 #import "SimpleAudioEngine.h"
 #import "Bullet.h"
+#import "GameOverScene.h"
 
 @interface GameScene(PrivateMethod)
 
@@ -61,10 +62,10 @@
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
-	GameScene *layer = [[[GameScene alloc] initInWorld:worldMapName] autorelease];
-
+	GameScene *layer = [[GameScene alloc] initInWorld:worldMapName];
 	// add layer as a child to scene
 	[scene addChild: layer];
+    [layer release];
     
     JoyStickLayer *joyStickLayer = [JoyStickLayer node];
     [joyStickLayer setGameScene:layer]; 
@@ -332,6 +333,9 @@
                 if (ph.hp <= 0) {
                     [ph destory];
                     [ph release];
+                    if (ph.type == PlayerTank) {
+                        [self destory];
+                    }
                 }else{
             
                     CCSprite *tankBody = ph.tankSprite;
@@ -413,8 +417,15 @@
     
 }
 
+-(void) destory{
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [[CCDirector sharedDirector]replaceScene:[GameOverScene node]];
+}
+
 
 -(void) dealloc{
+    
+    CCLOG(@"Game Scene Dealloc");
     
     //Release box2d objs
     delete contactListener;
@@ -425,6 +436,7 @@
     
     [enemyManager release];
     [tank release];
+    
     [super dealloc];
 }
 
