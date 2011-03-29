@@ -338,7 +338,7 @@
     tankBody->SetTransform(tankBody->GetPosition(),-moveAngle);   
     
     b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
-    tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
+   // tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
     
     float turrentRogation = moveAngle * 180 / PI;
     

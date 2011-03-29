@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class  Tank;
 @class  GameScene;
 
 @interface EnemyManager : CCNode {
@@ -23,8 +24,10 @@
 
 -(id) initWithScene:(GameScene *)world;
 
--(void) spawnEnemy:(int)level;
+-(void) spawnEnemy:(int)level atPosition:(CGPoint)p;
 
--(void) destory;
+-(void) destoryAll;
+
+-(void) destoryTank:(Tank *)t;
 
 @end

@@ -9,6 +9,7 @@
 #import "JoyStickLayer.h"
 #import "Tank.h"
 #import "Constants.h"
+#import "MainMenuScene.h"
 
 @interface JoyStickLayer(Private)
 
@@ -17,6 +18,8 @@
 //-(void) initButtons;
 
 -(void) initPlayerStatus;
+
+-(void) initSubMenu;
 
 @end
 
@@ -44,11 +47,12 @@
 		//Init Buttons
 		//[self initButtons];
         
-		
+		[self initSubMenu];
 	}
 	return self;
 	
 }
+
 
 -(void) initPlayerStatus{
     
@@ -61,6 +65,24 @@
     
     [self addChild:hpBar];
     
+}
+
+-(void) initSubMenu{
+    
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    //Display menu lables
+    CCLabelTTF *restartGameLabel = [CCLabelTTF labelWithString:@"New Game" fontName:@"Verdana" fontSize:20];
+    CCMenuItemLabel * restartGame = [CCMenuItemLabel itemWithLabel:restartGameLabel target:self selector: @selector(restartGame:)]; 
+    
+    CCMenu * menu = [CCMenu menuWithItems:restartGame,nil]; 
+    [menu alignItemsVerticallyWithPadding:5]; 
+    [self addChild:menu];
+    [menu setPosition:ccp( size.width - 50 , size.height -10)];
+}
+
+-(void)restartGame:(id)sender{	
+	//Go to game scene
+	[[CCDirector sharedDirector]replaceScene:[MainMenuSence scene]];
 }
 
 

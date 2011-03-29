@@ -128,7 +128,7 @@
 
 -(void) initEnemy{
     enemyManager = [[EnemyManager alloc] initWithScene:self];
-    [enemyManager spawnEnemy:1];
+    [enemyManager spawnEnemy:1 atPosition:ccp(300,300)];
 }
 -(void)setViewpointCenter:(CGPoint) position {
     
@@ -332,12 +332,12 @@
                 Tank *ph = (Tank*)b->GetUserData();
                 
                 if (ph.hp <= 0) {
-                    [ph destory];
-                    [ph release];
-                    CCLOG(@"tank retain:%d",[ph retainCount]);
                     if (ph.type == PlayerTank) {
                         [self destory];
+                    }else{
+                        [enemyManager destoryTank:ph];
                     }
+                    
                 }else{
             
                     CCSprite *tankBody = ph.tankSprite;
@@ -420,7 +420,7 @@
 }
 
 -(void) destory{
-    [self removeAllChildrenWithCleanup:YES];
+    [enemyManager destoryAll];
     [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
     [[CCDirector sharedDirector]replaceScene:[GameOverScene node]];
 }
@@ -436,8 +436,7 @@
     delete phyWorld;
     phyWorld = NULL;
     delete m_debugDraw;
-
-    [enemyManager destory];
+    
     [enemyManager release];
     [tank release];
     

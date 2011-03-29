@@ -34,24 +34,32 @@
     return self;
 }
 
--(void) spawnEnemy:(int)level{
-    Tank *t = [[Tank alloc] initWithScene:world atPosition:ccp(200,300) tankType:EnemyTank];
+-(void) spawnEnemy:(int)level atPosition:(CGPoint)p{
+    Tank *t = [[Tank alloc] initWithScene:world atPosition:p tankType:EnemyTank];
     [tankArray addObject:t];
     [t release];
 }
 
--(void)destory{
-    CCLOG(@"Enemymanager destory");
+-(void) destoryTank:(Tank *)t{
+    [tankArray removeObject:t];
+    [t destory];
+    if ([tankArray count] <2) {
+        [self spawnEnemy:1 atPosition:ccp(400,400)];
+        [self spawnEnemy:1 atPosition:ccp(400,400)];
+    }
+}
+
+-(void)destoryAll{
     //Clean all enemy tanks
     for (Tank *t in tankArray){
-        [t release];
+        [t destory];
     }
+    [tankArray removeAllObjects];
 }
 
 //Private methods
 
 -(void) dealloc{
-    CCLOG(@"Enemymanager dealloc");
     [super dealloc];
 }
 
