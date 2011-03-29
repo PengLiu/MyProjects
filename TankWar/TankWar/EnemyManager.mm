@@ -23,22 +23,35 @@
 @implementation EnemyManager
     
 @synthesize world;
+@synthesize tankArray;
 
 -(id) initWithScene:(GameScene *)w{
-    
+        
     if ((self = [super init])) {
         self.world = w;
+        self.tankArray = [NSMutableArray arrayWithCapacity:20];
     }
     return self;
 }
 
 -(void) spawnEnemy:(int)level{
-    [[[Tank alloc] initWithScene:world atPosition:ccp(200,300) tankType:EnemyTank] autorelease];
+    Tank *t = [[Tank alloc] initWithScene:world atPosition:ccp(200,300) tankType:EnemyTank];
+    [tankArray addObject:t];
+    [t release];
+}
+
+-(void)destory{
+    CCLOG(@"Enemymanager destory");
+    //Clean all enemy tanks
+    for (Tank *t in tankArray){
+        [t release];
+    }
 }
 
 //Private methods
 
 -(void) dealloc{
+    CCLOG(@"Enemymanager dealloc");
     [super dealloc];
 }
 

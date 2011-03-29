@@ -387,7 +387,7 @@
 }
 
 -(NSString*)description{
-    NSString* str = [NSString stringWithFormat:@"Tank position:x:%f,y%f",tankSprite.position.x,tankSprite.position.y];
+    NSString* str = [NSString stringWithFormat:@"Tank:%d position:x:%f,y%f",tankId,tankSprite.position.x,tankSprite.position.y];
     return str;
 }
 

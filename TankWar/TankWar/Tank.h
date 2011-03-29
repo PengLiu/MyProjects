@@ -49,6 +49,8 @@
     
     int type;
     
+    int tankId;
+    
 }
 
 @property (nonatomic, retain) CCSpriteBatchNode *playerSheet;
@@ -65,6 +67,7 @@
 
 @property (nonatomic)  b2Body *tankBody;
 
+@property (nonatomic) int tankId;
 @property (nonatomic) int type;
 @property (nonatomic) float hp;
 @property (nonatomic) float ap;

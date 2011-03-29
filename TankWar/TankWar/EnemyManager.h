@@ -14,13 +14,17 @@
 @interface EnemyManager : CCNode {
 
     GameScene *world;
+    
+    NSMutableArray *tankArray;
 }
 
 @property (nonatomic, assign) GameScene *world;
+@property (nonatomic, retain) NSMutableArray *tankArray;
 
 -(id) initWithScene:(GameScene *)world;
 
 -(void) spawnEnemy:(int)level;
 
+-(void) destory;
 
 @end

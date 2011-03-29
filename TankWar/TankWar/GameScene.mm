@@ -127,10 +127,9 @@
 }
 
 -(void) initEnemy{
-    self.enemyManager = [[EnemyManager alloc] initWithScene:self];
+    enemyManager = [[EnemyManager alloc] initWithScene:self];
     [enemyManager spawnEnemy:1];
 }
-
 -(void)setViewpointCenter:(CGPoint) position {
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -219,7 +218,7 @@
 -(void) initWorld{
     
     //Load world map
-    self.worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
+    worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
     [worldMap setAnchorPoint:ccp(0,0)];
     [self addChild:worldMap z:-1];
     
@@ -437,7 +436,8 @@
     delete phyWorld;
     phyWorld = NULL;
     delete m_debugDraw;
-    
+
+    [enemyManager destory];
     [enemyManager release];
     [tank release];
     
