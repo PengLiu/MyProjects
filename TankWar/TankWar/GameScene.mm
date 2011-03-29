@@ -21,28 +21,26 @@
 
 @interface GameScene(PrivateMethod)
 
--(void) initPlayer;
-
 -(void) initWorld;
+
+-(void) initBodyTiles;
+-(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)d rotation:(float)r 
+         friction:(float)f density:(float)d restitution:(float)re boxId:(float)id;
+
+-(void) initPlayer;
 
 -(void) initEnemy;
 
 -(void) playBGM;
 
--(void) initBodyTiles;
 
--(CGPoint)calculateActualPositioin:(CGPoint)position;
-
--(CGPoint)tileCoordForPosition:(CGPoint)position;
-
--(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)d rotation:(float)r 
-         friction:(float)f density:(float)d restitution:(float)re boxId:(float)id;
+//Util methods
 
 -(BOOL) isPointInScreen:(CGPoint)point;
-
 -(b2Vec2) toMeters:(CGPoint)point;
-
 -(CGPoint) toPixels:(b2Vec2)vec;
+-(CGPoint)calculateActualPositioin:(CGPoint)position;
+
 
 @end
 
@@ -97,8 +95,7 @@
 	if( (self=[super init])) {
 
         worldMapName = @"desert_world";
-        contactListener = new ContactListener();
-
+        
         //Init world map
         [self initWorld];
         [self initBodyTiles];
@@ -113,107 +110,9 @@
     return self;
 }
 
--(void) playBGM{
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamewaiting.mp3"];
-}
-
-- (CGPoint)tileCoordForPosition:(CGPoint)position {
-    
-    int x = position.x / self.worldMap.tileSize.width;
-    
-    int y = ((self.worldMap.mapSize.height * self.worldMap.tileSize.height) - position.y) / self.worldMap.tileSize.height;
-
-    return ccp(x, y);
-}
-
--(void) initEnemy{
-    enemyManager = [[EnemyManager alloc] initWithScene:self];
-    [enemyManager spawnEnemy:1 atPosition:ccp(300,300)];
-}
--(void)setViewpointCenter:(CGPoint) position {
-    
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CGPoint actualPosition = [self calculateActualPositioin:position];
-    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
-    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
-    self.position = viewPoint;
-  
-}
-
--(CGPoint)calculateActualPositioin:(CGPoint)position{
-    
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    
-    int x = MAX(position.x, winSize.width / 2);
-    int y = MAX(position.y, winSize.height / 2);
-    
-    x = MIN(x, (self.worldMap.mapSize.width * self.worldMap.tileSize.width) 
-            - winSize.width / 2);
-    y = MIN(y, (self.worldMap.mapSize.height * self.worldMap.tileSize.height) 
-            - winSize.height/2);
-    
-    return ccp(x,y);
-}
-
--(void) initPlayer{
-    self.tank = [[Tank alloc] initWithScene:self atPosition:ccp(200,200) tankType:PlayerTank];
-}
-
--(void) initBodyTiles{
-    
-    //searching for object layer called "CollisionObjs"
-    CCTMXObjectGroup *objects = [worldMap objectGroupNamed:@"CollisionObjs"];
-    NSMutableDictionary * objPoint;
-    int x ;
-    int y ;
-    int w ;
-    int h ;
-    
-    for (objPoint in [objects objects]) {
-        x = [[objPoint valueForKey:@"x"] intValue];
-        y = [[objPoint valueForKey:@"y"] intValue];
-        w = [[objPoint valueForKey:@"width"] intValue];
-        h = [[objPoint valueForKey:@"height"] intValue];
-        CGPoint point=ccp(x+w/2,y+h/2);
-        CGPoint size=ccp(w,h);
-        //this method builds a box2D rectangle and adds it to the box2D world
-        [self addRectAt:point withSize:size dynamic:false rotation:0 friction:.3 density:0 restitution:0 boxId:-1];
-        
-    }
-    
-    
-}
-         
--(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)dy rotation:(float)r 
-               friction:(float)f density:(float)d restitution:(float)re boxId:(float)id{
-    
-    
-    b2BodyDef bodyDef;
-    
-    if(dy){
-        bodyDef.type = b2_dynamicBody;
-    }
-    
-    bodyDef.position = [self toMeters:point];
-
-    b2Body *body = phyWorld ->CreateBody(&bodyDef);
-    
-    // Define another box shape for our dynamic body.
-    b2PolygonShape staticBox;
-    staticBox.SetAsBox(size.x/BODY_PTM_RATIO, size.y/BODY_PTM_RATIO);//These are mid points for our 1m box
-	
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &staticBox;	
-    fixtureDef.density = d;
-    fixtureDef.friction = r;
-    fixtureDef.restitution = re;
-    //fixtureDef.rotation = r;
-    body->CreateFixture(&fixtureDef);
-    
-}
 
 
+//Private methods
 
 -(void) initWorld{
     
@@ -232,13 +131,13 @@
     
     // Construct a world object, which will hold and simulate the rigid bodies.
     phyWorld = new b2World(gravity, doSleep);
-
+    
     contactListener = new ContactListener();
     
     phyWorld ->SetContactListener(contactListener);
     
     phyWorld->SetContinuousPhysics(true);
-
+    
     // Debug Draw functions
     m_debugDraw = new GLESDebugDraw( PTM_RATIO );
     phyWorld->SetDebugDraw(m_debugDraw);
@@ -284,6 +183,141 @@
     [self schedule: @selector(tick:)];
 }
 
+
+//Create staic body from tiled map 
+-(void) initBodyTiles{
+    
+    //searching for object layer called "CollisionObjs"
+    CCTMXObjectGroup *objects = [worldMap objectGroupNamed:@"CollisionObjs"];
+    NSMutableDictionary * objPoint;
+    int x ;
+    int y ;
+    int w ;
+    int h ;
+    
+    for (objPoint in [objects objects]) {
+        x = [[objPoint valueForKey:@"x"] intValue];
+        y = [[objPoint valueForKey:@"y"] intValue];
+        w = [[objPoint valueForKey:@"width"] intValue];
+        h = [[objPoint valueForKey:@"height"] intValue];
+        CGPoint point=ccp(x+w/2,y+h/2);
+        CGPoint size=ccp(w,h);
+        //this method builds a box2D rectangle and adds it to the box2D world
+        [self addRectAt:point withSize:size dynamic:false rotation:0 friction:.3 density:0 restitution:0 boxId:-1];
+        
+    }
+}
+
+-(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)dy rotation:(float)r 
+         friction:(float)f density:(float)d restitution:(float)re boxId:(float)id{
+    
+    
+    b2BodyDef bodyDef;
+    
+    if(dy){
+        bodyDef.type = b2_dynamicBody;
+    }
+    
+    bodyDef.position = [self toMeters:point];
+    
+    b2Body *body = phyWorld ->CreateBody(&bodyDef);
+    
+    // Define another box shape for our dynamic body.
+    b2PolygonShape staticBox;
+    staticBox.SetAsBox(size.x/BODY_PTM_RATIO, size.y/BODY_PTM_RATIO);//These are mid points for our 1m box
+	
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &staticBox;	
+    fixtureDef.density = d;
+    fixtureDef.friction = r;
+    fixtureDef.restitution = re;
+    //fixtureDef.rotation = r;
+    body->CreateFixture(&fixtureDef);
+    
+}
+
+//Init player tank
+-(void) initPlayer{
+    self.tank = [[Tank alloc] initWithScene:self atPosition:ccp(200,200) tankType:PlayerTank];
+}
+
+//Init enemy tank
+-(void) initEnemy{
+    enemyManager = [[EnemyManager alloc] initWithScene:self];
+    [enemyManager spawnEnemy:1 atPosition:ccp(300,300)];
+}
+
+//Player background music
+-(void) playBGM{
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamewaiting.mp3"];
+}
+
+//Util methods
+-(BOOL) isPointInScreen:(CGPoint)point{
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGPoint screenCenter = [self calculateActualPositioin:[tank getCurrentPosition]];
+    
+    if (point.x > (screenCenter.x + winSize.width/2) || point.x < (screenCenter.x - winSize.width/2)) {
+        return NO;
+    }
+    
+    if (point.y > (screenCenter.y + winSize.height/2) || point.y < (screenCenter.y - winSize.height/2)) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(b2Vec2) toMeters:(CGPoint)point {
+    return b2Vec2(point.x / PTM_RATIO, point.y / PTM_RATIO);
+}
+-(CGPoint) toPixels:(b2Vec2)vec {
+    return ccpMult(CGPointMake(vec.x, vec.y), PTM_RATIO);
+}
+
+-(CGPoint)calculateActualPositioin:(CGPoint)position{
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    
+    int x = MAX(position.x, winSize.width / 2);
+    int y = MAX(position.y, winSize.height / 2);
+    
+    x = MIN(x, (self.worldMap.mapSize.width * self.worldMap.tileSize.width) 
+            - winSize.width / 2);
+    y = MIN(y, (self.worldMap.mapSize.height * self.worldMap.tileSize.height) 
+            - winSize.height/2);
+    
+    return ccp(x,y);
+}
+
+
+
+
+//public methods
+
+
+-(void)setViewpointCenter:(CGPoint) position {
+    
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CGPoint actualPosition = [self calculateActualPositioin:position];
+    CGPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
+    CGPoint viewPoint = ccpSub(centerOfView, actualPosition);
+    self.position = viewPoint;
+    
+}
+
+
+-(void) destory{
+    [enemyManager destoryAll];
+    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+    [[CCDirector sharedDirector]replaceScene:[GameOverScene node]];
+}
+
+
+
+//Selector and schedule methods
 
 -(void) tick: (ccTime) dt
 {
@@ -356,74 +390,16 @@
 	}
 }
 
-- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
-{	
-	static float prevX=0, prevY=0;
-	
-	//#define kFilterFactor 0.05f
-#define kFilterFactor 1.0f	// don't use filter. the code is here just as an example
-	
-	float accelX = (float) acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
-	float accelY = (float) acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
-	
-	prevX = accelX;
-	prevY = accelY;
-	
-	// accelerometer values are in "Portrait" mode. Change them to Landscape left
-	// multiply the gravity by 10
-	b2Vec2 gravity( -accelY * 10, accelX * 10);
-	
-	phyWorld->SetGravity( gravity );
-}
 
--(BOOL) isPointInScreen:(CGPoint)point{
-        
-    CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CGPoint screenCenter = [self calculateActualPositioin:[tank getCurrentPosition]];
-    
-    if (point.x > (screenCenter.x + winSize.width/2) || point.x < (screenCenter.x - winSize.width/2)) {
-        return NO;
-    }
-    
-    if (point.y > (screenCenter.y + winSize.height/2) || point.y < (screenCenter.y - winSize.height/2)) {
-        return NO;
-    }
-    
-    return YES;
-}
 
-//Util methods
 
--(b2Vec2) toMeters:(CGPoint)point {
-    return b2Vec2(point.x / PTM_RATIO, point.y / PTM_RATIO);
-}
--(CGPoint) toPixels:(b2Vec2)vec {
-    return ccpMult(CGPointMake(vec.x, vec.y), PTM_RATIO);
-}
 
--(void) draw
-{
-	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-	// Needed states:  GL_VERTEX_ARRAY, 
-	// Unneeded states: GL_TEXTURE_2D, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	
-	phyWorld->DrawDebugData();
-	
-	// restore default GL states
-	glEnable(GL_TEXTURE_2D);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    
-}
 
--(void) destory{
-    [enemyManager destoryAll];
-    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-    [[CCDirector sharedDirector]replaceScene:[GameOverScene node]];
-}
+
+
+
+
+
 
 
 -(void) dealloc{
@@ -445,6 +421,44 @@
 
 
 
+- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
+{	
+	static float prevX=0, prevY=0;
+	
+	//#define kFilterFactor 0.05f
+#define kFilterFactor 1.0f	// don't use filter. the code is here just as an example
+	
+	float accelX = (float) acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
+	float accelY = (float) acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
+	
+	prevX = accelX;
+	prevY = accelY;
+	
+	// accelerometer values are in "Portrait" mode. Change them to Landscape left
+	// multiply the gravity by 10
+	b2Vec2 gravity( -accelY * 10, accelX * 10);
+	
+	phyWorld->SetGravity( gravity );
+}
+
+
+-(void) draw
+{
+	// Default GL states: GL_TEXTURE_2D, GL_VERTEX_ARRAY, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
+	// Needed states:  GL_VERTEX_ARRAY, 
+	// Unneeded states: GL_TEXTURE_2D, GL_COLOR_ARRAY, GL_TEXTURE_COORD_ARRAY
+	glDisable(GL_TEXTURE_2D);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	
+	phyWorld->DrawDebugData();
+	
+	// restore default GL states
+	glEnable(GL_TEXTURE_2D);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    
+}
 
 
 @end

@@ -71,7 +71,6 @@
 }
 
 -(void)newGame:(id)sender{
-	
 	//Go to game scene
 	[[CCDirector sharedDirector]replaceScene:[GameScene scene]];
 }
@@ -83,10 +82,7 @@
 }
 
 -(void)dealloc{
-		
-	CCLOG(@"Main Menu Dealloc");
 	[super dealloc];
-	
 }
 
 
