@@ -25,6 +25,7 @@
 
 @property (nonatomic, retain) CCJoyStick *leftJoystick;
 @property (nonatomic, retain) CCJoyStick *rightJoystick;
+
 @property (nonatomic, retain) CCSprite *hp;
 @property (nonatomic, retain) CCSprite *mana;
 

@@ -119,9 +119,8 @@
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
-	
-   
     
+    [self loadGameResources];
     
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [MainMenuSence scene]];
@@ -131,8 +130,6 @@
 -(void) loadGameResources{
     
     //Load game resource , display prograss bar
-    [[CCTextureCache sharedTextureCache] addImageAsync:@"enemy.png" 
-												target:self selector:@selector(playerLoaded:)];
 	[[CCTextureCache sharedTextureCache] addImageAsync:@"tank.png" 
 												target:self selector:@selector(playerLoaded:)];
     

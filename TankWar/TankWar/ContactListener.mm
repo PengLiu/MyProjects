@@ -6,7 +6,7 @@
 
 void ContactListener::BeginContact(b2Contact* contact){
     
-    CCLOG(@"Contact....");
+    //CCLOG(@"Contact....");
 
     b2Body *ba = contact->GetFixtureA() ->GetBody();
     b2Body *bb = contact->GetFixtureB() -> GetBody();

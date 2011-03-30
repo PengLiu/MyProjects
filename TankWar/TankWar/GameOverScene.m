@@ -49,16 +49,9 @@
 		[self addChild:gameNameLabel z:0];
 		
 		
-//		//Display menu lables
+		//Display menu lables
 		CCLabelTTF *restartGameLabel = [CCLabelTTF labelWithString:@"Restart" fontName:@"Verdana" fontSize:30];
-//		CCLabelTTF *optionLabel = [CCLabelTTF labelWithString:@"Options" fontName:@"Verdana" fontSize:20];
-//		CCLabelTTF *aboutLabel = [CCLabelTTF labelWithString:@"About" fontName:@"Verdana" fontSize:20];
-//		
-//		
 		CCMenuItemLabel * restartGame = [CCMenuItemLabel itemWithLabel:restartGameLabel target:self selector: @selector(newGame:)]; 
-//		CCMenuItemLabel * options = [CCMenuItemLabel itemWithLabel:optionLabel target:self selector: @selector(options:)];
-//		CCMenuItemLabel * about = [CCMenuItemLabel itemWithLabel:aboutLabel target:self selector: @selector(about:)];
-//		
 		CCMenu * menu = [CCMenu menuWithItems:restartGame,nil]; 
 		[menu alignItemsVerticallyWithPadding:5]; 
 		[self addChild:menu];

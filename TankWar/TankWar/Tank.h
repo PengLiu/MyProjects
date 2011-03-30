@@ -24,15 +24,13 @@
     CCSprite *tankSprite;
     CCSprite *turretSprite;
     
-    CCAction *walkAnim;
-    CCAction *fireAnim;
-    
     //Box2d tank body
     b2Body *tankBody;
     
+    //Tank properties
+    //射击角度
     float angle;
     
-    //Tank properties
     //射击速度
     float firePower;
     //射击频率 单位秒
@@ -49,25 +47,18 @@
     
     int type;
     
-    int tankId;
-    
 }
 
-@property (nonatomic, retain) CCSpriteBatchNode *playerSheet;
-@property (nonatomic, retain) NSMutableArray *actionArray;
-@property (nonatomic, retain) CCSprite *tankSprite;
-@property (nonatomic, retain) CCSprite *turretSprite;
 @property (nonatomic, assign) GameScene *world;
 
-@property (nonatomic, retain) CCAction *walkAnim;
-@property (nonatomic, retain) CCAction *fireAnim;
+@property (nonatomic, retain) CCSpriteBatchNode *playerSheet;
 
-@property (nonatomic) float angle;
-@property (nonatomic) NSInteger currentActionIndex;
+@property (nonatomic, retain) CCSprite *tankSprite;
+@property (nonatomic, retain) CCSprite *turretSprite;
 
 @property (nonatomic)  b2Body *tankBody;
 
-@property (nonatomic) int tankId;
+@property (nonatomic) float angle;
 @property (nonatomic) int type;
 @property (nonatomic) float hp;
 @property (nonatomic) float ap;
@@ -79,8 +70,6 @@
 
 
 -(id) initWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision tankType:(TankType) type;
-
--(void) stopCurrentAction;
 
 -(CGPoint) getCurrentPosition;
 

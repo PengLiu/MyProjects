@@ -29,7 +29,9 @@
 
 @synthesize leftJoystick;
 @synthesize rightJoystick;
+
 @synthesize gameScene;
+
 @synthesize hp;
 @synthesize mana;
 
@@ -86,7 +88,7 @@
 }
 
 
--(void) initButtons{
+//-(void) initButtons{
 		
 	//CCMenuItemImage *buttonMenuItem = [CCMenuItemImage itemFromNormalImage:@"button_a1.png"
 //									selectedImage: @"button_a2.png" target:self
@@ -100,8 +102,7 @@
 //	buttonMenu.position=ccp(400,80);
 //	// add the menu to your scene
 //	[self addChild:buttonMenu];
-	
-}
+//}
 
 //-(void)buttonAClicked: (CCMenuItem  *) menuItem
 //{
@@ -133,8 +134,7 @@
 	
 }
 
-- (void) onCCJoyStickUpdate:(CCNode*)sender Angle:(float)angle Direction:(CGPoint)direction Power:(float)power
-{
+- (void) onCCJoyStickUpdate:(CCNode*)sender Angle:(float)angle Direction:(CGPoint)direction Power:(float)power{
     
 	if (sender == leftJoystick) {
         gameScene.tank.tankSprite.rotation = -angle + 90;
@@ -146,8 +146,7 @@
 	}
 }
 
-- (void) onCCJoyStickActivated:(CCNode*)sender
-{
+- (void) onCCJoyStickActivated:(CCNode*)sender{
 	if (sender == leftJoystick) {
 		[leftJoystick setBallTexture:@"Ball_hl.png"];
 		[leftJoystick setDockTexture:@"Dock_hl.png"];
@@ -159,8 +158,8 @@
         [gameScene.tank startFire];
 	}
 }
-- (void) onCCJoyStickDeactivated:(CCNode*)sender
-{
+
+- (void) onCCJoyStickDeactivated:(CCNode*)sender{
     
 	if (sender == leftJoystick) {
 		[leftJoystick setBallTexture:@"Ball.png"];
@@ -175,7 +174,6 @@
 	}
 	
 }
-
 
 -(void) dealloc{
 	[super dealloc];
