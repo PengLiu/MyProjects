@@ -21,7 +21,12 @@
 #define TANK_SPRITE_BATCH_NODE 1
 
 
-enum TankType {
+typedef enum  {
 	EnemyTank = 1,
     PlayerTank =2
-};
+}TankType;
+
+
+
+// GKSession ID
+#define TANKWAR_SESSIONID @"gktank"

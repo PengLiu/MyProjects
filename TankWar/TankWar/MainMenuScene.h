@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 
-@interface MainMenuSence : CCLayer {
+@interface MainMenuSence : CCLayer{
 
 }
 

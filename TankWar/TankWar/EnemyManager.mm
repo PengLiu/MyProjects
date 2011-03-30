@@ -41,6 +41,7 @@
 }
 
 -(void) destoryTank:(Tank *)t{
+    
     [tankArray removeObject:t];
     [t destory];
     if ([tankArray count] <2) {

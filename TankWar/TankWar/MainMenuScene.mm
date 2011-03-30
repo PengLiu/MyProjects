@@ -9,6 +9,7 @@
 #import "MainMenuScene.h"
 #import "GameScene.h"
 #import "HandDrawScene.h"
+#import "NetworkManager.h"
 
 @implementation MainMenuSence
 
@@ -78,8 +79,15 @@
 	[[CCDirector sharedDirector]replaceScene:[HandDrawScene scene]];
 }
 -(void)about:(id)sender {
-	
+	NetworkManager *manager = [[NetworkManager alloc]init];
+
 }
+
+// GameKit protocol methods
+
+
+
+
 
 -(void)dealloc{
 	[super dealloc];

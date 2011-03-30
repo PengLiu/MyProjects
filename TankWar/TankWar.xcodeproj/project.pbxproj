@@ -12,12 +12,12 @@
 		2C0C843F133AF8E900DE7408 /* HandDrawScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8438133AF8E800DE7408 /* HandDrawScene.mm */; };
 		2C0C8440133AF8E900DE7408 /* JoyStickLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */; };
 		2C0C8441133AF8E900DE7408 /* Tank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* Tank.mm */; };
-		2C31B8881340326B00235FC6 /* tank_a.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C31B8861340326B00235FC6 /* tank_a.plist */; };
-		2C31B8891340326B00235FC6 /* tank_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C31B8871340326B00235FC6 /* tank_a.png */; };
 		2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DF166133CDB6D00924DF5 /* ContactListener.mm */; };
 		2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C511249133B8B0A008E3455 /* gamewaiting.mp3 */; };
 		2C6FD2141340BE8F0016AB34 /* gameover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FD2131340BE8F0016AB34 /* gameover.jpg */; };
 		2C6FD2181340BEB60016AB34 /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FD2171340BEB60016AB34 /* GameOverScene.m */; };
+		2C7E4FE4134363B000CA0257 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E4FE3134363B000CA0257 /* GameKit.framework */; };
+		2C7E4FEB1343688D00CA0257 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7E4FEA1343688D00CA0257 /* NetworkManager.m */; };
 		2C8DA99C133AF4AC0040C305 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */; };
 		2C8DA99E133AF4AC0040C305 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */; };
 		2C8DA9A0133AF4AC0040C305 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8DA99F133AF4AC0040C305 /* OpenAL.framework */; };
@@ -205,13 +205,14 @@
 		2C0C843B133AF8E800DE7408 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
 		2C0C843C133AF8E900DE7408 /* Tank.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tank.mm; sourceTree = "<group>"; };
 		2C1059FE133C8DE70083BB5B /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
-		2C31B8861340326B00235FC6 /* tank_a.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tank_a.plist; sourceTree = "<group>"; };
-		2C31B8871340326B00235FC6 /* tank_a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tank_a.png; sourceTree = "<group>"; };
 		2C3DF166133CDB6D00924DF5 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
 		2C511249133B8B0A008E3455 /* gamewaiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamewaiting.mp3; sourceTree = "<group>"; };
 		2C6FD2131340BE8F0016AB34 /* gameover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gameover.jpg; sourceTree = "<group>"; };
 		2C6FD2161340BEB60016AB34 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		2C6FD2171340BEB60016AB34 /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		2C7E4FE3134363B000CA0257 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		2C7E4FE91343688D00CA0257 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		2C7E4FEA1343688D00CA0257 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		2C8DA997133AF4AC0040C305 /* TankWar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TankWar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -552,6 +553,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C7E4FE4134363B000CA0257 /* GameKit.framework in Frameworks */,
 				2C8DA99C133AF4AC0040C305 /* QuartzCore.framework in Frameworks */,
 				2C8DA99E133AF4AC0040C305 /* OpenGLES.framework in Frameworks */,
 				2C8DA9A0133AF4AC0040C305 /* OpenAL.framework in Frameworks */,
@@ -596,8 +598,6 @@
 		2C2F4C07133EDFEA0095A022 /* Tank */ = {
 			isa = PBXGroup;
 			children = (
-				2C31B8861340326B00235FC6 /* tank_a.plist */,
-				2C31B8871340326B00235FC6 /* tank_a.png */,
 				2C8DAB79133AF7330040C305 /* bar.png */,
 				2C8DAB7A133AF7330040C305 /* bullet1.png */,
 				2C8DAB8A133AF7330040C305 /* tank.plist */,
@@ -634,6 +634,7 @@
 		2C8DA99A133AF4AC0040C305 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C7E4FE3134363B000CA0257 /* GameKit.framework */,
 				2C8DA99B133AF4AC0040C305 /* QuartzCore.framework */,
 				2C8DA99D133AF4AC0040C305 /* OpenGLES.framework */,
 				2C8DA99F133AF4AC0040C305 /* OpenAL.framework */,
@@ -650,6 +651,8 @@
 			isa = PBXGroup;
 			children = (
 				2CC850DD133B10950016998C /* Constants.h */,
+				2C7E4FE91343688D00CA0257 /* NetworkManager.h */,
+				2C7E4FEA1343688D00CA0257 /* NetworkManager.m */,
 				2C1059FE133C8DE70083BB5B /* ContactListener.h */,
 				2C3DF166133CDB6D00924DF5 /* ContactListener.mm */,
 				2CC850DE133B10950016998C /* MainMenuScene.h */,
@@ -1124,8 +1127,6 @@
 				2C8DAB9F133AF7330040C305 /* tank.plist in Resources */,
 				2C8DABA0133AF7330040C305 /* tank.png in Resources */,
 				2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */,
-				2C31B8881340326B00235FC6 /* tank_a.plist in Resources */,
-				2C31B8891340326B00235FC6 /* tank_a.png in Resources */,
 				2C6FD2141340BE8F0016AB34 /* gameover.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1284,6 +1285,7 @@
 				2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */,
 				2CACD84C133E35AB00D7738B /* Bullet.mm in Sources */,
 				2C6FD2181340BEB60016AB34 /* GameOverScene.m in Sources */,
+				2C7E4FEB1343688D00CA0257 /* NetworkManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

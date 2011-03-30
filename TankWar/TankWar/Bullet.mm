@@ -16,8 +16,6 @@
 
 -(void) initBulletSprite:(NSInteger) bulletType atPosition:(CGPoint)p;
 
--(void) initPhyBody;
-
 @end
 
 
@@ -41,12 +39,14 @@
         self.phyWorld = pw;
         
         [self initBulletSprite:1 atPosition:p];
-        
-        [self initPhyBody];
     }
     
     return self;
 }
+
+//Public Methods
+
+
 
 -(void) fire:(b2Vec2)force{
      bulletBody -> ApplyLinearImpulse(force, bulletBody->GetPosition());
@@ -74,7 +74,12 @@
 
 //Private Methods
 
--(void) initPhyBody{
+-(void) initBulletSprite:(NSInteger) bulletType atPosition:(CGPoint)p{
+    
+    //TODO: Create SpriteBatchNode for all bullet sprites.
+    self.bulletSprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bullet%d.png",bulletType]];
+    bulletSprite.position = p;
+    [gameWorld addChild:self.bulletSprite z:1];
     
     b2BodyDef bodyDef;
     
@@ -91,16 +96,11 @@
 	
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
+    
+    fixtureDef.isSensor = true;
     fixtureDef.shape = &bulletBox;	
     bulletBody->CreateFixture(&fixtureDef);
     
-}
-
-
--(void) initBulletSprite:(NSInteger) bulletType atPosition:(CGPoint)p{
-    self.bulletSprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bullet%d.png",bulletType]];
-    bulletSprite.position = p;
-    [gameWorld addChild:self.bulletSprite z:1];
 }
 
 -(void) dealloc{

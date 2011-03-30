@@ -14,15 +14,16 @@
 
 @interface Bullet : CCNode {
     
-    BOOL needToBeExploded;
-    BOOL needToBeDeleted;
     
-    CCSprite *bulletSprite;
     GameScene *gameWorld;
+    CCSprite *bulletSprite;
     
     b2World *phyWorld;
     b2Body *bulletBody;
     
+    BOOL needToBeExploded;
+    BOOL needToBeDeleted;
+
     //伤害
     float attack;
 }
