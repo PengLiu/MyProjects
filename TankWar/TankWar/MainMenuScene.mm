@@ -80,7 +80,7 @@
 }
 -(void)about:(id)sender {
 	NetworkManager *manager = [[NetworkManager alloc]init];
-
+    [manager startPicker];
 }
 
 // GameKit protocol methods

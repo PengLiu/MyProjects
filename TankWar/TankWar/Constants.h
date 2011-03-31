@@ -29,4 +29,4 @@ typedef enum  {
 
 
 // GKSession ID
-#define TANKWAR_SESSIONID @"gktank"
+#define TANKWAR_SESSIONID @"tankwar"

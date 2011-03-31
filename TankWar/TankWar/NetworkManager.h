@@ -21,4 +21,12 @@
 @property (nonatomic, retain) GKSession *gameSession;
 @property (nonatomic, retain) NSString *gamePeerId;
 
+-(void) startPicker;
+
+-(void) sendNetwork:(NSData *)data;
+
+-(void) invalidateSession:(GKSession *)session;
+
+-(void) endConnection;
+
 @end
