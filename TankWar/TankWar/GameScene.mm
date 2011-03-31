@@ -33,6 +33,8 @@
 
 -(void) playBGM;
 
+-(void) initAudioResources;
+
 
 //Util methods
 
@@ -103,8 +105,11 @@
         [self initPlayer];
         //Init Enemy
         [self initEnemy];
+        
+        [self initAudioResources];
+        
         //Play background music
-        [self playBGM];
+       // [self playBGM];
     }
     
     return self;
@@ -113,6 +118,10 @@
 
 
 //Private methods
+
+-(void) initAudioResources{
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"fire.mp3"];
+}
 
 -(void) initWorld{
     

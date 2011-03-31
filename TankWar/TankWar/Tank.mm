@@ -7,7 +7,7 @@
 //
 
 
-
+#import "SimpleAudioEngine.h"
 #import "Tank.h"
 #import "GameScene.h"
 #import "Bullet.h"
@@ -235,6 +235,10 @@
     Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:pointOne];
     bullet.attack = attack;
     [bullet fire:b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower)];
+    
+    if (type == PlayerTank) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"fire.mp3"];
+    }
 }
 
 
