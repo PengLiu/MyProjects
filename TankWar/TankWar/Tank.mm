@@ -56,17 +56,22 @@
         
         self.type = t;
        
-        self.hp = 100;
-        self.ap = 100;
-        self.attack = 20;
-        self.defense = 2;
+       
         
         if (t == PlayerTank) {
+            self.hp = 1000;
+            self.ap = 100;
+            self.attack = 20;
+            self.defense = 2;
             self.movement = 10;
             self.fireFrequency = 0.6;
             self.firePower = 10;
         }else{
-            self.movement = 3;
+            self.hp = 100;
+            self.ap = 100;
+            self.attack = 20;
+            self.defense = 2;
+            self.movement = 2;
             self.fireFrequency = 1;
             self.firePower = 5;
         }
@@ -256,7 +261,7 @@
     tankBody->SetTransform(tankBody->GetPosition(),-moveAngle);   
     
     b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
-    // tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
+    tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
     
     float turrentRogation = moveAngle * 180 / PI;
     

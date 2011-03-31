@@ -117,7 +117,7 @@
 	[leftJoystick setDockTexture:@"Dock.png"];
 	[leftJoystick setStickTexture:@"Stick.jpg"];
 	[leftJoystick setHitAreaWithRadius:80];
-	[leftJoystick setPosition:ccp(80,80)];
+	[leftJoystick setPosition:ccp(50,50)];
 	[leftJoystick setDelegate:self];
 	
 	
@@ -127,7 +127,7 @@
 	[rightJoystick setDockTexture:@"Dock.png"];
 	[rightJoystick setStickTexture:@"Stick.jpg"];
 	[rightJoystick setHitAreaWithRadius:80];
-	[rightJoystick setPosition:ccp(380,80)];
+	[rightJoystick setPosition:ccp(420,50)];
 	[rightJoystick setDelegate:self];
 	[self addChild:leftJoystick];
 	[self addChild:rightJoystick];
