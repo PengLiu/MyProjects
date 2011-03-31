@@ -19,6 +19,7 @@
 
 
 #define TANK_SPRITE_BATCH_NODE 1
+#define BULLET_SPRITE_BATCH_NODE 2
 
 
 typedef enum  {

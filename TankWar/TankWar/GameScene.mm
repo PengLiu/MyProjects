@@ -24,6 +24,7 @@
 -(void) initWorld;
 
 -(void) initBodyTiles;
+
 -(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)d rotation:(float)r 
          friction:(float)f density:(float)d restitution:(float)re boxId:(float)id;
 
@@ -129,6 +130,14 @@
     worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
     [worldMap setAnchorPoint:ccp(0,0)];
     [self addChild:worldMap z:-1];
+    
+    //Create bullet sprite batch node
+    CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"bullet.png"];
+    CCSpriteBatchNode *bulletBatchNode = [CCSpriteBatchNode batchNodeWithTexture:playerTexture];
+    [self addChild:bulletBatchNode z:1 tag:BULLET_SPRITE_BATCH_NODE];
+    
+    CCSpriteFrameCache* playerFrameCache = [CCSpriteFrameCache sharedSpriteFrameCache]; 
+    [playerFrameCache addSpriteFramesWithFile:@"bullet.plist"];
     
     //Init box2d world
     b2Vec2 gravity;

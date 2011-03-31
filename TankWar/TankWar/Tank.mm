@@ -63,11 +63,11 @@
         
         if (t == PlayerTank) {
             self.movement = 10;
-            self.fireFrequency = 0.3;
+            self.fireFrequency = 0.6;
             self.firePower = 10;
         }else{
             self.movement = 3;
-            self.fireFrequency = 0.6;
+            self.fireFrequency = 1;
             self.firePower = 5;
         }
         
@@ -221,8 +221,8 @@
     
     float ran= -angle * PI/180;
     
-    float vx1 = cos(ran) * 35;
-    float vy1 = sin(ran) * 35;
+    float vx1 = cos(ran) * 50;
+    float vy1 = sin(ran) * 50;
     
     CGPoint pointOne = ccp(turretSprite.position.x + vx1, turretSprite.position.y + vy1);
     
@@ -234,7 +234,10 @@
     
     Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:pointOne];
     bullet.attack = attack;
-    [bullet fire:b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower)];
+    
+    float bulletRogation = fireAngle * 180 / PI;
+    
+    [bullet fire:b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower) fireAngle:bulletRogation + 90];
     
     if (type == PlayerTank) {
         [[SimpleAudioEngine sharedEngine] playEffect:@"fire.mp3"];

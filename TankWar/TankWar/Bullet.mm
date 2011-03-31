@@ -26,6 +26,8 @@
 @synthesize bulletSprite;
 @synthesize gameWorld;
 
+@synthesize fireAction;
+
 @synthesize phyWorld;
 @synthesize bulletBody;
 
@@ -48,7 +50,8 @@
 
 
 
--(void) fire:(b2Vec2)force{
+-(void) fire:(b2Vec2)force fireAngle:(float)angle{
+    bulletSprite.rotation = angle;
      bulletBody -> ApplyLinearImpulse(force, bulletBody->GetPosition());
 }
 
@@ -67,7 +70,10 @@
 
 -(void) destory{
     //Remove Sprite
-    [gameWorld removeChild:bulletSprite cleanup:YES];
+   [bulletSprite stopAction:fireAction];
+    
+    CCSpriteBatchNode *bulletBatchNode = (CCSpriteBatchNode *)[gameWorld getChildByTag:BULLET_SPRITE_BATCH_NODE];
+    [bulletBatchNode removeChild:bulletSprite cleanup:YES];
     //Remove box2d body
     phyWorld ->DestroyBody(bulletBody);
 }
@@ -77,9 +83,25 @@
 -(void) initBulletSprite:(NSInteger) bulletType atPosition:(CGPoint)p{
     
     //TODO: Create SpriteBatchNode for all bullet sprites.
-    self.bulletSprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"bullet%d.png",bulletType]];
+    
+    self.bulletSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%d-1.png", bulletType]];
     bulletSprite.position = p;
-    [gameWorld addChild:self.bulletSprite z:1];
+    
+    CCSpriteBatchNode *bulletBatchNode = (CCSpriteBatchNode *)[gameWorld getChildByTag:BULLET_SPRITE_BATCH_NODE];
+    [bulletBatchNode addChild:bulletSprite z:1];
+    
+    //Init bullet frames
+    NSMutableArray *walkAnimFrames = [NSMutableArray array];
+    
+    for(int i = 1; i <=2 ; ++i) {
+        [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"%d-%d.png", bulletType, i]]];
+    }
+    
+    //Init bullet animation
+    CCAnimation *fireAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:.05];
+    self.fireAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:fireAnim restoreOriginalFrame:NO]];
+    
+    [bulletSprite runAction:fireAction];
     
     b2BodyDef bodyDef;
     

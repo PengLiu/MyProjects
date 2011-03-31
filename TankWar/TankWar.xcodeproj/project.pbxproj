@@ -12,6 +12,8 @@
 		2C0C843F133AF8E900DE7408 /* HandDrawScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C8438133AF8E800DE7408 /* HandDrawScene.mm */; };
 		2C0C8440133AF8E900DE7408 /* JoyStickLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843A133AF8E800DE7408 /* JoyStickLayer.mm */; };
 		2C0C8441133AF8E900DE7408 /* Tank.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C843C133AF8E900DE7408 /* Tank.mm */; };
+		2C1E9B3A1344851100E7A709 /* bullet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C1E9B381344851100E7A709 /* bullet.plist */; };
+		2C1E9B3B1344851100E7A709 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C1E9B391344851100E7A709 /* bullet.png */; };
 		2C3DF167133CDB6D00924DF5 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DF166133CDB6D00924DF5 /* ContactListener.mm */; };
 		2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C511249133B8B0A008E3455 /* gamewaiting.mp3 */; };
 		2C6FD2141340BE8F0016AB34 /* gameover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C6FD2131340BE8F0016AB34 /* gameover.jpg */; };
@@ -190,6 +192,7 @@
 		2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA5133AF7920040C305 /* CCLayout.m */; };
 		2C8DABAA133AF7920040C305 /* PadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA7133AF7920040C305 /* PadButton.m */; };
 		2CACD84C133E35AB00D7738B /* Bullet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CACD84B133E35AB00D7738B /* Bullet.mm */; };
+		2CB28FC31344807800F867BD /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CB28FC21344807800F867BD /* fire.mp3 */; };
 		2CC850E0133B10950016998C /* MainMenuScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CC850DF133B10950016998C /* MainMenuScene.mm */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +208,8 @@
 		2C0C843B133AF8E800DE7408 /* Tank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tank.h; sourceTree = "<group>"; };
 		2C0C843C133AF8E900DE7408 /* Tank.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tank.mm; sourceTree = "<group>"; };
 		2C1059FE133C8DE70083BB5B /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
+		2C1E9B381344851100E7A709 /* bullet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullet.plist; sourceTree = "<group>"; };
+		2C1E9B391344851100E7A709 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		2C3DF166133CDB6D00924DF5 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
 		2C511249133B8B0A008E3455 /* gamewaiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamewaiting.mp3; sourceTree = "<group>"; };
 		2C6FD2131340BE8F0016AB34 /* gameover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gameover.jpg; sourceTree = "<group>"; };
@@ -543,6 +548,7 @@
 		2C8DABA7133AF7920040C305 /* PadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PadButton.m; sourceTree = "<group>"; };
 		2CACD84A133E35AB00D7738B /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		2CACD84B133E35AB00D7738B /* Bullet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bullet.mm; sourceTree = "<group>"; };
+		2CB28FC21344807800F867BD /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
 		2CC850DD133B10950016998C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2CC850DE133B10950016998C /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		2CC850DF133B10950016998C /* MainMenuScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainMenuScene.mm; sourceTree = "<group>"; };
@@ -568,6 +574,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C1E9B36134484F800E7A709 /* Bullets */ = {
+			isa = PBXGroup;
+			children = (
+				2C1E9B381344851100E7A709 /* bullet.plist */,
+				2C1E9B391344851100E7A709 /* bullet.png */,
+			);
+			name = Bullets;
+			sourceTree = "<group>";
+		};
 		2C2F4C05133EDF120095A022 /* JoyStick */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +624,7 @@
 		2C511246133B8AC6008E3455 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				2CB28FC21344807800F867BD /* fire.mp3 */,
 				2C511249133B8B0A008E3455 /* gamewaiting.mp3 */,
 			);
 			name = Audio;
@@ -694,6 +710,7 @@
 		2C8DA9AC133AF4AC0040C305 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C1E9B36134484F800E7A709 /* Bullets */,
 				2C2F4C07133EDFEA0095A022 /* Tank */,
 				2C2F4C06133EDF860095A022 /* WorldMap */,
 				2C2F4C05133EDF120095A022 /* JoyStick */,
@@ -1128,6 +1145,9 @@
 				2C8DABA0133AF7330040C305 /* tank.png in Resources */,
 				2C51124A133B8B0A008E3455 /* gamewaiting.mp3 in Resources */,
 				2C6FD2141340BE8F0016AB34 /* gameover.jpg in Resources */,
+				2CB28FC31344807800F867BD /* fire.mp3 in Resources */,
+				2C1E9B3A1344851100E7A709 /* bullet.plist in Resources */,
+				2C1E9B3B1344851100E7A709 /* bullet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

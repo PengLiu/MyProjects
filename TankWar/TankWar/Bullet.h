@@ -23,7 +23,9 @@
     
     BOOL needToBeExploded;
     BOOL needToBeDeleted;
-
+    
+    CCAction *fireAction;
+    
     //伤害
     float attack;
 }
@@ -37,11 +39,13 @@
 @property (nonatomic) b2World *phyWorld;
 @property (nonatomic) b2Body *bulletBody;
 
+@property (nonatomic, retain) CCAction *fireAction;
+
 @property (nonatomic) float attack;
 
 -(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p;
 
--(void) fire:(b2Vec2)force;
+-(void) fire:(b2Vec2)force fireAngle:(float)angle;
 
 -(void) explod;
 
