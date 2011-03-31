@@ -11,6 +11,22 @@ void ContactListener::BeginContact(b2Contact* contact){
     b2Body *ba = contact->GetFixtureA() ->GetBody();
     b2Body *bb = contact->GetFixtureB() -> GetBody();
     
+//    if (ba->IsBullet() && bb->IsBullet()) {
+//        Bullet *bulleta = (Bullet *) ba->GetUserData();
+//        Bullet *bulletb = (Bullet *) bb->GetUserData();
+//        
+//        if (bulleta.senderType == bulletb.senderType) {
+//            return;
+//        }else{
+//            bulleta.needToBeExploded = YES;
+//            bulletb.needToBeExploded = YES;
+//            return;
+//        }
+//    }
+//    
+    
+    
+    
     if (ba->GetType() != b2_staticBody &&  ba->IsBullet()) {
         Bullet *bullet = (Bullet *) ba->GetUserData();
         bullet.needToBeExploded = YES;

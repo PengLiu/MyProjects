@@ -43,6 +43,7 @@ NSError *err;
     
     GKPeerPickerController *picker = [[GKPeerPickerController alloc] init];
     picker.delegate = self;
+    picker.connectionTypesMask = GKPeerPickerConnectionTypeNearby | GKPeerPickerConnectionTypeOnline;
     [picker show]; 
 }
 

@@ -23,11 +23,9 @@
 
 
 typedef enum  {
-	EnemyTank = 1,
-    PlayerTank =2
+	EnemyTank,
+    PlayerTank
 }TankType;
-
-
 
 // GKSession ID
 #define TANKWAR_SESSIONID @"tankwar"

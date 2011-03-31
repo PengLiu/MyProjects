@@ -232,7 +232,7 @@
     
     float fireAngle = atan2f(pointTwo.x - pointOne.x, pointTwo.y - pointOne.y);
     
-    Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:pointOne];
+    Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:pointOne sender:type];
     bullet.attack = attack;
     
     float bulletRogation = fireAngle * 180 / PI;

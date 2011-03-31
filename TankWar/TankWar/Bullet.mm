@@ -28,15 +28,18 @@
 
 @synthesize fireAction;
 
+@synthesize senderType;
+
 @synthesize phyWorld;
 @synthesize bulletBody;
 
 @synthesize attack;
 
--(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p{
+-(id) initBullet:(NSInteger)bt inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p sender:(TankType)tt{
     
     if ((self = [super init])) {
         
+        senderType = tt;
         self.gameWorld = gw;
         self.phyWorld = pw;
         

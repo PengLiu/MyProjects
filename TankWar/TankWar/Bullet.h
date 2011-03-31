@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 #import "cocos2d.h"
 #import "Box2D.h"
 
@@ -28,6 +29,8 @@
     
     //伤害
     float attack;
+    
+    TankType senderType;
 }
 
 @property (nonatomic) BOOL needToBeExploded;
@@ -41,9 +44,11 @@
 
 @property (nonatomic, retain) CCAction *fireAction;
 
+@property (nonatomic) TankType senderType;
+
 @property (nonatomic) float attack;
 
--(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p;
+-(id) initBullet:(NSInteger)bulletType inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p sender:(TankType)tt;
 
 -(void) fire:(b2Vec2)force fireAngle:(float)angle;
 

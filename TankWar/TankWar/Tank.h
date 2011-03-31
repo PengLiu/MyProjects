@@ -45,7 +45,7 @@
     float hp;
     float ap;
     
-    int type;
+    TankType type;
     
 }
 
@@ -58,8 +58,9 @@
 
 @property (nonatomic)  b2Body *tankBody;
 
+@property (nonatomic) TankType type;
+
 @property (nonatomic) float angle;
-@property (nonatomic) int type;
 @property (nonatomic) float hp;
 @property (nonatomic) float ap;
 @property (nonatomic) float fireFrequency;
