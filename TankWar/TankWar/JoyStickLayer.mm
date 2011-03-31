@@ -117,7 +117,7 @@
 	[leftJoystick setDockTexture:@"Dock.png"];
 	[leftJoystick setStickTexture:@"Stick.jpg"];
 	[leftJoystick setHitAreaWithRadius:80];
-	[leftJoystick setPosition:ccp(50,50)];
+	[leftJoystick setPosition:ccp(70,50)];
 	[leftJoystick setDelegate:self];
 	
 	

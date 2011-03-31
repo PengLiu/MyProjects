@@ -35,7 +35,12 @@
 }
 
 -(void) spawnEnemy:(int)level atPosition:(CGPoint)p{
+    
+    int aiType = arc4random() % 3;
+    CCLOG(@"Move type%d",aiType);
     Tank *t = [[Tank alloc] initWithScene:world atPosition:p tankType:EnemyTank];
+    t.movement = aiType;
+    
     [tankArray addObject:t];
     [t release];
 }

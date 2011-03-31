@@ -36,8 +36,10 @@
 
 @synthesize tankBody;
 
-@synthesize angle;
 @synthesize type;
+@synthesize moveType;
+
+@synthesize angle;
 @synthesize hp;
 @synthesize ap;
 @synthesize fireFrequency;
@@ -56,8 +58,6 @@
         
         self.type = t;
        
-       
-        
         if (t == PlayerTank) {
             self.hp = 1000;
             self.ap = 100;
@@ -260,11 +260,19 @@
     float moveAngle = atan2f(playerPosition.x - selfPosition.x, playerPosition.y - selfPosition.y);
     tankBody->SetTransform(tankBody->GetPosition(),-moveAngle);   
     
-    b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
-    tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
     
+    //固定位置
+    if (moveType == FixedPosition) {
+        
+    }else if(moveType == ChasePlayers){
+        b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
+        tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
+    }else if(moveType == RandomMov){
+        
+    }
+       
+    //转向
     float turrentRogation = moveAngle * 180 / PI;
-    
     turretSprite.rotation = turrentRogation;
     self.angle = turrentRogation - 90;
 }

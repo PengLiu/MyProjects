@@ -21,11 +21,19 @@
 #define TANK_SPRITE_BATCH_NODE 1
 #define BULLET_SPRITE_BATCH_NODE 2
 
+// GKSession ID
+#define TANKWAR_SESSIONID @"tankwar"
+
 
 typedef enum  {
 	EnemyTank,
     PlayerTank
 }TankType;
 
-// GKSession ID
-#define TANKWAR_SESSIONID @"tankwar"
+typedef enum{
+    
+    RandomMov = 0, //随机移动
+    FixedPosition = 1, //固定位置
+    ChasePlayers = 2   //追击玩家
+    
+}AIMoveType;

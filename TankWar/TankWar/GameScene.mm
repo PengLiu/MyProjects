@@ -324,8 +324,8 @@
 
 //Selector and schedule methods
 
--(void) tick: (ccTime) dt
-{
+-(void) tick: (ccTime) dt{
+
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
 	//You need to make an informed choice, the following URL is useful

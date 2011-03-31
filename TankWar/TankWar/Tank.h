@@ -45,7 +45,10 @@
     float hp;
     float ap;
     
+    //坦克类型：玩家／敌人
     TankType type;
+    //坦克的移动方式，随机的巡逻，固定路径行走..
+    AIMoveType moveType;
     
 }
 
@@ -59,6 +62,7 @@
 @property (nonatomic)  b2Body *tankBody;
 
 @property (nonatomic) TankType type;
+@property (nonatomic) AIMoveType moveType;
 
 @property (nonatomic) float angle;
 @property (nonatomic) float hp;
