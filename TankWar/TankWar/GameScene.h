@@ -44,10 +44,9 @@
 
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
-//+(CCScene *) sceneWithMap:(NSString *)worldMapName;
-+(CCScene *) scene;
++(CCScene *) sceneWithMap:(NSString *)worldMapName;
 
-//-(id) initInWorld:(NSString *)worldMapName;
+-(id) initInWorld:(NSString *)worldMapName;
 
 -(void)setViewpointCenter:(CGPoint) position;
 

@@ -11,48 +11,54 @@ void ContactListener::BeginContact(b2Contact* contact){
     b2Body *ba = contact->GetFixtureA() ->GetBody();
     b2Body *bb = contact->GetFixtureB() -> GetBody();
     
-//    if (ba->IsBullet() && bb->IsBullet()) {
-//        Bullet *bulleta = (Bullet *) ba->GetUserData();
-//        Bullet *bulletb = (Bullet *) bb->GetUserData();
-//        
-//        if (bulleta.senderType == bulletb.senderType) {
-//            return;
-//        }else{
-//            bulleta.needToBeExploded = YES;
-//            bulletb.needToBeExploded = YES;
-//            return;
-//        }
-//    }
-//    
-    
-    
-    
-    if (ba->GetType() != b2_staticBody &&  ba->IsBullet()) {
-        Bullet *bullet = (Bullet *) ba->GetUserData();
-        bullet.needToBeExploded = YES;
+    //双方都是子弹
+    if (ba->IsBullet() && bb->IsBullet()) {
         
-        if(bb->GetType() != b2_staticBody && !bb->IsBullet()){
+        Bullet *bulleta = (Bullet *) ba->GetUserData();
+        Bullet *bulletb = (Bullet *) bb->GetUserData();
+        
+        if (bulleta.senderType == bulletb.senderType) {
+            return;
+        }else{
+            bulleta.needToBeExploded = YES;
+            bulletb.needToBeExploded = YES;
+            return;
+        }
+    }else {
+        
+        if(ba->IsBullet() && bb->GetType() != b2_staticBody ){
+        
+            Bullet *bullet = (Bullet *) ba->GetUserData();
             Tank *tank = (Tank *)bb->GetUserData();
-            [tank injuredWithBullet:bullet];
-        }
         
-    }
-    
-    if (bb->GetType() != b2_staticBody &&  bb->IsBullet()) {
-        Bullet *bullet = (Bullet *) bb->GetUserData();
-        bullet.needToBeExploded = YES;
+            if (bullet.senderType == tank.type) {
+                return;
+            }else{
+                bullet.needToBeExploded = YES;
+                [tank injuredWithBullet:bullet];
+            }
         
-        if(ba->GetType() != b2_staticBody && !ba->IsBullet()){
+        
+        }else if(bb->IsBullet() && ba->GetType() != b2_staticBody ){
+        
+            Bullet *bullet = (Bullet *) bb->GetUserData();
             Tank *tank = (Tank *)ba->GetUserData();
-            [tank injuredWithBullet:bullet];
+        
+            if (bullet.senderType == tank.type) {
+                return;
+            }else{
+                bullet.needToBeExploded = YES;
+                [tank injuredWithBullet:bullet];
+            }
+        }else if(ba->IsBullet() && bb->GetType() == b2_staticBody){
+            Bullet *bullet = (Bullet *) ba->GetUserData();
+            bullet.needToBeExploded = YES;
+        }else if(bb->IsBullet() && ba->GetType() == b2_staticBody){
+            Bullet *bullet = (Bullet *) bb->GetUserData();
+            bullet.needToBeExploded = YES;
         }
     }
     
-    
-    
-    //if (contact->IsSolid()) {
-    //    NSLog(@"Contact is solid");
-    //}
 }
 
 void ContactListener::EndContact(b2Contact* contact){

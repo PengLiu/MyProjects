@@ -43,7 +43,7 @@ NSError *err;
     
     GKPeerPickerController *picker = [[GKPeerPickerController alloc] init];
     picker.delegate = self;
-    picker.connectionTypesMask = GKPeerPickerConnectionTypeNearby | GKPeerPickerConnectionTypeOnline;
+    //picker.connectionTypesMask = GKPeerPickerConnectionTypeNearby | GKPeerPickerConnectionTypeOnline;
     [picker show]; 
 }
 
@@ -68,6 +68,7 @@ NSError *err;
 //GKPeerPickerControllerDelegate Methods
 
 -(GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type{
+    CCLOG(@"sessionForConnectionType");
     GKSession* session = [[GKSession alloc] initWithSessionID:TANKWAR_SESSIONID displayName:TANKWAR_SESSIONID sessionMode:GKSessionModePeer];
     [session autorelease];
     return session;
@@ -76,11 +77,18 @@ NSError *err;
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didSelectConnectionType:(GKPeerPickerConnectionType)type{
 
+    if (type == GKPeerPickerConnectionTypeOnline) {
+        picker.delegate = nil;
+        [picker dismiss];
+        [picker autorelease];
+    }
 }
 
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session{
-
+    
+    CCLOG(@"didConnectPeer");
+    
     //Here another peer really connected to us, we retain peerID, and session.
     self.gamePeerId = peerID;
 	self.gameSession = session;

@@ -73,7 +73,7 @@
 
 -(void)newGame:(id)sender{
 	//Go to game scene
-	[[CCDirector sharedDirector]replaceScene:[GameScene scene]];
+	[[CCDirector sharedDirector]replaceScene:[GameScene sceneWithMap:@"desert_world"]];
 }
 -(void)options:(id)sender {
 	[[CCDirector sharedDirector]replaceScene:[HandDrawScene scene]];

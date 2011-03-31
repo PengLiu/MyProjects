@@ -57,47 +57,34 @@
 @synthesize phyWorld;
 @synthesize contactListener;
 
-+(CCScene *) scene{
-    
-    CCScene *scene = [CCScene node];
-    
-    GameScene *layer = [GameScene node];
-    [scene addChild: layer];
+
++(CCScene *) sceneWithMap:(NSString *)worldMapName{
+	
+	// 'scene' is an autorelease object.
+	CCScene *scene = [CCScene node];
+	
+	// 'layer' is an autorelease object.
+	GameScene *layer = [[GameScene alloc] initInWorld:worldMapName];
+	// add layer as a child to scene
+	[scene addChild: layer];
+    [layer release];
     
     JoyStickLayer *joyStickLayer = [JoyStickLayer node];
     [joyStickLayer setGameScene:layer]; 
+    
     [scene addChild:joyStickLayer]; 
-    return scene;
-
+	
+	// return the scene
+	return scene;
+	
+	
 }
-//+(CCScene *) sceneWithMap:(NSString *)worldMapName{
-//	
-//	// 'scene' is an autorelease object.
-//	CCScene *scene = [CCScene node];
-//	
-//	// 'layer' is an autorelease object.
-//	GameScene *layer = [[GameScene alloc] initInWorld:worldMapName];
-//	// add layer as a child to scene
-//	[scene addChild: layer];
-//    [layer release];
-//    
-//    JoyStickLayer *joyStickLayer = [JoyStickLayer node];
-//    [joyStickLayer setGameScene:layer]; 
-//    
-//    [scene addChild:joyStickLayer]; 
-//	
-//	// return the scene
-//	return scene;
-//	
-//	
-//}
 
-//-(id) initInWorld:(NSString *)wm{
--(id) init{	
+-(id) initInWorld:(NSString *)wm{
     
 	if( (self=[super init])) {
 
-        worldMapName = @"desert_world";
+        worldMapName = wm;
         
         //Init world map
         [self initWorld];
