@@ -51,9 +51,12 @@
     [[SimpleAudioEngine sharedEngine]playEffect:@"enemydown.mp3"];
     
     [t destory];
-    if ([tankArray count] <2) {
-        [self spawnEnemy:1 atPosition:ccp(400,400)];
-        [self spawnEnemy:1 atPosition:ccp(400,400)];
+    if ([tankArray count] <5) {
+        for (int i =0 ; i<10; i++) {
+            int x = arc4random() % 400 + 50;
+            int y = arc4random() % 300 + 40;
+            [self spawnEnemy:1 atPosition:ccp(x,y)];
+        }
     }
 }
 

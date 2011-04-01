@@ -14,19 +14,19 @@ void ContactListener::BeginContact(b2Contact* contact){
     
     //双方都是子弹
     if (ba->IsBullet() && bb->IsBullet()) {
-        
-        Bullet *bulleta = (Bullet *) ba->GetUserData();
-        Bullet *bulletb = (Bullet *) bb->GetUserData();
-        
-        if (bulleta.senderType == bulletb.senderType) {
-            return;
-        }else{
-            bulleta.bulletTargetType = bBullet;
-            bulletb.bulletTargetType = bBullet;
-            bulleta.needToBeExploded = YES;
-            bulletb.needToBeExploded = YES;
-            return;
-        }
+        return;
+//        Bullet *bulleta = (Bullet *) ba->GetUserData();
+//        Bullet *bulletb = (Bullet *) bb->GetUserData();
+//        
+//        if (bulleta.senderType == bulletb.senderType) {
+//            return;
+//        }else{
+//            bulleta.bulletTargetType = bBullet;
+//            bulletb.bulletTargetType = bBullet;
+//            bulleta.needToBeExploded = YES;
+//            bulletb.needToBeExploded = YES;
+//            return;
+//        }
     }else {
         
         if(ba->IsBullet() && bb->GetType() != b2_staticBody ){

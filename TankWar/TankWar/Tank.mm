@@ -133,6 +133,9 @@
 //    //explosion.texture = [tankSprite texture];
 //    [world addChild: explosion z: self.zOrder+1];
     
+    //Stop fire event
+    [self unschedule:@selector(fire:)];
+    
     //Remove Sprite
     [playerSheet removeChild:tankSprite cleanup:YES];
     [playerSheet removeChild:turretSprite cleanup:YES];
