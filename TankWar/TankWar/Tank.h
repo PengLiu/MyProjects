@@ -54,6 +54,9 @@
     
     //动画效果
     CCAction *explosionEffect;
+    CCAction *fireEffec;
+    
+    NSString *tankName;
 }
 
 @property (nonatomic, assign) GameScene *world;
@@ -80,8 +83,11 @@
 @property (nonatomic) float movement;
 
 @property (nonatomic, retain) CCAction *explosionEffect;
+@property (nonatomic, retain) CCAction *fireEffec;
 
--(id) initWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision tankType:(TankType) type;
+-(id) initEnemyTankWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision aiMoveType:(AIMoveType) aiMoveType;
+
+-(id) initPlayerTankWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision ;
 
 -(CGPoint) getCurrentPosition;
 

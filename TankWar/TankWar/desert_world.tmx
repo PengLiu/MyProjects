@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="50" height="200" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="desert_world" tilewidth="32" tileheight="32">
   <image source="desert_world.png" trans="ff00ff" width="256" height="608"/>
  </tileset>
- <tileset firstgid="153" name="meta_tiles" tilewidth="32" tileheight="32">
-  <image source="meta_tiles.png" trans="ff00ff" width="67" height="34"/>
-  <tile id="0">
-   <properties>
-    <property name="Collidable" value="YES"/>
-   </properties>
-  </tile>
- </tileset>
- <layer name="BackGroundLayer" width="30" height="30">
+ <layer name="BackGroundLayer" width="50" height="200">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3RuREAIAwDQY15Qjqi/7ZQD8DYwQWb6wlJAQAAAHzUrNuwmZRhFdjh1n4guwNq/XsAveHgxRAOAAA=
+   H4sIAAAAAAAAA+3DAQkAAAwEoeP7hx4sh4Krpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq/gO4QTH5QJwAAA==
   </data>
  </layer>
- <layer name="BuildingLayer" width="30" height="30">
+ <layer name="BuildingLayer" width="50" height="200">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3NIRZAUBRF0T8QUUFCQkL6zH8+zgBeEd5PZ691yi23FEmSpP8GGmlq/DvTQmviRxdsG+10JP72wXbSRXfib6TSQ2/jX0ltfT12POcQDgAA
+   H4sIAAAAAAAAA+3YSUvEMBgGYPHgUZij4oa4C64gLriD6///P34nD4OBsU2bdPo88MJAp+lL6HSSLiwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDPlkoX4NfywMalfmsdjt3ns2Onx2vRn/vSBf5QYyeGaaV0gQqk5qCmuampyyxyremmxym1VpxkGKPUXibHnNXynzMP+8FJ4vMYrZcukMlu6QLhJHIaOStdpKWryGLkunSRlh4ij5GnhudvRDaztWnuLfIe+ShdpFJjf4a30XRtMoR3hk3ui62W59fioHSBjErda0Pb83XJXOQz5rk8jBxFjksXmbIX2f/H988jF5HLbur05iZyG7lLHF/tscssUu8fniMvkdfE8e1u6iQ1/Y1/Rr4i3xm7wCyGsKafN2NeC5D2A9Wsq0BAnAAA
   </data>
  </layer>
- <objectgroup name="CollisionObjs" width="30" height="30">
-  <object x="31" y="801" width="543" height="32"/>
-  <object x="31" y="929" width="543" height="29"/>
-  <object x="610" y="546" width="92" height="156"/>
-  <object x="449" y="609" width="30" height="61"/>
+ <objectgroup name="CollisionObjs" width="50" height="200">
+  <object x="546" y="5635" width="60" height="27"/>
+  <object x="643" y="5795" width="27" height="59"/>
+  <object x="73" y="6051" width="40" height="27"/>
+  <object x="580" y="5507" width="25" height="57"/>
+  <object x="708" y="6083" width="25" height="57"/>
+  <object x="580" y="5119" width="24" height="31"/>
+  <object x="160" y="5153" width="30" height="29"/>
+  <object x="578" y="5410" width="26" height="27"/>
+  <object x="449" y="6037" width="93" height="117"/>
+  <object x="477" y="6017" width="44" height="16"/>
+  <object x="524" y="6020" width="6" height="13"/>
+  <object x="464" y="6022" width="9" height="11"/>
+  <object x="454" y="6028" width="6" height="6"/>
+  <object x="533" y="6028" width="5" height="6"/>
+  <object x="466" y="6157" width="58" height="14"/>
+  <object x="455" y="6157" width="8" height="7"/>
+  <object x="527" y="6158" width="10" height="5"/>
+  <object x="33" y="5594" width="93" height="74"/>
+  <object x="35" y="5581" width="86" height="10"/>
+  <object x="47" y="5571" width="66" height="6"/>
+  <object x="43" y="5670" width="73" height="18"/>
  </objectgroup>
 </map>

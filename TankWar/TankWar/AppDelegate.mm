@@ -138,6 +138,9 @@
     [[CCTextureCache sharedTextureCache] addImageAsync:@"bullet.png" 
 												target:self selector:@selector(playerLoaded:)];
     
+    [[CCTextureCache sharedTextureCache] addImageAsync:@"bulletb.png" 
+												target:self selector:@selector(playerLoaded:)];
+    
     [[CCTextureCache sharedTextureCache] addImageAsync:@"tankdown_a.png" 
 												target:self selector:@selector(playerLoaded:)];
     

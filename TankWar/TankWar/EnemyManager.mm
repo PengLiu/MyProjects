@@ -36,10 +36,26 @@
 
 -(void) spawnEnemy:(int)level atPosition:(CGPoint)p{
     
-    int aiType = arc4random() % 3;
-    CCLOG(@"Move type%d",aiType);
-    Tank *t = [[Tank alloc] initWithScene:world atPosition:p tankType:EnemyTank];
-    t.movement = aiType;
+
+    int tmpAiType = arc4random() % 3;
+    
+    AIMoveType aiMoveType;
+    switch (tmpAiType) {
+        case 0:
+            aiMoveType = RandomMove;
+            break;
+        case 1:
+            aiMoveType = FixedPosition;
+            break;
+        case 2:
+            aiMoveType = ChasePlayers;
+            break;
+        default:
+            break;
+    }
+     
+    CCLOG(@"Move type%d",aiMoveType);
+    Tank *t = [[Tank alloc] initEnemyTankWithScene:world atPosition:p aiMoveType:aiMoveType];
     
     [tankArray addObject:t];
     [t release];

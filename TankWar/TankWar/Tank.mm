@@ -53,34 +53,28 @@
 @synthesize movement;
 
 @synthesize explosionEffect;
+@synthesize fireEffec;
 
--(id) initWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision tankType:(TankType) t{
-	
-	if ((self = [super init])) {
-		
-        self.type = t;
+-(id) initEnemyTankWithScene:(GameScene *)aWorld atPosition:(CGPoint) position aiMoveType:(AIMoveType) aiMoveType{
+    
+    if ((self = [super init])) {
+        
+        self.moveType = aiMoveType;
+        self.type = EnemyTank;
         self.world = aWorld;
         [world addChild:self];
         
-        if (t == PlayerTank) {
-            self.hp = 1000;
-            self.ap = 100;
-            self.attack = 20;
-            self.defense = 2;
-            self.movement = 50;
-            self.fireFrequency = 0.6;
-            self.firePower = 10;
-        }else{
-            self.hp = 100;
-            self.ap = 100;
-            self.attack = 20;
-            self.defense = 2;
-            self.movement = 60;
-            self.fireFrequency = 1;
-            self.firePower = 5;
-            
-            [self aiControlSwitch:YES];
-        }
+        //Init properties
+        self.hp = 100;
+        self.ap = 100;
+        self.attack = 20;
+        self.defense = 2;
+        self.movement = 2.5;
+        self.fireFrequency = 1;
+        self.firePower = 5;
+        
+        [self aiControlSwitch:YES];
+        
         
         //Load player png.
         CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"tank.png"];
@@ -91,22 +85,63 @@
         CCSpriteFrameCache* playerFrameCache = [CCSpriteFrameCache sharedSpriteFrameCache]; 
         [playerFrameCache addSpriteFramesWithFile:@"tank.plist"];
 		
-        if (type == PlayerTank) {
-            self.tankSprite = [CCSprite spriteWithSpriteFrameName:@"bodyu1.png"];
-            self.turretSprite = [CCSprite spriteWithSpriteFrameName:@"turret1.png"];                     
-        }else{
-            self.tankSprite = [CCSprite spriteWithSpriteFrameName:@"bodyu2.png"];
-            self.turretSprite = [CCSprite spriteWithSpriteFrameName:@"turret2.png"];
-        }
+        self.tankSprite = [CCSprite spriteWithSpriteFrameName:@"tankb.png"];
+        self.turretSprite = [CCSprite spriteWithSpriteFrameName:@"turretb_1_1.png"];
         
-        [tankSprite setPosition:posision];
+        [tankSprite setPosition:position];
         [tankSprite setAnchorPoint:ccp(0.5 ,0.5)];
         [playerSheet addChild:tankSprite z:1];
         
         [self addNewSprite:tankSprite];
         
-        [turretSprite setPosition:posision];
-        [turretSprite setAnchorPoint:ccp(0.5,0.5)];
+        [turretSprite setPosition:position];
+        [turretSprite setAnchorPoint:ccp(0.5,0.2)];
+        [playerSheet addChild:turretSprite z:1];
+        
+        [self initAnimations];
+        
+    }
+    return self;
+}
+
+-(id) initPlayerTankWithScene:(GameScene *)aWorld atPosition:(CGPoint) position{
+	
+	if ((self = [super init])) {
+		
+        self.type = PlayerTank;
+        self.world = aWorld;
+        [world addChild:self];
+        
+        //Init properties
+        self.hp = 1000;
+        self.ap = 100;
+        self.attack = 20;
+        self.defense = 2;
+        self.movement = 50;
+        self.fireFrequency = 0.6;
+        self.firePower = 10;
+        
+        //Load player png.
+        CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"tank.png"];
+        self.playerSheet = [CCSpriteBatchNode batchNodeWithTexture:playerTexture];
+        [world addChild:playerSheet z:1 tag:TANK_SPRITE_BATCH_NODE];
+        
+        
+        CCSpriteFrameCache* playerFrameCache = [CCSpriteFrameCache sharedSpriteFrameCache]; 
+        [playerFrameCache addSpriteFramesWithFile:@"tank.plist"];
+		
+        self.tankSprite = [CCSprite spriteWithSpriteFrameName:@"tanka.png"];
+        self.turretSprite = [CCSprite spriteWithSpriteFrameName:@"turreta_1_1.png"];                     
+
+        
+        [tankSprite setPosition:position];
+        [tankSprite setAnchorPoint:ccp(0.5 ,0.5)];
+        [playerSheet addChild:tankSprite z:1];
+        
+        [self addNewSprite:tankSprite];
+        
+        [turretSprite setPosition:position];
+        [turretSprite setAnchorPoint:ccp(0.5,0.2)];
         [playerSheet addChild:turretSprite z:1];
         
         [self initAnimations];
@@ -120,18 +155,6 @@
 
 
 -(void) destory{
-    
-//    CCParticleSun* explosion = [CCParticleSun node];
-//    explosion.positionType = kCCPositionTypeRelative;
-//    explosion.autoRemoveOnFinish = YES;
-//    explosion.startSize = 10;
-//    explosion.endSize = 50;
-//    explosion.duration = 1;
-//    // explosion.speed = 3.0f;
-//    explosion.anchorPoint = ccp(.5,.5);
-//    explosion.position = tankSprite.position;
-//    //explosion.texture = [tankSprite texture];
-//    [world addChild: explosion z: self.zOrder+1];
     
     //Stop fire event
     [self unschedule:@selector(fire:)];
@@ -214,12 +237,30 @@
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"tankdown_a_%d.png", i]]];
     }
     
+    //爆炸动画
     CCAnimation *tankdownAnim = [CCAnimation animationWithFrames:tankdownAnimFrames delay:.1];
     self.explosionEffect = [CCSequence actions: [CCAnimate actionWithAnimation:tankdownAnim restoreOriginalFrame:NO], 
                             [CCCallFunc actionWithTarget:self selector:@selector(releaseResource)], nil];
     
     self.explosionSprite = [CCSprite spriteWithSpriteFrameName:@"tankdown_a_1.png"];
-
+    
+    //射击动画
+    count = 2;
+    [tankdownAnimFrames removeAllObjects];
+    for(int i = 1; i <=count ; ++i) {
+        if (type == PlayerTank) {
+            [tankdownAnimFrames addObject:
+            [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"turreta_1_%d.png", i]]];
+        }else{
+            [tankdownAnimFrames addObject:
+            [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"turreta_1_%d.png", i]]];     
+        }
+    }
+    CCAnimation *fireAnim = [CCAnimation animationWithFrames:tankdownAnimFrames delay:.2];
+    self.fireEffec = [CCSequence actions: [CCAnimate actionWithAnimation:fireAnim restoreOriginalFrame:NO], 
+                      [CCCallFunc actionWithTarget:self selector:@selector(recoverTurretSprite)], nil];
+    
+    
 }
 
 -(void) addNewSprite:(CCSprite *)sprite{
@@ -265,6 +306,15 @@
 
 //Schedule Methods
 
+-(void) recoverTurretSprite{
+    
+    if (type == PlayerTank) {
+         [turretSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"turreta_1_1.png"]];
+    }else{
+         [turretSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"turreta_2_1.png"]];
+    }
+}
+
 -(void) removeSprite:(CCNode *)sprite{
     CCLOG(@"Remove damage text");
     [world removeChild:sprite cleanup:YES];
@@ -289,8 +339,11 @@
     float bulletRogation;
     b2Vec2 vect;
     
+    [turretSprite runAction:fireEffec];
+
+    
     if (type == PlayerTank) {
-        
+            
         [[SimpleAudioEngine sharedEngine] playEffect:@"fire.mp3"];
         
         CGPoint targetPoint = [RotaionUtil shootTarget:startPoint withJoyStickAngle:angle];
@@ -307,6 +360,7 @@
         vect = [RotaionUtil phyPower:fireAngle withRatio:firePower];
     }
     
+        
     [bullet fire:vect fireAngle:bulletRogation];
 }
 
@@ -323,16 +377,16 @@
     
     
     //固定位置
-    //if (moveType == FixedPosition) {
+    if (moveType == FixedPosition) {
         
-   // }else if(moveType == ChasePlayers){
-     b2Vec2 force = [RotaionUtil phyPower:moveAngle withRatio:movement];
-    
-      //  b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
+    }else if(moveType == ChasePlayers){
+        b2Vec2 force = [RotaionUtil phyPower:moveAngle withRatio:movement];
         tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
-   // }else if(moveType == RandomMov){
+      //b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
         
-   // }
+    }else if(moveType == RandomMove){
+        
+    }
        
     //转向
     turretSprite.rotation = [RotaionUtil angleTo360:moveAngle withOffset:0];

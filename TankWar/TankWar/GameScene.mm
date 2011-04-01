@@ -23,7 +23,7 @@
 
 -(void) initWorld;
 
--(void) initBodyTiles;
+-(void) initBodyTiles:(CCTMXTiledMap *)tiledMap;
 
 -(void) addRectAt:(CGPoint)point withSize:(CGPoint)size dynamic:(bool)d rotation:(float)r 
          friction:(float)f density:(float)d restitution:(float)re boxId:(float)id;
@@ -51,6 +51,8 @@
 @implementation GameScene
 
 @synthesize worldMap;
+@synthesize worldOverMap;
+
 @synthesize tank;
 @synthesize enemyManager;
 
@@ -88,7 +90,9 @@
         
         //Init world map
         [self initWorld];
-        [self initBodyTiles];
+        
+        [self initBodyTiles:worldMap];
+        [self initBodyTiles:worldOverMap];
         //Init player
         [self initPlayer];
         //Init Enemy
@@ -113,9 +117,14 @@
 -(void) initWorld{
     
     //Load world map
-    worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
+    self.worldMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@.tmx",worldMapName]];
     [worldMap setAnchorPoint:ccp(0,0)];
     [self addChild:worldMap z:-1];
+    
+    self.worldOverMap = [CCTMXTiledMap tiledMapWithTMXFile:[NSString stringWithFormat:@"%@_over.tmx",worldMapName]];
+    [worldOverMap setAnchorPoint:ccp(0,0)];
+    [self addChild:worldOverMap z:2];
+    
     
     //Create bullet sprite batch node
     CCTexture2D *playerTexture = [[CCTextureCache sharedTextureCache] addImage:@"bullet.png"];
@@ -189,16 +198,13 @@
 
 
 //Create staic body from tiled map 
--(void) initBodyTiles{
+-(void) initBodyTiles:(CCTMXTiledMap *)tiledMap{
     
     //searching for object layer called "CollisionObjs"
-    CCTMXObjectGroup *objects = [worldMap objectGroupNamed:@"CollisionObjs"];
+    CCTMXObjectGroup *objects = [tiledMap objectGroupNamed:@"CollisionObjs"];
     NSMutableDictionary * objPoint;
-    int x ;
-    int y ;
-    int w ;
-    int h ;
     
+    int x,y,w,h;
     for (objPoint in [objects objects]) {
         x = [[objPoint valueForKey:@"x"] intValue];
         y = [[objPoint valueForKey:@"y"] intValue];
@@ -243,7 +249,7 @@
 
 //Init player tank
 -(void) initPlayer{
-    self.tank = [[Tank alloc] initWithScene:self atPosition:ccp(200,200) tankType:PlayerTank];
+    self.tank = [[Tank alloc] initPlayerTankWithScene:self atPosition:ccp(200,200)];
 }
 
 //Init enemy tank

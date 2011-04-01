@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="50" height="200" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="desert_world" tilewidth="32" tileheight="32">
+  <image source="desert_world.png" trans="ff00ff" width="256" height="608"/>
+ </tileset>
+ <layer name="BackGroundLayer" width="50" height="200">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OMQ6CUBRFQbaq2CA0Cg1CA7pw7x5+4iucSU5/ug4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7XJV1Tn27FLy2GdE9jmopfWjzSM81pKX5psaZX2tJe/NLiSGd6p0/xCwAAAAAAAADAL30BrfsJU0CcAAA=
+  </data>
+ </layer>
+ <objectgroup name="CollisionObjs" width="50" height="200">
+  <object x="817" y="5032" width="25" height="19"/>
+ </objectgroup>
+</map>

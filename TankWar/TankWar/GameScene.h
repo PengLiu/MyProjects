@@ -24,6 +24,7 @@
     
     
     CCTMXTiledMap *worldMap;
+    CCTMXTiledMap *worldOverMap;
     
     Tank *tank;
     
@@ -38,6 +39,7 @@
 @property (nonatomic, retain) EnemyManager *enemyManager;
 
 @property (nonatomic, retain) CCTMXTiledMap *worldMap;
+@property (nonatomic, retain) CCTMXTiledMap *worldOverMap;
 
 @property (nonatomic) b2World *phyWorld;
 @property (nonatomic) ContactListener *contactListener;

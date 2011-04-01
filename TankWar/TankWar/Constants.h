@@ -37,9 +37,9 @@ typedef enum  {
 
 typedef enum{
     
-    RandomMov = 0, //随机移动
-    FixedPosition = 1, //固定位置
-    ChasePlayers = 2   //追击玩家
+    RandomMove, //随机移动
+    FixedPosition, //固定位置
+    ChasePlayers   //追击玩家
     
 }AIMoveType;
 
