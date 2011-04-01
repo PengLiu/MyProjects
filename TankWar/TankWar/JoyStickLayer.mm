@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "RoationUtil.h"
+#import "RotaionUtil.h"
 #import "JoyStickLayer.h"
 #import "Tank.h"
 #import "Constants.h"
@@ -139,12 +139,12 @@
     
 	if (sender == leftJoystick) {
         
-        gameScene.tank.tankSprite.rotation = [RoationUtil joyStickyToSpriteRotation:angle offSetAngle:90];
+        gameScene.tank.tankSprite.rotation = [RotaionUtil joyStickyToSpriteRotation:angle offSetAngle:90];
         [gameScene.tank moveTo:angle];
         
 	}else if (sender == rightJoystick) {
         
-        gameScene.tank.turretSprite.rotation = [RoationUtil joyStickyToSpriteRotation:angle offSetAngle:90];
+        gameScene.tank.turretSprite.rotation = [RotaionUtil joyStickyToSpriteRotation:angle offSetAngle:90];
         gameScene.tank.angle = angle;
 	}
 }

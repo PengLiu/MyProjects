@@ -50,6 +50,7 @@
     //坦克的移动方式，随机的巡逻，固定路径行走..
     AIMoveType moveType;
     
+    
 }
 
 @property (nonatomic, assign) GameScene *world;

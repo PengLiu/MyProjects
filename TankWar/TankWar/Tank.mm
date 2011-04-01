@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "RoationUtil.h"
+#import "RotaionUtil.h"
 #import "SimpleAudioEngine.h"
 #import "Tank.h"
 #import "GameScene.h"
@@ -48,6 +48,7 @@
 @synthesize attack;
 @synthesize movement;
 
+
 -(id) initWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision tankType:(TankType) t{
 	
 	if ((self = [super init])) {
@@ -63,7 +64,7 @@
             self.ap = 100;
             self.attack = 20;
             self.defense = 2;
-            self.movement = 10;
+            self.movement = 50;
             self.fireFrequency = 0.6;
             self.firePower = 10;
         }else{
@@ -71,7 +72,7 @@
             self.ap = 100;
             self.attack = 20;
             self.defense = 2;
-            self.movement = 2;
+            self.movement = 60;
             self.fireFrequency = 1;
             self.firePower = 5;
         }
@@ -140,14 +141,14 @@
 -(void) moveTo:(float)a{
     
     CGPoint startPoint = turretSprite.position;
-    CGPoint targetPoint = [RoationUtil shootTarget:startPoint withJoyStickAngle:a];
+    CGPoint targetPoint = [RotaionUtil shootTarget:startPoint withJoyStickAngle:a];
     
-    float moveAngle = [RoationUtil angleBetween:startPoint endPoint:targetPoint];
+    float moveAngle = [RotaionUtil angleBetween:startPoint endPoint:targetPoint];
 
     float bodyAngle = -tankBody ->GetAngle();
     tankBody->SetTransform(tankBody->GetPosition(),-moveAngle);    
     
-    b2Vec2 vect = [RoationUtil phyPower:bodyAngle withRatio:movement+45];
+    b2Vec2 vect = [RotaionUtil phyPower:bodyAngle withRatio:movement];
     
     tankBody->ApplyForce(vect, tankBody->GetPosition());
     
@@ -233,18 +234,18 @@
         
         [[SimpleAudioEngine sharedEngine] playEffect:@"fire.mp3"];
         
-        CGPoint targetPoint = [RoationUtil shootTarget:startPoint withJoyStickAngle:angle];
-        fireAngle = [RoationUtil angleBetween:startPoint endPoint:targetPoint];
+        CGPoint targetPoint = [RotaionUtil shootTarget:startPoint withJoyStickAngle:angle];
+        fireAngle = [RotaionUtil angleBetween:startPoint endPoint:targetPoint];
         
-        bulletRogation = [RoationUtil joyStickyToSpriteRotation:angle offSetAngle:180];
-        vect = [RoationUtil phyPower:fireAngle withRatio:firePower];
+        bulletRogation = [RotaionUtil joyStickyToSpriteRotation:angle offSetAngle:180];
+        vect = [RotaionUtil phyPower:fireAngle withRatio:firePower];
         
     }else if(type == EnemyTank){
         
         CGPoint targetPoint = [world.tank getCurrentPosition];
-        fireAngle = [RoationUtil angleBetween:startPoint endPoint:targetPoint];
-        bulletRogation = [RoationUtil angleTo360:fireAngle withOffset:90];
-        vect = [RoationUtil phyPower:fireAngle withRatio:firePower];
+        fireAngle = [RotaionUtil angleBetween:startPoint endPoint:targetPoint];
+        bulletRogation = [RotaionUtil angleTo360:fireAngle withOffset:90];
+        vect = [RotaionUtil phyPower:fireAngle withRatio:firePower];
     }
     
     [bullet fire:vect fireAngle:bulletRogation];
@@ -266,14 +267,16 @@
     //if (moveType == FixedPosition) {
         
    // }else if(moveType == ChasePlayers){
-        b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
+     b2Vec2 force = [RotaionUtil phyPower:moveAngle withRatio:movement];
+    
+      //  b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
         tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
    // }else if(moveType == RandomMov){
         
    // }
        
     //转向
-    turretSprite.rotation = [RoationUtil angleTo360:moveAngle withOffset:0];
+    turretSprite.rotation = [RotaionUtil angleTo360:moveAngle withOffset:0];
 }
 
 
