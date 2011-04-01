@@ -97,7 +97,7 @@
         [self initAudioResources];
         
         //Play background music
-       // [self playBGM];
+        [self playBGM];
     }
     
     return self;
@@ -107,7 +107,7 @@
 //Private methods
 
 -(void) initAudioResources{
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"fire.mp3"];
+    //调用地图对应的背景音乐
 }
 
 -(void) initWorld{
@@ -254,7 +254,7 @@
 
 //Player background music
 -(void) playBGM{
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamewaiting.mp3"];
+    
 }
 
 //Util methods

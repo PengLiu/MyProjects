@@ -19,7 +19,12 @@
 
 
 #define TANK_SPRITE_BATCH_NODE 1
+
+//子弹动画效果
 #define BULLET_SPRITE_BATCH_NODE 2
+
+//坦克动画效果 
+#define TANK_ANIMATION_BATCH_NODE 3
 
 // GKSession ID
 #define TANKWAR_SESSIONID @"tankwar"
@@ -37,3 +42,10 @@ typedef enum{
     ChasePlayers = 2   //追击玩家
     
 }AIMoveType;
+
+//子弹打到的目标类型
+typedef enum {
+    bBuilding,
+    bEnemyTank,
+    bBullet
+}BulletTargetType;

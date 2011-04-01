@@ -31,6 +31,7 @@
     float attack;
     
     TankType senderType;
+    BulletTargetType bulletTargetType;
 }
 
 @property (nonatomic) BOOL needToBeExploded;
@@ -45,6 +46,7 @@
 @property (nonatomic, retain) CCAction *fireAction;
 
 @property (nonatomic) TankType senderType;
+@property (nonatomic) BulletTargetType bulletTargetType;
 
 @property (nonatomic) float attack;
 

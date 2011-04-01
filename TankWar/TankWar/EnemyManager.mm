@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "GameScene.h"
 #import "Tank.h"
-
+#import "SimpleAudioEngine.h"
 
 
 @interface EnemyManager(PrivateMethods)
@@ -48,6 +48,8 @@
 -(void) destoryTank:(Tank *)t{
     
     [tankArray removeObject:t];
+    [[SimpleAudioEngine sharedEngine]playEffect:@"enemydown.mp3"];
+    
     [t destory];
     if ([tankArray count] <2) {
         [self spawnEnemy:1 atPosition:ccp(400,400)];

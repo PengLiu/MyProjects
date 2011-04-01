@@ -20,9 +20,11 @@
     GameScene *world;
     
 	CCSpriteBatchNode *playerSheet;
+    CCSpriteBatchNode *tankdownSheet;
     
     CCSprite *tankSprite;
     CCSprite *turretSprite;
+    CCSprite *explosionSprite;
     
     //Box2d tank body
     b2Body *tankBody;
@@ -50,15 +52,18 @@
     //坦克的移动方式，随机的巡逻，固定路径行走..
     AIMoveType moveType;
     
-    
+    //动画效果
+    CCAction *explosionEffect;
 }
 
 @property (nonatomic, assign) GameScene *world;
 
 @property (nonatomic, retain) CCSpriteBatchNode *playerSheet;
+@property (nonatomic, retain) CCSpriteBatchNode *tankdownSheet;
 
 @property (nonatomic, retain) CCSprite *tankSprite;
 @property (nonatomic, retain) CCSprite *turretSprite;
+@property (nonatomic, retain) CCSprite *explosionSprite;
 
 @property (nonatomic)  b2Body *tankBody;
 
@@ -74,6 +79,7 @@
 @property (nonatomic) float attack;
 @property (nonatomic) float movement;
 
+@property (nonatomic, retain) CCAction *explosionEffect;
 
 -(id) initWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision tankType:(TankType) type;
 

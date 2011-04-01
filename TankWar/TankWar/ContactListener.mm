@@ -3,6 +3,7 @@
 #import "cocos2d.h"
 #import "Bullet.h"
 #import "Tank.h"
+#import "Constants.h"
 
 void ContactListener::BeginContact(b2Contact* contact){
     
@@ -20,6 +21,8 @@ void ContactListener::BeginContact(b2Contact* contact){
         if (bulleta.senderType == bulletb.senderType) {
             return;
         }else{
+            bulleta.bulletTargetType = bBullet;
+            bulletb.bulletTargetType = bBullet;
             bulleta.needToBeExploded = YES;
             bulletb.needToBeExploded = YES;
             return;
@@ -34,6 +37,7 @@ void ContactListener::BeginContact(b2Contact* contact){
             if (bullet.senderType == tank.type) {
                 return;
             }else{
+                bullet.bulletTargetType = bEnemyTank;
                 bullet.needToBeExploded = YES;
                 [tank injuredWithBullet:bullet];
             }
@@ -47,14 +51,17 @@ void ContactListener::BeginContact(b2Contact* contact){
             if (bullet.senderType == tank.type) {
                 return;
             }else{
+                bullet.bulletTargetType = bEnemyTank;
                 bullet.needToBeExploded = YES;
                 [tank injuredWithBullet:bullet];
             }
         }else if(ba->IsBullet() && bb->GetType() == b2_staticBody){
             Bullet *bullet = (Bullet *) ba->GetUserData();
+            bullet.bulletTargetType = bBuilding;
             bullet.needToBeExploded = YES;
         }else if(bb->IsBullet() && ba->GetType() == b2_staticBody){
             Bullet *bullet = (Bullet *) bb->GetUserData();
+            bullet.bulletTargetType = bBuilding;
             bullet.needToBeExploded = YES;
         }
     }

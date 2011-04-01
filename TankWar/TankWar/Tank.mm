@@ -22,6 +22,8 @@
 
 -(void) aiControlSwitch:(BOOL) start;
 
+-(void) initAnimations;
+
 @end
 
 
@@ -30,9 +32,11 @@
 @synthesize world;
 
 @synthesize playerSheet;
+@synthesize tankdownSheet;
 
 @synthesize turretSprite;
 @synthesize tankSprite;
+@synthesize explosionSprite;
 
 @synthesize tankBody;
 
@@ -48,17 +52,16 @@
 @synthesize attack;
 @synthesize movement;
 
+@synthesize explosionEffect;
 
 -(id) initWithScene:(GameScene *)aWorld atPosition:(CGPoint) posision tankType:(TankType) t{
 	
 	if ((self = [super init])) {
 		
+        self.type = t;
         self.world = aWorld;
-        
         [world addChild:self];
         
-        self.type = t;
-       
         if (t == PlayerTank) {
             self.hp = 1000;
             self.ap = 100;
@@ -75,6 +78,8 @@
             self.movement = 60;
             self.fireFrequency = 1;
             self.firePower = 5;
+            
+            [self aiControlSwitch:YES];
         }
         
         //Load player png.
@@ -104,9 +109,7 @@
         [turretSprite setAnchorPoint:ccp(0.5,0.5)];
         [playerSheet addChild:turretSprite z:1];
         
-        if (t == EnemyTank) {
-            [self aiControlSwitch:YES];
-        }
+        [self initAnimations];
         
         
 	}
@@ -117,17 +120,17 @@
 
 -(void) destory{
     
-    CCParticleSun* explosion = [CCParticleSun node];
-    explosion.positionType = kCCPositionTypeRelative;
-    explosion.autoRemoveOnFinish = YES;
-    explosion.startSize = 10;
-    explosion.endSize = 50;
-    explosion.duration = 1;
-    // explosion.speed = 3.0f;
-    explosion.anchorPoint = ccp(.5,.5);
-    explosion.position = tankSprite.position;
-    //explosion.texture = [tankSprite texture];
-    [world addChild: explosion z: self.zOrder+1];
+//    CCParticleSun* explosion = [CCParticleSun node];
+//    explosion.positionType = kCCPositionTypeRelative;
+//    explosion.autoRemoveOnFinish = YES;
+//    explosion.startSize = 10;
+//    explosion.endSize = 50;
+//    explosion.duration = 1;
+//    // explosion.speed = 3.0f;
+//    explosion.anchorPoint = ccp(.5,.5);
+//    explosion.position = tankSprite.position;
+//    //explosion.texture = [tankSprite texture];
+//    [world addChild: explosion z: self.zOrder+1];
     
     //Remove Sprite
     [playerSheet removeChild:tankSprite cleanup:YES];
@@ -135,7 +138,10 @@
     //Remove box2d body
     world.phyWorld ->DestroyBody(tankBody);
     
-    [world removeChild:self cleanup:YES];
+    [tankdownSheet addChild:explosionSprite z:1];
+    [explosionSprite setPosition:tankSprite.position];
+    [explosionSprite runAction:explosionEffect];
+    
 }
 
 -(void) moveTo:(float)a{
@@ -171,6 +177,31 @@
 }
 
 //Private Methods
+
+-(void) initAnimations{
+    
+    CCTexture2D *tankdownTexture = [[CCTextureCache sharedTextureCache] addImage:@"tankdown_a.png"];
+    self.tankdownSheet = [CCSpriteBatchNode batchNodeWithTexture:tankdownTexture];
+    [world addChild:tankdownSheet z:1 tag:TANK_ANIMATION_BATCH_NODE];
+    
+    
+    CCSpriteFrameCache* tankdownFrameCache = [CCSpriteFrameCache sharedSpriteFrameCache]; 
+    [tankdownFrameCache addSpriteFramesWithFile:@"tankdown_a.plist"];
+    
+    int count = 15;
+    NSMutableArray *tankdownAnimFrames = [NSMutableArray arrayWithCapacity:count];
+    
+    for(int i = 1; i <=count ; ++i) {
+        [tankdownAnimFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"tankdown_a_%d.png", i]]];
+    }
+    
+    CCAnimation *tankdownAnim = [CCAnimation animationWithFrames:tankdownAnimFrames delay:.1];
+    self.explosionEffect = [CCSequence actions: [CCAnimate actionWithAnimation:tankdownAnim restoreOriginalFrame:NO], 
+                            [CCCallFunc actionWithTarget:self selector:@selector(releaseResource)], nil];
+    
+    self.explosionSprite = [CCSprite spriteWithSpriteFrameName:@"tankdown_a_1.png"];
+}
 
 -(void) addNewSprite:(CCSprite *)sprite{
 	
@@ -217,6 +248,12 @@
 
 
 //Schedule Methods
+
+-(void) releaseResource{
+    CCLOG(@"release resource");
+    [tankdownSheet removeChild:explosionSprite cleanup:YES];
+    [world removeChild:self cleanup:YES];
+}
 
 -(void) fire:(ccTime) dt{
     

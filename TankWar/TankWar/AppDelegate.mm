@@ -10,7 +10,7 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-
+#import "SimpleAudioEngine.h"
 #import "RootViewController.h"
 #import "MainMenuScene.h"
 
@@ -19,7 +19,6 @@
 -(void) loadGameResources;
 
 @end
-
 
 
 @implementation AppDelegate
@@ -138,6 +137,17 @@
     
     [[CCTextureCache sharedTextureCache] addImageAsync:@"bullet.png" 
 												target:self selector:@selector(playerLoaded:)];
+    
+    [[CCTextureCache sharedTextureCache] addImageAsync:@"tankdown_a.png" 
+												target:self selector:@selector(playerLoaded:)];
+    
+    //Load Music effect
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"fire.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"enemydown.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"shootenemy.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"shootbuilding.mp3"];   
+    
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"gamewaiting.mp3"];
 }
 
 

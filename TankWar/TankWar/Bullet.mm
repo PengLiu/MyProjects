@@ -9,6 +9,7 @@
 #import "Constants.h"
 #import "Bullet.h"
 #import "Box2D.h"
+#import "SimpleAudioEngine.h"
 
 @class GameScene;
 
@@ -29,11 +30,13 @@
 @synthesize fireAction;
 
 @synthesize senderType;
+@synthesize bulletTargetType;
 
 @synthesize phyWorld;
 @synthesize bulletBody;
 
 @synthesize attack;
+
 
 -(id) initBullet:(NSInteger)bt inPhyWorld:(b2World *)pw inGameWorld:(GameScene *)gw atPosition:(CGPoint)p sender:(TankType)tt{
     
@@ -67,6 +70,16 @@
     explosion.duration = .8;
     explosion.anchorPoint = ccp(.5,.5);
     explosion.position = bulletSprite.position;
+    
+    //Please music effect
+    if (bulletTargetType == bEnemyTank) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"shootenemy.mp3"];
+    }else if(bulletTargetType == bBuilding){
+        [[SimpleAudioEngine sharedEngine] playEffect:@"shootbuilding.mp3"];
+    }else{
+        //子弹对子弹
+    }
+    
     [gameWorld addChild: explosion];
     [self destory];
 }
