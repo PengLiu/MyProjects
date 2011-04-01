@@ -118,6 +118,7 @@
 
 //Public methods
 
+
 -(void) destory{
     
 //    CCParticleSun* explosion = [CCParticleSun node];
@@ -161,7 +162,21 @@
 }
 
 -(void) injuredWithBullet:(Bullet *)bullet{
-    self.hp -= bullet.attack;
+    float damage = bullet.attack;
+    self.hp -= damage;
+    //TODO:增加暴击计算
+
+    CCLabelBMFont *damageStr = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%d",(int)damage] fntFile:@"feedbackFont.fnt"];
+    [world addChild:damageStr z:2];
+    [damageStr setPosition:tankSprite.position];
+    [damageStr setColor:ccRED];
+    
+    //伤害数字动画
+    id scale = [CCScaleTo actionWithDuration:.3 scale:1.5];
+    id fadeout = [CCFadeOut actionWithDuration:.3];
+    id removeSprite = [CCCallFuncN actionWithTarget:self selector:@selector(removeSprite:)];
+    
+    [damageStr runAction:[CCSequence actions: scale, fadeout, removeSprite, nil]];
 }
 
 -(void) stopFire{
@@ -201,6 +216,7 @@
                             [CCCallFunc actionWithTarget:self selector:@selector(releaseResource)], nil];
     
     self.explosionSprite = [CCSprite spriteWithSpriteFrameName:@"tankdown_a_1.png"];
+
 }
 
 -(void) addNewSprite:(CCSprite *)sprite{
@@ -244,13 +260,16 @@
     }
 }
 
-
-
-
 //Schedule Methods
+
+-(void) removeSprite:(CCNode *)sprite{
+    CCLOG(@"Remove damage text");
+    [world removeChild:sprite cleanup:YES];
+}
 
 -(void) releaseResource{
     CCLOG(@"release resource");
+    [explosionSprite stopAction:explosionEffect];
     [tankdownSheet removeChild:explosionSprite cleanup:YES];
     [world removeChild:self cleanup:YES];
 }

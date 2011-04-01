@@ -142,7 +142,6 @@
 }
 
 -(void) dealloc{
-    CCLOG(@"Bullet deallco");
     [super dealloc];
 }
 
