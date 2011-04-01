@@ -6,6 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "RoationUtil.h"
 #import "JoyStickLayer.h"
 #import "Tank.h"
 #import "Constants.h"
@@ -137,16 +138,19 @@
 - (void) onCCJoyStickUpdate:(CCNode*)sender Angle:(float)angle Direction:(CGPoint)direction Power:(float)power{
     
 	if (sender == leftJoystick) {
-        gameScene.tank.tankSprite.rotation = -angle + 90;
-        [gameScene.tank moveToDirection:direction WithPower:power];
+        
+        gameScene.tank.tankSprite.rotation = [RoationUtil joyStickyToSpriteRotation:angle offSetAngle:90];
+        [gameScene.tank moveTo:angle];
         
 	}else if (sender == rightJoystick) {
-        gameScene.tank.turretSprite.rotation = -angle +90 ;
-        gameScene.tank.angle = -angle;
+        
+        gameScene.tank.turretSprite.rotation = [RoationUtil joyStickyToSpriteRotation:angle offSetAngle:90];
+        gameScene.tank.angle = angle;
 	}
 }
 
 - (void) onCCJoyStickActivated:(CCNode*)sender{
+    
 	if (sender == leftJoystick) {
 		[leftJoystick setBallTexture:@"Ball_hl.png"];
 		[leftJoystick setDockTexture:@"Dock_hl.png"];

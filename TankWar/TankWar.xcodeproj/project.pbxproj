@@ -191,6 +191,7 @@
 		2C8DABA8133AF7920040C305 /* CCJoyStick.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA3133AF7920040C305 /* CCJoyStick.m */; };
 		2C8DABA9133AF7920040C305 /* CCLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA5133AF7920040C305 /* CCLayout.m */; };
 		2C8DABAA133AF7920040C305 /* PadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8DABA7133AF7920040C305 /* PadButton.m */; };
+		2CA5677B13457127006CC0A1 /* RoationUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CA5677A13457127006CC0A1 /* RoationUtil.mm */; };
 		2CACD84C133E35AB00D7738B /* Bullet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CACD84B133E35AB00D7738B /* Bullet.mm */; };
 		2CB28FC31344807800F867BD /* fire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CB28FC21344807800F867BD /* fire.mp3 */; };
 		2CC850E0133B10950016998C /* MainMenuScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CC850DF133B10950016998C /* MainMenuScene.mm */; };
@@ -546,6 +547,8 @@
 		2C8DABA5133AF7920040C305 /* CCLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLayout.m; sourceTree = "<group>"; };
 		2C8DABA6133AF7920040C305 /* PadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PadButton.h; sourceTree = "<group>"; };
 		2C8DABA7133AF7920040C305 /* PadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PadButton.m; sourceTree = "<group>"; };
+		2CA5677913457127006CC0A1 /* RoationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoationUtil.h; sourceTree = "<group>"; };
+		2CA5677A13457127006CC0A1 /* RoationUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoationUtil.mm; sourceTree = "<group>"; };
 		2CACD84A133E35AB00D7738B /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		2CACD84B133E35AB00D7738B /* Bullet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bullet.mm; sourceTree = "<group>"; };
 		2CB28FC21344807800F867BD /* fire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fire.mp3; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 			isa = PBXGroup;
 			children = (
 				2CC850DD133B10950016998C /* Constants.h */,
+				2CA5677913457127006CC0A1 /* RoationUtil.h */,
+				2CA5677A13457127006CC0A1 /* RoationUtil.mm */,
 				2C7E4FE91343688D00CA0257 /* NetworkManager.h */,
 				2C7E4FEA1343688D00CA0257 /* NetworkManager.m */,
 				2C1059FE133C8DE70083BB5B /* ContactListener.h */,
@@ -1306,6 +1311,7 @@
 				2CACD84C133E35AB00D7738B /* Bullet.mm in Sources */,
 				2C6FD2181340BEB60016AB34 /* GameOverScene.m in Sources */,
 				2C7E4FEB1343688D00CA0257 /* NetworkManager.m in Sources */,
+				2CA5677B13457127006CC0A1 /* RoationUtil.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

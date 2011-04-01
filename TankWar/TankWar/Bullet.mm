@@ -55,7 +55,7 @@
 
 -(void) fire:(b2Vec2)force fireAngle:(float)angle{
     bulletSprite.rotation = angle;
-     bulletBody -> ApplyLinearImpulse(force, bulletBody->GetPosition());
+    bulletBody -> ApplyLinearImpulse(force, bulletBody->GetPosition());
 }
 
 -(void) explod{

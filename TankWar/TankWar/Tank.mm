@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-
+#import "RoationUtil.h"
 #import "SimpleAudioEngine.h"
 #import "Tank.h"
 #import "GameScene.h"
@@ -137,24 +137,19 @@
     [world removeChild:self cleanup:YES];
 }
 
+-(void) moveTo:(float)a{
+    
+    CGPoint startPoint = turretSprite.position;
+    CGPoint targetPoint = [RoationUtil shootTarget:startPoint withJoyStickAngle:a];
+    
+    float moveAngle = [RoationUtil angleBetween:startPoint endPoint:targetPoint];
 
--(void) moveToDirection:(CGPoint)direction WithPower:(float)power{
-    
-    float nextx = tankSprite.position.x;
-    float nexty = tankSprite.position.y;
-    
-    nextx += -direction.x * power;
-    nexty += -direction.y * power;
-    
-    CGPoint pointOne = tankSprite.position;
-    CGPoint pointTwo = ccp(nextx,nexty);
-    
-    float tmpAngle = atan2f(pointOne.x - pointTwo.x, pointOne.y - pointTwo.y);
-    
     float bodyAngle = -tankBody ->GetAngle();
+    tankBody->SetTransform(tankBody->GetPosition(),-moveAngle);    
     
-    tankBody->SetTransform(tankBody->GetPosition(),-tmpAngle);    
-    tankBody->ApplyForce( b2Vec2(sin(bodyAngle) * 50, cos(bodyAngle) * 50), tankBody->GetPosition());
+    b2Vec2 vect = [RoationUtil phyPower:bodyAngle withRatio:movement+45];
+    
+    tankBody->ApplyForce(vect, tankBody->GetPosition());
     
 }
 
@@ -224,29 +219,35 @@
 
 -(void) fire:(ccTime) dt{
     
-    float ran= -angle * PI/180;
+    CGPoint startPoint = turretSprite.position;
     
-    float vx1 = cos(ran) * 50;
-    float vy1 = sin(ran) * 50;
-    
-    CGPoint pointOne = ccp(turretSprite.position.x + vx1, turretSprite.position.y + vy1);
-    
-	float vx = cos(ran) * 100;
-	float vy = sin(ran) * 100;
-    CGPoint pointTwo = ccp(turretSprite.position.x + vx, turretSprite.position.y + vy);
-    
-    float fireAngle = atan2f(pointTwo.x - pointOne.x, pointTwo.y - pointOne.y);
-    
-    Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:pointOne sender:type];
+    Bullet *bullet = [[Bullet alloc] initBullet:1 inPhyWorld:world.phyWorld inGameWorld:world atPosition:startPoint sender:type];
     bullet.attack = attack;
     
-    float bulletRogation = fireAngle * 180 / PI;
     
-    [bullet fire:b2Vec2(sin(fireAngle) * firePower, cos(fireAngle) * firePower) fireAngle:bulletRogation + 90];
+    float fireAngle;
+    float bulletRogation;
+    b2Vec2 vect;
     
     if (type == PlayerTank) {
+        
         [[SimpleAudioEngine sharedEngine] playEffect:@"fire.mp3"];
+        
+        CGPoint targetPoint = [RoationUtil shootTarget:startPoint withJoyStickAngle:angle];
+        fireAngle = [RoationUtil angleBetween:startPoint endPoint:targetPoint];
+        
+        bulletRogation = [RoationUtil joyStickyToSpriteRotation:angle offSetAngle:180];
+        vect = [RoationUtil phyPower:fireAngle withRatio:firePower];
+        
+    }else if(type == EnemyTank){
+        
+        CGPoint targetPoint = [world.tank getCurrentPosition];
+        fireAngle = [RoationUtil angleBetween:startPoint endPoint:targetPoint];
+        bulletRogation = [RoationUtil angleTo360:fireAngle withOffset:90];
+        vect = [RoationUtil phyPower:fireAngle withRatio:firePower];
     }
+    
+    [bullet fire:vect fireAngle:bulletRogation];
 }
 
 
@@ -262,19 +263,17 @@
     
     
     //固定位置
-    if (moveType == FixedPosition) {
+    //if (moveType == FixedPosition) {
         
-    }else if(moveType == ChasePlayers){
+   // }else if(moveType == ChasePlayers){
         b2Vec2 force = b2Vec2(sin(moveAngle) * movement, cos(moveAngle) * movement);
         tankBody -> ApplyLinearImpulse(force, tankBody->GetPosition());
-    }else if(moveType == RandomMov){
+   // }else if(moveType == RandomMov){
         
-    }
+   // }
        
     //转向
-    float turrentRogation = moveAngle * 180 / PI;
-    turretSprite.rotation = turrentRogation;
-    self.angle = turrentRogation - 90;
+    turretSprite.rotation = [RoationUtil angleTo360:moveAngle withOffset:0];
 }
 
 

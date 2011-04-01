@@ -80,7 +80,7 @@
 
 -(void) injuredWithBullet:(Bullet *)bullet;
 
--(void) moveToDirection:(CGPoint)direction WithPower:(float)power;
+-(void) moveTo:(float)angle;
 
 -(void) startFire;
 -(void) stopFire;
