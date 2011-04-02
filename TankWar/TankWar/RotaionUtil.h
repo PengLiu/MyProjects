@@ -11,7 +11,7 @@
 
 @interface RotaionUtil : NSObject {
     
-}
+} 
 
 +(float) joyStickyToSpriteRotation:(float)angle offSetAngle:(float) offset;
 
